@@ -22,7 +22,7 @@ Please ensure PostgreSQL is installed with the development libraries. Steps are 
     
 #### Step 3 : Create a Scaffold with the fields you require.
 
-For a list of supported fields please see the wiki
+For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffold/wiki/Fields
 
     vim scaffold/module.yaml
     customers:
