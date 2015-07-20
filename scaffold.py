@@ -4,6 +4,7 @@ import inflect
 import os
 import shutil
 import sys
+import subprocess
 from scaffold.custom_fields import *
 
 blueprint_file = 'app/__init__.py'
@@ -166,6 +167,17 @@ def clean_up(module_path):
     if os.path.isdir(module_path):
         shutil.rmtree(module_path)
 
+
+def run_autopep8():
+    try:
+        cmd_output = subprocess.check_output(
+            ['autopep8', '--in-place', '--recursive', 'app'])
+        print("Ran autopep8")
+    except subprocess.CalledProcessError:
+        print("autopep8 failed")
+        raise
+
+
 # Parse YAML file
 with open("scaffold/module.yaml", "r") as yaml_file:
 
@@ -313,6 +325,7 @@ with open("scaffold/module.yaml", "r") as yaml_file:
                 print('{} created successfully'.format(module_dir))
                 register_blueprints()
                 add_tests()
+                run_autopep8()
             except:
                 clean_up(module_dir)
                 raise
