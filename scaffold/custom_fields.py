@@ -83,17 +83,16 @@ update_text_test = """
                                        I recommend you read Creating your first Linux App with Python and Flask.
                                        Read more at http://techarena51.com/index.php/flask-sqlalchemy-tutorial/\"\"\","""
 
-###ADD Tests to bash script
-test_script_string="""
+# ADD Tests to bash script
+test_script_string = """
 #TESTS
 py.test app/{}/"""
 
 ######### END TEST FIELDS #####################
 
 
-
 ########## Form Fields #####################
-integer_form_string ="""<label>{Field}
+integer_form_string = """<label>{Field}
     <small>required</small><input type="number" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
     </label> """
 

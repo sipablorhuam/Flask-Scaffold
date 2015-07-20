@@ -3,6 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 db = SQLAlchemy()
 
+
 class CRUD():
 
     def session_commit(self):

@@ -10,8 +10,6 @@ class {Resources}(db.Model, CRUD):
         {init_self_vars}
 
 
-
-
 class {Resources}Schema(Schema):
 
     not_blank = validate.Length(min=1, error='Field cannot be blank')

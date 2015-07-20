@@ -128,9 +128,9 @@ def generate_files(module_path):
 
 
 def register_blueprints():
-    string_to_insert_after = '#Blueprints'
+    string_to_insert_after = '# Blueprints'
     new_blueprint = """
-    #Blueprints
+    # Blueprints
     from app.{resources}.views import {resources}
     app.register_blueprint({resources}, url_prefix='/{resources}')""".format(resources=resources)
 
