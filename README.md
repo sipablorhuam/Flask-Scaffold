@@ -6,7 +6,7 @@ Please ensure PostgreSQL is installed with the development libraries. Steps are 
 - PostgreSQL
 - MYSQL
 
-![](https://travis-ci.org/Leo-g/Flask-Scaffold.svg?branch=master)
+
 ###Installation Steps
 ####Step 1:Clone the project to your application folder.
 
