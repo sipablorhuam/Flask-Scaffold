@@ -177,11 +177,12 @@ def run_autopep8():
         print("autopep8 failed")
         raise
 
-
+# Main Code Start
+#
 # Parse YAML file
-with open("scaffold/module.yaml", "r") as yaml_file:
+with open(yaml_file, "r") as file:
 
-    yaml_data = yaml.load(yaml_file)
+    yaml_data = yaml.load(file)
 
     for module, fields in yaml_data.items():
             # make module name plural
