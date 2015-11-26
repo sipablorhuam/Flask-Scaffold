@@ -63,9 +63,8 @@ def generate_files(module_path):
                 with open("scaffold/app/views.py", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resources=resources.title(),
-                                                   add_fields=add_fields,
-                                                   update_fields=update_fields))
+                                                   Resources=resources.title(),                                                Resource=resource.title(),
+                                                   add_fields=add_fields))
 
         elif file == "models.py":
             with open(os.path.join(module_path, 'models.py'), "w") as new_file:
@@ -133,7 +132,7 @@ def register_blueprints():
     new_blueprint = """
     # Blueprints
     from app.{resources}.views import {resources}
-    app.register_blueprint({resources}, url_prefix='/{resources}')""".format(resources=resources)
+    app.register_blueprint({resources}, url_prefix='/api/v1/{resources}')""".format(resources=resources)
 
     with open(blueprint_file, 'r+') as old_file:
         filedata = old_file.read()
@@ -197,8 +196,7 @@ with open(yaml_file, "r") as file:
         # End strings to insert into models
 
         # Start strings to insert into views
-        add_fields = ""
-        update_fields = ""
+        add_fields = ""        
 
         # strings to insert into _form.html
         form_args = []
@@ -301,10 +299,8 @@ with open(yaml_file, "r") as file:
             init_self_vars += """
         self.{field} = {field}""".format(field=field)
             # Views
-            add_fields += """
-                                request.form['{}'],""".format(field)
-            update_fields += """
-            {resource}.{field} = request.form['{field}']""".format(resource=resource, field=field)
+            add_fields += add_string.format(field)
+            
             #_form.html
             form_args.append(
                 """{resource}_{field} = ''""".format(resource=resource, field=field))

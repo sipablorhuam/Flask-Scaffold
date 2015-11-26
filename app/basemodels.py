@@ -4,26 +4,15 @@ from sqlalchemy.exc import SQLAlchemyError
 db = SQLAlchemy()
 
 
-class CRUD():
-
-    def session_commit(self):
-        try:
-            db.session.commit()
-        except SQLAlchemyError as e:
-            db.session.rollback()
-            reason = str(e)
-            return reason
+class CRUD_MixIn():
 
     def add(self, resource):
         db.session.add(resource)
-        return self.session_commit()
-
-    def read(self):
-        return self.query.all()
+        return db.session.commit()
 
     def update(self):
-        return self.session_commit()
+        return db.session.commit()
 
     def delete(self, resource):
         db.session.delete(resource)
-        return self.session_commit()
+        return db.session.commit()

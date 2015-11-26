@@ -1,3 +1,6 @@
+######View Fields###########
+add_string = """ request_dict['{}'],"""
+
 ######### START TEST FIELDS #####################
 ####ADD####
 string_test = """
