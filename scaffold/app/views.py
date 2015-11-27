@@ -8,7 +8,7 @@ from marshmallow import ValidationError
 {resources} = Blueprint('{resources}', __name__)
 # http://marshmallow.readthedocs.org/en/latest/quickstart.html#declaring-schemas
 #https://github.com/marshmallow-code/marshmallow-jsonapi
-schema = {Resources}Schema()
+schema = {Resources}Schema(strict=True)
 api = Api({resources})
 
 # {Resources}
@@ -68,10 +68,10 @@ class GetUpdateDelete{Resource}(Resource):
     def patch(self, id):
         {resource} = {Resources}.query.get_or_404(id)
         raw_dict = request.get_json(force=True)
-        request_dict = raw_dict['data']['attributes']
         try:
-            for key, value in request_dict.items():
-                schema.validate({{key:value}})
+            schema.validate(raw_dict)
+            request_dict = raw_dict['data']['attributes']
+            for key, value in request_dict.items():                
                 setattr({resource}, key, value)
           
             {resource}.update()            
