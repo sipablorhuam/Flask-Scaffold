@@ -95,36 +95,26 @@ py.test app/{}/"""
 
 
 ########## Form Fields #####################
-integer_form_string = """<label>{Field}
-    <small>required</small><input type="number" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
 
 
-email_form_string = """<label>{Field}
-    <small>required</small><input type="email" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
-
-url_form_string = """<label>{Field}
-    <small>required</small><input type="url" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
-
-datetime_form_string = """<label>{Field}
-    <small>required</small><input type="datetime" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
+form_field = """<div class="required">
+               <label for="content">{Field}</label>      
+               <input class="u-90-width" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
+            </div>"""
 
 
-date_form_string = """<label>{Field}
-    <small>required</small><input type="date" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
+decimal_form_string = """
+          <div class="required">
+               <label for="content">{Field}</label>      
+               <input class="u-90-width" type=number step="any" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
+            </div> """
 
-decimal_form_string = """<label>{Field}
-    <small>required</small><input type="number" name="{field}" step="any" value="{{{{ {resource}_{field} }}}}"  required/>
-    </label> """
-
-text_form_string = """<label>{Field}
-    <small>required</small><textarea type="text" name="{field}" rows="20" > {{{{ {resource}_{field} }}}}
+text_form_string = """<div class="required">
+               <label for="content">{Field}</label>  
+            <textarea type="text" name="{field}" rows="20" ng-model="{resource}.data.attributes.{field}"
+           ng-init="{resource}.data.attributes.{field}" > 
     </textarea>
-    </label> """
+    """
 
 boolean_form_string = """<!-- START STATUS -->
       <div class="center row">

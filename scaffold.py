@@ -50,7 +50,7 @@ def make_plural(resource):
         return resource, resources
 
 
-def generate_files(module_path):
+def generate_files(module_path, angular_dir):
 
     app_files = ['views.py', 'models.py', '__init__.py', '_form.html', 'add.html', 'update.html',
                  'index.html', 'tests.py']
@@ -95,7 +95,7 @@ def generate_files(module_path):
         # Generate Template Files
         # Need to add template resourc path
         elif file == "_form.html":
-            with open(os.path.join(module_path, 'templates', resources, '_form.html'), "w") as new_file:
+            with open(os.path.join(angular_dir, '_form.html'), "w") as new_file:
                 with open("scaffold/app/_form.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
@@ -105,20 +105,20 @@ def generate_files(module_path):
                                                    form_fields=form_fields))
 
         elif file == "add.html":
-            with open(os.path.join(module_path, 'templates', resources, 'add.html'), "w") as new_file:
+            with open(os.path.join(angular_dir, 'add.html'), "w") as new_file:
                 with open("scaffold/app/add.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resources=resources.title()))
         elif file == "update.html":
-            with open(os.path.join(module_path, 'templates', resources, 'update.html'), "w") as new_file:
+            with open(os.path.join(angular_dir, 'update.html'), "w") as new_file:
                 with open("scaffold/app/update.html",  "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resources=resources.title(),
                                                    update_form_args=update_form_args))
         elif file == "index.html":
-            with open(os.path.join(module_path, 'templates', resources, 'index.html'), "w") as new_file:
+            with open(os.path.join(angular_dir, 'index.html'), "w") as new_file:
                 with open("scaffold/app/index.html",  "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
@@ -165,6 +165,8 @@ def add_tests():
 def clean_up(module_path):
     if os.path.isdir(module_path):
         shutil.rmtree(module_path)
+    if os.path.isdir(angular_dir):
+        shutil.rmtree(angular_dir)
 
 
 def run_autopep8():
@@ -214,18 +216,15 @@ with open(yaml_file, "r") as file:
 
         for f in fields:
             field, field_type = f.split(':')
-            if field_type == "String":
+            if field_type == "string":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.String()""".format(field)
                 test_add_fields += string_test.format(field)
-                form_fields += """
-           <label>{Field}
-           <small>required</small><input type="text" name="{field}" value="{{{{ {resource}_{field} }}}}"  required/>
-           </label> """.format(Field=field.title(), field=field, resource=resource)
+                form_fields += form_field.format(field=field,  Field=field.title(), field_type="text", resource=resource, Resource=resource.title())
 
-            elif field_type == "Boolean":
+            elif field_type == "boolean":
                 db_rows += """
     {} = db.Column(db.Boolean, nullable=False)""".format(field)
                 schema += """
@@ -233,58 +232,53 @@ with open(yaml_file, "r") as file:
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource)
                 test_add_fields += boolean_test.format(field)
-            elif field_type == "Integer":
+            elif field_type == "integer":
                 db_rows += """
     {} = db.Column(db.Integer, nullable=False)""".format(field)
                 schema += """
     {} = fields.Integer()""".format(field)
-                form_fields += integer_form_string.format(Field=field.title(),
-                                                          field=field, resource=resource)
+                form_fields += form_field.format(field=field, Field=field.title(), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields += integer_test.format(field)
 
-            elif field_type == "Email":
+            elif field_type == "email":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.Email()""".format(field)
-                form_fields += email_form_string.format(Field=field.title(),
-                                                        field=field, resource=resource)
+                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += email_test.format(field)
-            elif field_type == "URL":
+            elif field_type == "url":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.URL()""".format(field)
-                form_fields += url_form_string.format(Field=field.title(),
-                                                      field=field, resource=resource)
+                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += url_test.format(field)
-            elif field_type == "DateTime":
+            elif field_type == "datetime":
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
                 schema += """
     {} = fields.DateTime()""".format(field)
-                form_fields += datetime_form_string.format(Field=field.title(),
-                                                           field=field, resource=resource)
+                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += date_time_test.format(field)
-            elif field_type == "Date":
+            elif field_type == "date":
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
     {} = fields.Date()""".format(field)
-                form_fields += date_form_string.format(Field=field.title(),
-                                                       field=field, resource=resource)
+                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += date_test.format(field)
 
-            elif field_type == "Decimal":
+            elif field_type == "decimal":
                 db_rows += """
     {} = db.Column(db.Numeric, nullable=False)""".format(field)
                 schema += """
     {} = fields.Decimal()""".format(field)
                 form_fields += decimal_form_string.format(Field=field.title(),
-                                                          field=field, resource=resource)
+                                                          field=field,  resource=resource)
                 test_add_fields += decimal_test.format(field)
 
-            elif field_type == "Text":
+            elif field_type == "text":
                 db_rows += """
     {} = db.Column(db.Text, nullable=False)""".format(field)
                 schema += """
@@ -312,13 +306,13 @@ with open(yaml_file, "r") as file:
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)
+        angular_dir = os.path.join('angularjs-frontend', resources)
 
         try:
             os.mkdir(module_dir)
             try:
-                os.makedirs('{module_dir}/templates/{resources}'.format(module_dir=module_dir,
-                                                                        resources=resources))
-                generate_files(module_dir)
+                os.makedirs(angular_dir)
+                generate_files(module_dir, angular_dir)
                 print('{} created successfully'.format(module_dir))
                 register_blueprints()
                 add_tests()

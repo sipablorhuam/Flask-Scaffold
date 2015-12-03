@@ -1,21 +1,15 @@
 
-{{% macro {resource}_form(form_name = '', {form_args}) %}}
-
-        <div class="center row">
-            <div class="large-8 columns">
-            <h4> {{{{ form_name }}}} {Resources}</h4>
-               <fieldset>
-                <form action="" method="POST" >
-  
+<fieldset>
+                
 				 {form_fields}
+                     
+              
+              <button class="button-primary" type="submit"> Save</button>
+              </fieldset>
+              
+              
+              
 
-				   <button class="button "  type="submit">{{{{ form_name }}}}</button>
-                  </form>
-                </fieldset>
+  
 
-
-				</div>
-			  </div>
-
-
-{{% endmacro %}}
+				
