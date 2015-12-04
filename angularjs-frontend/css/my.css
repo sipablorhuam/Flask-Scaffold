@@ -1,0 +1,164 @@
+textarea {
+  height: 300px;
+}
+
+
+fieldset {
+  height: 300px;
+}
+
+.required:after { 
+ content:"*";
+ font-family: "Open Sans";
+
+}
+
+
+
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.u-90-width {
+  width: 90%;
+  box-sizing: border-box; }
+  
+/* Utility Classes */
+
+/* Make element full width */
+.u-full-width {
+  width: 100%;
+  box-sizing: border-box; }
+
+/* Make sure elements don't run outside containers (great for images in columns) */
+.u-max-full-width {
+  max-width: 100%;
+  box-sizing: border-box; }
+
+/* Float either direction */
+.u-pull-right {
+  float: right; }
+.u-pull-left {
+  float: left; }
+  
+  
+/* Admin Panel  https://css-tricks.com/snippets/css/a-guide-to-flexbox/*/
+/* Styles go here 
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes*/
+
+/* http://www.materialpalette.com/indigo/cyan 
+http://codepen.io/oknoblich/pen/klnjw*/
+
+body {
+  
+   
+  }
+
+  #main {
+   min-height: 800px;
+   margin: 0px;
+   padding: 0px;
+   display: -webkit-flex;
+   display:         flex;
+   -webkit-flex-flow: row;
+           flex-flow: row;
+   
+   }
+ 
+  #main > article {
+  
+   padding: 5px;
+  
+  
+  
+   -webkit-flex: 3 1 60%;
+           flex: 3 1 60%;
+   -webkit-order: 2;
+           order: 2;
+   }
+
+#main > nav {
+  
+   padding: 5px;
+   
+   
+   background: #B2DFDB;
+   -webkit-flex: 1 6 5%;
+           flex: 1 6 5%;
+   -webkit-order: 1;
+           order: 1;
+   }
+   
+nav ul {
+list-style-type: none;
+}
+   
+nav li a{
+  position: relative;
+  display: block;
+  padding: 15px 15px 15px 50px;
+  background: #00BCD4;
+  color: #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background: #009688;
+  color: #FFFFFF;
+}
+
+
+
+
+ 
+  header {
+   display: flex;
+   justify-content: flex-end;
+   
+   padding: 5px;
+   min-height: 60px;
+        
+  
+   background: #009688;
+   }
+   
+   header > a {
+   
+   color: #000000;
+        text-decoration: none;
+        margin-right: 10px;
+   }
+ 
+  /* footer {
+   display: block;
+   
+   padding: 5px;
+   min-height: 10px;
+  
+  
+   background: #00BCD4;
+   } */
+   
+  /* Too narrow to support three columns */
+ 
+ @media all and (max-width: 640px) {
+  
+   #main, #page {
+    -webkit-flex-flow: column;
+            flex-direction: column;
+   }
+
+   #main > article, #main > nav {
+    /* Return them to document order */
+    -webkit-order: 0;
+            order: 0;
+   }
+  
+   #main > nav, header, footer {
+    min-height: 50px;
+    max-height: 50px;
+   }
+  }
+
+
+

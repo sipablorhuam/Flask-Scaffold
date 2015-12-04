@@ -109,22 +109,21 @@ def generate_files(module_path, angular_dir):
                 with open("scaffold/app/add.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resources=resources.title()))
+                                                   Resource=resource.title()))
         elif file == "update.html":
             with open(os.path.join(angular_dir, 'update.html'), "w") as new_file:
                 with open("scaffold/app/update.html",  "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resources=resources.title(),
-                                                   update_form_args=update_form_args))
+                                                   Resource=resource.title(),
+                                                   ))
         elif file == "index.html":
             with open(os.path.join(angular_dir, 'index.html'), "w") as new_file:
                 with open("scaffold/app/index.html",  "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resources=resources.title(),
-                                                   field_table_headers=field_table_headers,
-                                                   index_fields=index_fields))
+                                                   Resource=resource.title(),
+                                                   ))
 
 
 def register_blueprints():
@@ -198,7 +197,7 @@ with open(yaml_file, "r") as file:
         # End strings to insert into models
 
         # Start strings to insert into views
-        add_fields = ""        
+        add_fields = ""
 
         # strings to insert into _form.html
         form_args = []
@@ -222,7 +221,8 @@ with open(yaml_file, "r") as file:
                 schema += """
     {} = fields.String()""".format(field)
                 test_add_fields += string_test.format(field)
-                form_fields += form_field.format(field=field,  Field=field.title(), field_type="text", resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field,  Field=field.title(
+                ), field_type="text", resource=resource, Resource=resource.title())
 
             elif field_type == "boolean":
                 db_rows += """
@@ -237,7 +237,8 @@ with open(yaml_file, "r") as file:
     {} = db.Column(db.Integer, nullable=False)""".format(field)
                 schema += """
     {} = fields.Integer()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(), field_type="number", resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields += integer_test.format(field)
 
             elif field_type == "email":
@@ -245,28 +246,32 @@ with open(yaml_file, "r") as file:
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.Email()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += email_test.format(field)
             elif field_type == "url":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.URL()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += url_test.format(field)
             elif field_type == "datetime":
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
                 schema += """
     {} = fields.DateTime()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += date_time_test.format(field)
             elif field_type == "date":
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
     {} = fields.Date()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(), field_type=field_type, resource=resource, Resource=resource.title())
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += date_test.format(field)
 
             elif field_type == "decimal":
@@ -294,7 +299,7 @@ with open(yaml_file, "r") as file:
         self.{field} = {field}""".format(field=field)
             # Views
             add_fields += add_string.format(field)
-            
+
             #_form.html
             form_args.append(
                 """{resource}_{field} = ''""".format(resource=resource, field=field))

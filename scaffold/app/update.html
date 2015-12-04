@@ -1,8 +1,3 @@
-{{% extends "layout.html" %}}
-  {{% block body %}}
-
-		{{% from '{resources}/_form.html' import {resource}_form %}}
-
-    {{{{ {resource}_form(form_name = 'Update', {update_form_args} )}}}}
-
-{{% endblock %}}
+<form ng-submit="update{Resource}()">
+              <div ng-include="'{resources}/_form.html'"></div>
+            </form>

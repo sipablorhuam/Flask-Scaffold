@@ -1,11 +1,12 @@
 
-{{% extends "layout.html" %}}
-  {{% block body %}}
+<div class="row">
+      <div class="two-thirds column" >
+<form class="form-horizontal" role="form" ng-submit="add{Resource}()">
+  <div ng-include="'{resources}/_form.html'"></div>
+</form>
 
-    {{% from '{resources}/_form.html' import {resource}_form %}}
-
-    {{{{  {resource}_form(form_name = 'Add',) }}}}
-
+ </div>
+</div>
 
 
-  {{% endblock %}}
+
