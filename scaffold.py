@@ -62,7 +62,8 @@ def generate_files(module_path, angular_dir):
             with open(os.path.join(module_path, 'views.py'), "w") as new_file:
                 with open("scaffold/app/views.py", "r") as old_file:
                     for line in old_file:
-                        new_file.write(line.format(resource=resource, resources=resources,
+                        new_file.write(line.format(resource=resource, 
+                                                   resources=resources,
                                                    Resources=resources.title(),                                                Resource=resource.title(),
                                                    add_fields=add_fields))
 
@@ -112,18 +113,16 @@ def generate_files(module_path, angular_dir):
                                                    Resource=resource.title()))
         elif file == "update.html":
             with open(os.path.join(angular_dir, 'update.html'), "w") as new_file:
-                with open("scaffold/app/update.html",  "r") as old_file:
+                with open("scaffold/app/update.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resource=resource.title(),
-                                                   ))
+                                                   Resource=resource.title()))
         elif file == "index.html":
             with open(os.path.join(angular_dir, 'index.html'), "w") as new_file:
-                with open("scaffold/app/index.html",  "r") as old_file:
+                with open("scaffold/app/index.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resource=resource.title(),
-                                                   ))
+                                                   Resource=resource.title()))
 
 
 def register_blueprints():
@@ -221,7 +220,7 @@ with open(yaml_file, "r") as file:
                 schema += """
     {} = fields.String()""".format(field)
                 test_add_fields += string_test.format(field)
-                form_fields += form_field.format(field=field,  Field=field.title(
+                form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="text", resource=resource, Resource=resource.title())
 
             elif field_type == "boolean":
@@ -280,7 +279,7 @@ with open(yaml_file, "r") as file:
                 schema += """
     {} = fields.Decimal()""".format(field)
                 form_fields += decimal_form_string.format(Field=field.title(),
-                                                          field=field,  resource=resource)
+                                                          field=field, resource=resource)
                 test_add_fields += decimal_test.format(field)
 
             elif field_type == "text":
