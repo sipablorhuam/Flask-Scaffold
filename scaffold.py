@@ -6,36 +6,16 @@ import shutil
 import sys
 import subprocess
 from scaffold.custom_fields import *
+from scaffold.modules.app_js import create_appjs
+from scaffold.modules.errors import BlueprintError, TestScriptError
+   
 
 blueprint_file = 'app/__init__.py'
 test_script = 'tests.bash'
 yaml_file = sys.argv[1]
+app_js_file = "angularjs-frontend/js/app.js"
 
 # Error classes
-
-
-class Error(Exception):
-
-    """Base class for exceptions in this module."""
-    pass
-
-
-class BlueprintError(Error):
-
-    def __init__(self):
-        self.msg = "Cannot register Blueprints"
-
-    def __str__(self):
-        return repr(self.msg)
-
-
-class TestScriptError(Error):
-
-    def __init__(self):
-        self.msg = "Cannot add tests to bash script"
-
-    def __str__(self):
-        return repr(self.msg)
 
 
 def make_plural(resource):
@@ -186,7 +166,7 @@ with open(yaml_file, "r") as file:
     for module, fields in yaml_data.items():
             # make module name plural
         resource, resources = make_plural(module)
-
+        
         # Start strings to insert into models
         db_rows = ""
         schema = ""
@@ -319,6 +299,7 @@ with open(yaml_file, "r") as file:
                 generate_files(module_dir, angular_dir)
                 print('{} created successfully'.format(module_dir))
                 register_blueprints()
+                create_appjs(resource, resources, app_js_file)
                 add_tests()
                 run_autopep8()
             except:
