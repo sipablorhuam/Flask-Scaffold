@@ -1,0 +1,67 @@
+
+<fieldset>
+                
+				 <div class="required">
+               <label for="content">Name</label>      
+               <input class="u-90-width" type="text" id="name" name="name"  ng-model="customer.data.attributes.name"  required>  
+            </div><div class="required">
+               <label for="content">Address</label>  
+            <textarea type="text" name="address" rows="20" ng-model="customer.data.attributes.address"
+           ng-init="customer.data.attributes.address" > 
+    </textarea>
+    <!-- START STATUS -->
+      <div class="center row">
+        {% if form_name == 'Update' %}
+
+            <div class="small-6 columns">
+            <label>Is_Active</label>
+              {% if customer_is_active %}
+                <input type="radio" name="is_active" value="True"  checked/><label>True</label>
+                <input type="radio" name="is_active" value="False"/><label>False</label>
+              {% else %}
+               <input type="radio" name="is_active" value="True"  /><label>True</label>
+               <input type="radio" name="is_active" value="False" checked/><label>False</label>
+
+              {% endif %}
+                </div>
+        <!-- For a new customer-->
+        {% else %}
+
+           <div class="small-6 columns">
+             <label>Is_Active</label>
+               <input type="radio" name="is_active" value="True"  checked/><label>True</label>
+               <input type="radio" name="is_active" value="False"/><label>False</label>
+                 </div>
+       {% endif %}
+   </div>
+           <!-- End STATUS --><div class="required">
+               <label for="content">Mobile</label>      
+               <input class="u-90-width" type="number" id="mobile" name="mobile"  ng-model="customer.data.attributes.mobile"  required>  
+            </div><div class="required">
+               <label for="content">Email</label>      
+               <input class="u-90-width" type="email" id="email" name="email"  ng-model="customer.data.attributes.email"  required>  
+            </div><div class="required">
+               <label for="content">Url</label>      
+               <input class="u-90-width" type="url" id="url" name="url"  ng-model="customer.data.attributes.url"  required>  
+            </div><div class="required">
+               <label for="content">Timestamp</label>      
+               <input class="u-90-width" type="datetime" id="timestamp" name="timestamp"  ng-model="customer.data.attributes.timestamp"  required>  
+            </div><div class="required">
+               <label for="content">Date</label>      
+               <input class="u-90-width" type="date" id="date" name="date"  ng-model="customer.data.attributes.date"  required>  
+            </div>
+          <div class="required">
+               <label for="content">Pricing</label>      
+               <input class="u-90-width" type=number step="any" id="pricing" name="pricing"  ng-model="customer.data.attributes.pricing"  required>  
+            </div> 
+                     
+              
+              <button class="button-primary" type="submit"> Save</button>
+              </fieldset>
+              
+              
+              
+
+  
+
+				

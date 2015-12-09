@@ -93,6 +93,10 @@ py.test app/{}/"""
 
 ######### END TEST FIELDS #####################
 
+########### Controller Fields ##########
+
+controller_field = """{{headerName: "{field}", field: "{field}", width: 300 }},"""
+
 
 ########## Form Fields #####################
 

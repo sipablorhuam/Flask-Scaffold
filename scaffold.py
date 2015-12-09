@@ -33,7 +33,7 @@ def make_plural(resource):
 def generate_files(module_path, angular_dir):
 
     app_files = ['views.py', 'models.py', '__init__.py', '_form.html', 'add.html', 'update.html',
-                 'index.html', 'tests.py']
+                 'index.html', 'controllers.js' ,'tests.py']
 
     for file in app_files:
 
@@ -103,6 +103,12 @@ def generate_files(module_path, angular_dir):
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resource=resource.title()))
+        elif file == "controllers.js":
+            with open(os.path.join(angular_dir, 'controllers.js'), "w") as new_file:
+                with open("scaffold/app/controller.js", "r") as old_file:
+                    for line in old_file:
+                        new_file.write(line.format(resource=resource, resources=resources,
+                                                   Resource=resource.title(), controller_fields=controller_fields))                                               
 
 
 def register_blueprints():
@@ -191,6 +197,9 @@ with open(yaml_file, "r") as file:
 
         # strings to insert into tests.py
         test_add_fields = ""
+        
+        #Fields to insert into controller.js
+        controller_fields =""
 
         for f in fields:
             field, field_type = f.split(':')
@@ -257,7 +266,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Numeric, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Decimal()""".format(field)
+    {} = fields.Decimal(as_string=True)""".format(field)
                 form_fields += decimal_form_string.format(Field=field.title(),
                                                           field=field, resource=resource)
                 test_add_fields += decimal_test.format(field)
@@ -287,6 +296,7 @@ with open(yaml_file, "r") as file:
                 field=field)
             update_form_args += """{resource}_{field} = {resource}.{field}, """.format(resource=resource,
                                                                                        field=field)
+            controller_fields +=   controller_field.format(field=field)                                                                                     
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)
