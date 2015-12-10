@@ -21,11 +21,11 @@ class TestScriptError(Error):
     def __str__(self):
         return repr(self.msg)
         
-        
-class AppjsError(Error):
+#Error for incase strings are not replaced in files        
+class ReplaceError(Error):
 
-    def __init__(self):
-        self.msg = "Cannot add states/routes to app.js"
+    def __init__(self, error_msg):
+        self.msg = error_msg
 
     def __str__(self):
         return repr(self.msg)

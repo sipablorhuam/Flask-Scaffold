@@ -6,7 +6,7 @@ import shutil
 import sys
 import subprocess
 from scaffold.custom_fields import *
-from scaffold.modules.app_js import create_appjs
+from scaffold.modules.replace_string import replace_string, new_route_string, menu_string, js_src_string
 from scaffold.modules.errors import BlueprintError, TestScriptError
    
 
@@ -14,6 +14,7 @@ blueprint_file = 'app/__init__.py'
 test_script = 'tests.bash'
 yaml_file = sys.argv[1]
 app_js_file = "angularjs-frontend/js/app.js"
+main_index_file = "angularjs-frontend/index.html"
 
 # Error classes
 
@@ -309,7 +310,17 @@ with open(yaml_file, "r") as file:
                 generate_files(module_dir, angular_dir)
                 print('{} created successfully'.format(module_dir))
                 register_blueprints()
-                create_appjs(resource, resources, app_js_file)
+                #Update routes in app.js
+                replace_string(resource, resources, app_js_file, "// States", new_route_string)
+                
+                #Add js files to index.html
+                replace_string(resource, resources, main_index_file, "<!-- Controllers -->", js_src_string)
+                
+                #Add menus to the main index.html
+                replace_string(resource, resources, main_index_file, "<!-- menu -->", menu_string)
+                
+                
+                
                 add_tests()
                 run_autopep8()
             except:

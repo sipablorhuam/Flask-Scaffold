@@ -1,18 +1,5 @@
-angular.module('myApp.services', []).factory('{Resource}', function($resource) {{
-  return $resource('api/v1/{resources}/:id', {{ id:'@{resources}.id' }}, {{
-    update: {{
-      method: 'PATCH',
-      
-     
-     
-    }}
-    }}, {{
-    stripTrailingSlashes: false
-    }});
-}});
-
-angular.module('myApp.services', []).factory('{Resource}', function($resource) {{
-  return $resource('api/v1/{resources}/:id', {{ id:'@{resource}.id' }}, {{
+angular.module('myApp.services').factory('{Resource}', function($resource) {{
+  return $resource('api/v1/{resources}.json/:id.json', {{ id:'@{resources}.id' }}, {{
     update: {{
       method: 'PATCH',
       
@@ -25,8 +12,7 @@ angular.module('myApp.services', []).factory('{Resource}', function($resource) {
 }});
 
 
-
-angular.module('myApp.controllers', []).controller('{Resource}ListController', function($scope, $state,  {Resource}, $auth, toaster) {{
+angular.module('myApp.controllers').controller('{Resource}ListController', function($scope, $state,  {Resource}, $auth, toaster) {{
  //Table header definitions  
         var columnDefs = [ {{headerName: "Sr No", width: 50, cellRenderer: function(params) {{return params.node.id + 1;}} }},
                              {controller_fields}
