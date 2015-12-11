@@ -13,6 +13,14 @@ fieldset {
 
 }
 
+#form-main{
+	border : 1px solid #000;
+    width : 600px;
+    padding : 15px;
+    
+}
+
+
 
 
 
@@ -20,6 +28,10 @@ fieldset {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .u-90-width {
   width: 90%;
+  box-sizing: border-box; }
+
+.u-50-width {
+  width: 50%;
   box-sizing: border-box; }
   
 /* Utility Classes */

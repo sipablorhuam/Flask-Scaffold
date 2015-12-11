@@ -91,7 +91,9 @@ angular.module('myApp.controllers').controller('CustomerListController', functio
   
   $scope.loadCustomer = function() { //Issues a GET request to /api/customers/:id to get a customer to update
                        $scope.customer = Customer.get({ id: $stateParams.id },
-                                       function() {}, function(error) {
+                                       function() {                                      
+                                       
+                                       }, function(error) {
                                           toaster.pop({
                                                 type: 'error',
                                                 title: 'Error',
@@ -100,15 +102,18 @@ angular.module('myApp.controllers').controller('CustomerListController', functio
                                                 timeout: 0
                                                 });
                                                 });
+                          
                                 };
 
   $scope.loadCustomer(); // Load a customer 
+
   }).controller('CustomerCreateController', function($scope, $state, Customer, toaster) {
           $scope.customer = new Customer();  //create new site instance. Properties will be set via ng-model on UI
           
          
 
          $scope.addCustomer = function() { //create a new site. Issues a POST to /api/sites
+                                $scope.customer.data.type = "customers";
                                 $scope.customer.$save(function() {
                                 toaster.pop({
                                             type: 'success',

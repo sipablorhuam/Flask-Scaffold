@@ -46,7 +46,26 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
       })
        }
   };
-});
+})
+.directive('formatdate', function () {
+  return {
+    restrict: 'A',
+    require: 'ngModel',
+    link: function (scope, element, attrs, ngModel) {
+      
+      //format text going to user (model to view)
+      ngModel.$formatters.push(function(date) {
+        return new Date(date);
+      });
+      
+      //format text from the user (view to model)
+     // ngModel.$parsers.push(function(value) {
+      //  return value.toLowerCase();
+     // });
+    }
+  }
+});        
   
 angular.module('myApp.services', []);
-angular.module('myApp.controllers', []);        
+angular.module('myApp.controllers', []);
+
