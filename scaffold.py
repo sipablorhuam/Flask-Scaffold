@@ -229,6 +229,14 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields += integer_test.format(field)
+            elif field_type == "biginteger":
+                db_rows += """
+    {} = db.Column(db.BigInteger, nullable=False)""".format(field)
+                schema += """
+    {} = fields.Integer()""".format(field)
+                form_fields += form_field.format(field=field, Field=field.title(
+                ), field_type="number", resource=resource, Resource=resource.title())
+                test_add_fields += integer_test.format(field)
 
             elif field_type == "email":
                 db_rows += """
@@ -259,7 +267,7 @@ with open(yaml_file, "r") as file:
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
     {} = fields.Date()""".format(field)
-                form_fields += form_field.format(field=field, Field=field.title(
+                form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields += date_test.format(field)
 

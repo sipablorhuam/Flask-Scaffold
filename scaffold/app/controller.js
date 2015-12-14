@@ -1,5 +1,5 @@
 angular.module('myApp.services').factory('{Resource}', function($resource) {{
-  return $resource('api/v1/{resources}.json/:id.json', {{ id:'@{resources}.id' }}, {{
+  return $resource('api/v1/{resources}/:id.json', {{ id:'@{resources}.id' }}, {{
     update: {{
       method: 'PATCH',
       
@@ -108,6 +108,7 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
          
 
          $scope.add{Resource} = function() {{ //create a new site. Issues a POST to /api/sites
+                                $scope.{resource}.data.type = "{resources}";
                                 $scope.{resource}.$save(function() {{
                                 toaster.pop({{
                                             type: 'success',

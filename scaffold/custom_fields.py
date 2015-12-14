@@ -101,48 +101,74 @@ controller_field = """{{headerName: "{field}", field: "{field}", width: 300 }},"
 ########## Form Fields #####################
 
 
-form_field = """<div class="required">
-               <label for="content">{Field}</label>      
-               <input class="u-90-width" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
+form_field = """<div class="row"> 
+                 <div class="two columns">   
+                   <label for="{field}">{Field}</label> 
+                 </div>
+                 <div class="ten columns">
+                   <div class="required">                 
+                      <input class="u-90-width" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
+                   </div>
+                 </div>
+            </div>"""
+            
+date_field_string = """<div class="row"> 
+                 <div class="two columns">   
+                   <label for="{field}">{Field}</label> 
+                 </div>
+                 <div class="ten columns">
+                   <div class="required">                 
+                      <input class="u-90-width" type="{field_type}" id="{field}" name="{field}" formatdate ng-model="{resource}.data.attributes.{field}"  required>  
+                   </div>
+                 </div>
+            </div>"""
+            
+decimal_form_string = """<div class="row"> 
+                 <div class="two columns">   
+                   <label for="{field}">{Field}</label> 
+                 </div>
+                 <div class="ten columns">
+                   <div class="required">                 
+                      <input class="u-90-width" type=number step="any" id="{field}" string-to-number name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
+                   </div>
+                 </div>
+            </div>"""
+            
+            
+text_form_string  = """<div class="row"> 
+                 <div class="two columns">   
+                   <label for="{field}">{Field}</label> 
+                 </div>
+                 <div class="ten columns">
+                   <div class="required">                 
+                      <textarea type="text" name="{field}" rows="20" ng-model="{resource}.data.attributes.{field}"
+                         ng-init="{resource}.data.attributes.{field}" > 
+                       </textarea>  
+                   </div>
+                 </div>
             </div>"""
 
 
-decimal_form_string = """
-          <div class="required">
-               <label for="content">{Field}</label>      
-               <input class="u-90-width" type=number step="any" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>  
-            </div> """
+boolean_form_string = """
+           <div class="row"> 
+             <div class="two columns">              
+                <label>{Field}</label>
+              </div>
+              
+               
+                      <div class="one column">                
+                         <input type="radio" ng-model="{resource}.data.attributes.is_active" name= "{field_type}" ng-value="true"  required  />
+                       </div>
+                     <div class="one column">
+                        <label>True</label> 
+                     </div>
 
-text_form_string = """<div class="required">
-               <label for="content">{Field}</label>  
-            <textarea type="text" name="{field}" rows="20" ng-model="{resource}.data.attributes.{field}"
-           ng-init="{resource}.data.attributes.{field}" > 
-    </textarea>
-    """
+                      <div class="one column"> 
+                        <input type="radio" ng-model="{resource}.data.attributes.is_active"  name= "{field_type}"ng-value="false"/>
+                      </div>
+                      <div class="two columns">
+                        <label>False</label>
+                      </div>
+               
+               </div>"""
 
-boolean_form_string = """<!-- START STATUS -->
-      <div class="center row">
-        {{% if form_name == 'Update' %}}
-
-            <div class="small-6 columns">
-            <label>{Field}</label>
-              {{% if {resource}_{field} %}}
-                <input type="radio" name="{field}" value="True"  checked/><label>True</label>
-                <input type="radio" name="{field}" value="False"/><label>False</label>
-              {{% else %}}
-               <input type="radio" name="{field}" value="True"  /><label>True</label>
-               <input type="radio" name="{field}" value="False" checked/><label>False</label>
-
-              {{% endif %}}
-                </div>
-        <!-- For a new {resource}-->
-        {{% else %}}
-
-           <div class="small-6 columns">
-             <label>{Field}</label>
-               <input type="radio" name="{field}" value="True"  checked/><label>True</label>
-               <input type="radio" name="{field}" value="False"/><label>False</label>
-                 </div>
-       {{% endif %}}
-   </div>
-           <!-- End STATUS -->"""
