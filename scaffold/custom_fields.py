@@ -9,6 +9,8 @@ boolean_test = """
                                        {} = 'False',"""
 integer_test = """
                                        {} = '35678',"""
+big_integer_test = """
+                                       {} = '9820109678',"""                                       
 email_test = """
                                        {} = 'testing@flask.pocoo.com',"""
 url_test = """
@@ -42,6 +44,8 @@ text_test = """
                                        Before you continue if you have not built an application on Linux with Flask or Python then
                                        I recommend you read Creating your first Linux App with Python and Flask.
                                        Read more at http://techarena51.com/index.php/flask-sqlalchemy-tutorial/\"\"\","""
+                                     
+                                     
 
 
 ####UPDATE####

@@ -219,7 +219,7 @@ with open(yaml_file, "r") as file:
                 schema += """
     {} = fields.Boolean()""".format(field)
                 form_fields += boolean_form_string.format(Field=field.title(),
-                                                          field=field, resource=resource)
+                                                          field=field, resource=resource, field_type=field_type)
                 test_add_fields += boolean_test.format(field)
             elif field_type == "integer":
                 db_rows += """
@@ -236,7 +236,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Integer()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
-                test_add_fields += integer_test.format(field)
+                test_add_fields += big_integer_test.format(field)
 
             elif field_type == "email":
                 db_rows += """

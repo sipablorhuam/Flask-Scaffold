@@ -1,3 +1,6 @@
+#http://werkzeug.pocoo.org/docs/0.11/test/#werkzeug.test.Client
+#http://flask.pocoo.org/docs/0.10/api/#test-client
+
 import unittest
 import os
 import sys
@@ -5,42 +8,47 @@ import sys
 # Add app path to module path
 sys.path.append(os.path.dirname(os.path.realpath(__file__).rsplit('/', 2)[0]))
 from app import create_app
-from app.{resources}.models import {Resources}
+#from app.{resources}.models import {Resources}
 
 
 app = create_app('config')
+
+data = """{{{{
+  "data": {{{{
+    "attributes": {{{{
+     {test_add_fields}
+    }}}},
+   
+    "type": "devs"
+  }}}}
+ 
+}}}}"""
 
 
 class Test{Resources}(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
-
-    def test_read(self):
-        self.app = app.test_client()
-        rv = self.app.get('/{resources}/')
-        assert "{Resources}" in rv.data.decode('utf-8')
-
+        
+        
     def test_01_add(self):
-        rv = self.app.post('/{resources}/add', data=dict(
-            {test_add_fields}), follow_redirects=True)
-
-        assert 'Add was successful' in rv.data.decode('utf-8')
-
-    def test_02_Update(self):
-
-        with app.app_context():
-            id = {Resources}.query.first().id
-            rv = self.app.post(
-                '/{resources}/update/{{}}'.format(id), data=dict({test_add_fields}), follow_redirects=True)
-            assert 'Update was successful' in rv.data.decode('utf-8')
-
+        
+        rv = self.app.post('/api/v1/{resources}.json', data=data.format(True), content_type = "application/json")     
+        assert rv.status_code == 201
+    
+    def test_02_read_update(self):
+        request = self.app.get('/api/v1/{resources}.json')
+        dict =  json.loads(request.data.decode('utf-8'))
+        id = dict['data'][0]['id']
+        rv = self.app.patch('/api/v1/{resources}/{{}}.json'.format(id), data=data.format(False), content_type = "application/json")      
+        assert rv.status_code == 200
+        
     def test_03_delete(self):
-        with app.app_context():
-            id = {Resources}.query.first().id
-            rv = self.app.post(
-                '{resources}/delete/{{}}'.format(id), follow_redirects=True)
-            assert 'Delete was successful' in rv.data.decode('utf-8')
+        request = self.app.get('/api/v1/{resources}.json')
+        dict =  json.loads(request.data.decode('utf-8'))
+        id = dict['data'][0]['id']
+        rv = self.app.delete('/api/v1/{resources}/{{}}.json'.format(id))      
+        assert rv.status_code == 204
 
 if __name__ == '__main__':
     unittest.main()
