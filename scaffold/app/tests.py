@@ -4,6 +4,7 @@
 import unittest
 import os
 import sys
+import json
 
 # Add app path to module path
 sys.path.append(os.path.dirname(os.path.realpath(__file__).rsplit('/', 2)[0]))
@@ -15,11 +16,9 @@ app = create_app('config')
 
 data = """{{{{
   "data": {{{{
-    "attributes": {{{{
-     {test_add_fields}
-    }}}},
+    "attributes": {{{test_add_fields}}},
    
-    "type": "devs"
+    "type": "{resources}"
   }}}}
  
 }}}}"""

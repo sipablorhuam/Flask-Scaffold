@@ -5,8 +5,9 @@ import os
 import shutil
 import sys
 import subprocess
+import json
 from scaffold.custom_fields import *
-from scaffold.modules.replace_string import replace_string, new_route_string, menu_string, js_src_string
+from scaffold.modules.replace_string import replace_string, new_route_string, menu_string, js_src_string,test_script_string
 from scaffold.modules.errors import BlueprintError, TestScriptError
    
 
@@ -72,7 +73,7 @@ def generate_files(module_path, angular_dir):
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resources=resources.title(),
-                                                   test_add_fields=test_add_fields))
+                                                   test_add_fields=json.dumps(test_add_fields)))
 
         # Generate Template Files
         # Need to add template resourc path
@@ -132,19 +133,10 @@ def register_blueprints():
         raise BlueprintError()
 
 
-def add_tests():
-    string_to_insert_after = '#TESTS'
-    new_tests = test_script_string.format(resources)
-    with open(test_script, 'r+') as old_file:
-        filedata = old_file.read()
-    if string_to_insert_after in filedata:
-        # replace the first occurrence
-        new_filedata = filedata.replace(string_to_insert_after, new_tests, 1)
-        with open(test_script, 'w') as new_file:
-            new_file.write(new_filedata)
-            print("Created Tests for ", resources)
-    else:
-        raise TestScriptError()
+
+        
+        
+         
 
 
 def clean_up(module_path):
@@ -197,7 +189,7 @@ with open(yaml_file, "r") as file:
         index_fields = ""
 
         # strings to insert into tests.py
-        test_add_fields = ""
+        test_add_fields = {}
         
         #Fields to insert into controller.js
         controller_fields =""
@@ -209,7 +201,7 @@ with open(yaml_file, "r") as file:
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
     {} = fields.String()""".format(field)
-                test_add_fields += string_test.format(field)
+                test_add_fields[field] = string_test
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="text", resource=resource, Resource=resource.title())
 
@@ -220,7 +212,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Boolean()""".format(field)
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource, field_type=field_type)
-                test_add_fields += boolean_test.format(field)
+                test_add_fields[field]= boolean_test
             elif field_type == "integer":
                 db_rows += """
     {} = db.Column(db.Integer, nullable=False)""".format(field)
@@ -228,7 +220,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Integer()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
-                test_add_fields += integer_test.format(field)
+                test_add_fields[field] = integer_test
             elif field_type == "biginteger":
                 db_rows += """
     {} = db.Column(db.BigInteger, nullable=False)""".format(field)
@@ -236,7 +228,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Integer()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
-                test_add_fields += big_integer_test.format(field)
+                test_add_fields[field]= big_integer_test
 
             elif field_type == "email":
                 db_rows += """
@@ -245,7 +237,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Email()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
-                test_add_fields += email_test.format(field)
+                test_add_fields[field]= email_test
             elif field_type == "url":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
@@ -253,7 +245,7 @@ with open(yaml_file, "r") as file:
     {} = fields.URL()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
-                test_add_fields += url_test.format(field)
+                test_add_fields[field]= url_test
             elif field_type == "datetime":
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
@@ -261,7 +253,7 @@ with open(yaml_file, "r") as file:
     {} = fields.DateTime()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
-                test_add_fields += date_time_test.format(field)
+                test_add_fields[field]= date_time_test
             elif field_type == "date":
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
@@ -269,7 +261,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Date()""".format(field)
                 form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
-                test_add_fields += date_test.format(field)
+                test_add_fields[field]= date_test
 
             elif field_type == "decimal":
                 db_rows += """
@@ -278,7 +270,7 @@ with open(yaml_file, "r") as file:
     {} = fields.Decimal(as_string=True)""".format(field)
                 form_fields += decimal_form_string.format(Field=field.title(),
                                                           field=field, resource=resource)
-                test_add_fields += decimal_test.format(field)
+                test_add_fields[field]= decimal_test
 
             elif field_type == "text":
                 db_rows += """
@@ -287,7 +279,7 @@ with open(yaml_file, "r") as file:
     {} = fields.String()""".format(field)
                 form_fields += text_form_string.format(Field=field.title(),
                                                        field=field, resource=resource)
-                test_add_fields += text_test.format(field)
+                test_add_fields[field]= text_test
 
             # models
             meta += """ '{}', """.format(field)
@@ -327,9 +319,12 @@ with open(yaml_file, "r") as file:
                 #Add menus to the main index.html
                 replace_string(resource, resources, main_index_file, "<!-- menu -->", menu_string)
                 
+                #Add tests to test.bash
+                replace_string(resource, resources, test_script, "#TESTS", test_script_string)
                 
                 
-                add_tests()
+                
+                
                 run_autopep8()
             except:
                 clean_up(module_dir)

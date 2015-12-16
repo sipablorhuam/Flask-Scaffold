@@ -32,7 +32,10 @@ js_src_string =""" <!-- Controllers -->
 menu_string ="""  <!-- menu -->
       <li><a ui-sref="{resources}"> {Resources}</a> </li> """
         
- 
+#Strings to test.bash
+test_script_string = """
+#TESTS
+python app/{resources}/test_{resources}.py"""
 
 def replace_string(resource, resources, file, string_to_insert_after, new_string):
 

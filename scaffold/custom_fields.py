@@ -3,47 +3,19 @@ add_string = """ request_dict['{}'],"""
 
 ######### START TEST FIELDS #####################
 ####ADD####
-string_test = """
-                                       {} = 'test string',"""
-boolean_test = """
-                                       {} = 'False',"""
-integer_test = """
-                                       {} = '35678',"""
-big_integer_test = """
-                                       {} = '9820109678',"""                                       
-email_test = """
-                                       {} = 'testing@flask.pocoo.com',"""
-url_test = """
-                                       {} = 'http://techarena51.com',"""
-date_time_test = """
-                                       {} = '2015-12-22T03:12:58.019077+00:00',"""
-date_test = """
-                                       {} = '2015-06-26',"""
-time_test = """
-                                       {} = '11:23:19.200283',"""
-decimal_test = """
-                                       {} = '48.6789899',"""
-text_test = """
-                                       {} = \"\"\"How to build CRUD app with Python, Flask, SQLAlchemy and MySQL
+string_test = "test string"
+boolean_test = "{}"
+integer_test = 35678
+big_integer_test = 9820109678                                 
+email_test = "testing@flask.pocoo.com"
+url_test = "http://techarena51.com"
+date_time_test ="2015-12-22T03:12:58.019077+00:00"
+date_test = "2015-06-26"
+time_test = "11:23:19.200283"
+decimal_test = "48.6789899"
+text_test = "How to build CRUD app with Python, Flask, SQLAlchemy and MySQL. Som reand456989@#$%^%> <html/>"
 
-                                       In this post I will briefly describe,
-                                       how you can you build a database driven CRUD (Create, Read, Update, Delete) app on Linux with Python,
-                                       Flask, SQLAlchemy and MySQL. I used this process to create a blog and hence the examples below will
-                                       describe how to store and modify posts in a MySQL database. You can also download the complete source
-                                       code from https://github.com/Leo-g/Flask-Skeleton/
-
-                                       Software Versions
-                                       Python 2.7
-                                       Flask 0.11
-                                       Flask-SQLAlchemy 2.0
-                                       Flask-Migrate 1.3
-                                       MySQL-python 1.2
-                                       Foundation 5
-                                       Mariadb 10
-
-                                       Before you continue if you have not built an application on Linux with Flask or Python then
-                                       I recommend you read Creating your first Linux App with Python and Flask.
-                                       Read more at http://techarena51.com/index.php/flask-sqlalchemy-tutorial/\"\"\","""
+                                       
                                      
                                      
 
@@ -93,7 +65,7 @@ update_text_test = """
 # ADD Tests to bash script
 test_script_string = """
 #TESTS
-py.test app/{}/"""
+python app/{resources}/test_{resources}.py"""
 
 ######### END TEST FIELDS #####################
 
