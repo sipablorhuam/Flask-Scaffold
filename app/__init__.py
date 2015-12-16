@@ -11,7 +11,7 @@ def create_app(config_filename):
     db.init_app(app)
 
     # Blueprints
-    from app.customers.views import customers
-    app.register_blueprint(customers, url_prefix='/api/v1/customers')
+
+    
 
     return app
