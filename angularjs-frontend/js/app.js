@@ -5,30 +5,7 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
 
  $stateProvider  
    
-   
-   
-   
    // States
-  // Routes for devs
-  .state('devs', {
-    url: '/devs',
-    templateUrl: 'devs/index.html',
-    controller: 'DevListController',
-    
-  
-  }).state('newDev', {
-    url: '/devs/new',
-    templateUrl: '/devs/add.html',
-    controller: 'DevCreateController',
-    
-    }).state('editDev', { 
-    url: '/devs/:id/edit',
-    templateUrl: 'devs/update.html',
-    controller: 'DevEditController',
-    
-        })
-        
-        // End Routes for devs
   
  
   
