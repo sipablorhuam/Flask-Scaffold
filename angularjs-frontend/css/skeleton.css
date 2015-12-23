@@ -206,8 +206,11 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
+  
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+  /* background-color: #33C3F0;
+  border-color: #33C3F0; */}
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -219,8 +222,12 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  
+  background-color: #2cc36b;
+  border-color: #2cc36b;
+  
+  /* background-color: #1EAEDB;
+  border-color: #1EAEDB; */}
 
 
 /* Forms
