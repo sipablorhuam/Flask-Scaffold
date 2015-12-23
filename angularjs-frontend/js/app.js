@@ -4,8 +4,15 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
 
 
  $stateProvider  
+   .state('home', {
+    url: '/',
+    templateUrl: 'home.html',    
+    
+  
+  })
    
    // States
+ 
   
  
   

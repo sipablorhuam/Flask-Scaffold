@@ -26,9 +26,8 @@
   末末末末末末末末末末末末末末末末末末末末末末末末末 -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-         <!-- Controllers -->
-  
- 
+          <!-- Controllers -->
+
     <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="node_modules/angularjs-toaster/toaster.min.js"></script>    
@@ -38,29 +37,26 @@
     <script src="node_modules/angular-grid/dist/angular-grid.js"></script>  
   </head>  
 <body > 
-  
+      
+ <div class="main"> 
  
-    
-  <div  id='main'> 
-   <nav>
-     <ul>
-     
-              <!-- menu -->
-      
-     
-      
-     </ul>
-  
-    </nav>
-    
+                
+    <aside>      
+        <div  style="position: relative;  top: 50px;">   
+          <a ui-sref="home" ui-sref-active="current"> Home</a>           
+            <!-- menu -->
+        
+        </div>
+    </aside>
    
-   <article>
+   <article >
      <toaster-container></toaster-container> 
          
-     <div class="container" style="height:100%;" ui-view ></div> 
+     <div class="container" style="height:100%; position: relative;  top: 40px " ui-view ></div> 
    </article>
-  </div>
-  
+   
+ 
+</div>  
   
   
   
