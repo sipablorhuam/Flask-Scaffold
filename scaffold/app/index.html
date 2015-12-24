@@ -1,22 +1,27 @@
       
       
-                 
-     <a ui-sref="new{Resource}">New</a>
+      
+      
+       <div class="index-button">
+        
+        <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
+    
+      <div>
+        <a ui-sref="new{Resource}"><button class="button-primary">New</button></a>
+       
+        <span ng-repeat="selectedRow in gridOptions.selectedRows">
+          <a ui-sref="edit{Resource}({{id:selectedRow.id }})"><button class="button-primary">Edit</button></a> 
+     
+          <button ng-click="delete{Resource}(selectedRow.id)" class="button-primary"> Delete </button>
+        </span>       
+       </div> 
+    </div>
    
-      <br>
-   <input placeholder="Filter..." type="text" ng-model="gridOptions.quickFilterText"/>
-     <br>
-     <br>
-     
-     <span ng-repeat="selectedRow in gridOptions.selectedRows">
-      <a ui-sref="edit{Resource}({{id:selectedRow.id }})"><button>Edit</button></a>
-     
-     
-       <button ng-click="delete{Resource}(selectedRow.id)"> Delete </button>
-     </span>
+                 
+   
       {{{{ error}}}}
 
-    <div ag-grid="gridOptions" class="ag-fresh"  style = "height: 700px"  ></div>
+    <div ag-grid="gridOptions" class="ag-fresh"  style = "height: 500px"  ></div>
 
 
 

@@ -14,7 +14,7 @@ angular.module('myApp.services').factory('{Resource}', function($resource) {{
 
 angular.module('myApp.controllers').controller('{Resource}ListController', function($scope, $state,  {Resource}, $auth, toaster) {{
  //Table header definitions  
-        var columnDefs = [ {{headerName: "Sr No", width: 50, cellRenderer: function(params) {{return params.node.id + 1;}} }},
+        var columnDefs = [ {{headerName: "Sr No", cellRenderer: function(params) {{return params.node.id + 1;}} }},
                              {controller_fields}
                             
                             
@@ -65,8 +65,10 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
     }};
   
 }}).controller('{Resource}EditController', function($scope, $state, $stateParams, toaster, $window, {Resource}) {{
-  $scope.update{Resource} = function() {{ //Update the edited site. Issues a PUT to /api/sites/:id
-    
+      $scope.loading = false;
+     $scope.update{Resource} = function() {{ //Update the edited site. Issues a PUT to /api/sites/:id
+     
+     $scope.loading = true;
     $scope.{resource}.$update({{ id: $stateParams.id }},function() {{
      toaster.pop({{
                 type: 'success',
@@ -75,7 +77,9 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
                 showCloseButton: true,
                 timeout: 0
                 }});
+        
        $window.location.reload();
+       $scope.loading = false;
       //$state.go('sites'); // on success go back to home i.e. sites state.
     }}, function(error) {{
     toaster.pop({{
@@ -85,6 +89,7 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
                 showCloseButton: true,
                 timeout: 0
                 }});
+      $scope.loading = false;
     }});
   }};
 
@@ -105,9 +110,10 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
   $scope.load{Resource}(); // Load a {resource} 
   }}).controller('{Resource}CreateController', function($scope, $state, {Resource}, toaster) {{
           $scope.{resource} = new {Resource}();  //create new site instance. Properties will be set via ng-model on UI
-         
+          $scope.loading = false;
 
          $scope.add{Resource} = function() {{ //create a new site. Issues a POST to /api/sites
+                                $scope.loading = true;
                                 $scope.{resource}.data.type = "{resources}";
                                 $scope.{resource}.$save(function() {{
                                 toaster.pop({{
@@ -117,7 +123,7 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
                                             showCloseButton: true,
                                             timeout: 0
                                             }});
-                                  
+                                   $scope.loading = false;
                                   $state.go('{resources}'); // on success go back to home i.e. sites state.
                                 }}, function(error) {{
                                 toaster.pop({{
@@ -127,6 +133,7 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
                                             showCloseButton: true,
                                             timeout: 0
                                             }});
+                                 $scope.loading = false;
                                            }});
                                  }};
 }});

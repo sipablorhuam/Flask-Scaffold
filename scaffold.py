@@ -82,7 +82,7 @@ def generate_files(module_path, angular_dir):
                 with open("scaffold/app/_form.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resources=resources.title(),
+                                                   Resources=resources.title(), Resource=resource.title(),
                                                    form_args=','.join(
                                                        form_args),
                                                    form_fields=form_fields))

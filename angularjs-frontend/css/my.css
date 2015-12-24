@@ -7,6 +7,22 @@ fieldset {
   height: 300px;
 }
 
+.home-page {
+
+display: -webkit-flex;
+    display: flex;
+  
+    width : 100%;
+    padding-top : 10px;
+    
+   
+    
+    flex-flow: column;
+    align-items: center;
+    
+    }
+
+
 .required:after { 
  content:"*";
  font-family: "Open Sans";
@@ -67,6 +83,20 @@ fieldset {
     flex-flow: row;   
     justify-content: flex-end;
 	-webkit-justify-content: flex-end;
+   
+    
+}
+
+.index-button{
+
+    display: -webkit-flex;
+     display: flex;  
+   
+    width: 100%;
+    
+    flex-flow: row;   
+    justify-content: space-between ;
+	-webkit-justify-content: space-between;
    
     
 }
@@ -214,7 +244,7 @@ aside a.current {
             order: 0;
    }
   
-   #main > nav, header, footer {
+   #main > nav, header{
     min-height: 50px;
     max-height: 50px;
    }

@@ -26,13 +26,16 @@
   末末末末末末末末末末末末末末末末末末末末末末末末末 -->
     <script src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-          <!-- Controllers -->
+            <!-- Controllers -->
+    <script type="text/javascript" src="devs/controllers.js"></script>
+   
 
     <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="node_modules/angularjs-toaster/toaster.min.js"></script>    
     <script type="text/javascript" src="node_modules/satellizer/satellizer.js"></script>
-    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>    
+    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
+       
    
     <script src="node_modules/angular-grid/dist/angular-grid.js"></script>  
   </head>  
@@ -43,9 +46,13 @@
                 
     <aside>      
         <div  style="position: relative;  top: 50px;">   
-          <a ui-sref="home" ui-sref-active="current"> Home</a>           
-            <!-- menu -->
-        
+       
+      <ul> 
+       <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
+                <!-- menu -->
+      <li><a ui-sref="devs"  ui-sref-active="current">Devs</a></li> 
+      
+      </ul>  
         </div>
     </aside>
    
@@ -54,15 +61,12 @@
          
      <div class="container" style="height:100%; position: relative;  top: 40px " ui-view ></div> 
    </article>
-   
+ 
+
  
 </div>  
+ 
+
   
-  
-  
-  
-   
-   
-    
   </body>
 </html>
