@@ -13,18 +13,19 @@ addons:
   postgresql: "9.3"
 
 before_script:
+   - sudo apt-get update -q
+  - sudo apt-get install nginx
+  - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
+  - sudo service nginx start
+  - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
+  - sudo apt-get install -y nodejs
+  - nodejs -v
+  - sudo npm install -g protractor
   - psql -c 'create database fscafold;' -U postgres
   - python scaffold.py scaffold/module.yaml
   - python db.py db init
   - python db.py db migrate
   - python db.py db upgrade
-  - sudo apt-get update -q
-  - sudo apt-get install nginx
-  - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
-  - sudo service nginx start
-  - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
-  - sudo apt-get install --yes nodejs
-  - sudo npm install -g protractor
   - sudo webdriver-manager update
   - sudo webdriver-manager start &
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
