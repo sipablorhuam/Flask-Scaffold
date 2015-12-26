@@ -8,12 +8,11 @@ script:
  - protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
  - bash tests.bash
  
-
 addons:
   postgresql: "9.3"
 
 before_script:
-   - sudo apt-get update -q
+  - sudo apt-get update -q
   - sudo apt-get install nginx
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
   - sudo service nginx start
