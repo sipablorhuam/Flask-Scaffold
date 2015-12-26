@@ -20,3 +20,4 @@ before_script:
   - python db.py db upgrade
   - sudo apt-get update -q
   - sudo apt-get install nginx
+  - pwd
