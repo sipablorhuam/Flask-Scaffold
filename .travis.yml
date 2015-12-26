@@ -5,7 +5,7 @@ language: python
 python:
    - "3.4"
 # command to install dependencies
-install: "pip install -r requirements.txt"
+#install: "pip install -r requirements.txt"
 # command to run tests
 script: 
  - protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
