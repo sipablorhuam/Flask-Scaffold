@@ -4,8 +4,7 @@ dist: trusty
 language: python
 python:
    - "3.4"
-# command to install dependencies
-#install: "pip install -r requirements.txt"
+
 # command to run tests
 script: 
  - protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
@@ -16,7 +15,7 @@ addons:
 
 before_script:
   - sudo apt-get update -q
-  - sudo apt-get install nginx
+  - sudo apt-get install -y nginx
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
   - sudo service nginx start
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
