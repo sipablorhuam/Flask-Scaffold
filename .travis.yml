@@ -27,5 +27,5 @@ before_script:
   - sudo npm install -g protractor
   - sudo webdriver-manager update
   - sudo webdriver-manager start &
-  - uwsgi --socket 127.0.0.1:8001  wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2
+  - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2
 
