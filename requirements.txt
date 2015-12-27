@@ -24,7 +24,6 @@ py==1.4.30
 pycurl==7.19.5.3
 pylint==1.5.1
 PyMySQL==0.6.6
-pyresttest==1.6.0
 pytest==2.7.2
 python-dateutil==2.4.2
 python-editor==0.4
