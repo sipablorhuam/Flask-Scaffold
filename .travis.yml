@@ -19,6 +19,7 @@ before_script:
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
   - sudo cp -f /home/travis/build/Leo-G/Flask-Scaffold/nginx/nginx.conf /etc/nginx/nginx.conf
   - sudo ls /etc/nginx/sites-enabled/ 
+  - sudo rm -rf /etc/nginx/sites-enabled/default
   - sudo service nginx start
   - sleep 3
   - sudo apt-get install curl
