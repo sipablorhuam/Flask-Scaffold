@@ -18,6 +18,7 @@ before_script:
   - sudo apt-get install -y nginx
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
   - sudo service nginx start
+  - sleep 3
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
   - sudo apt-get install -y nodejs
   - nodejs -v
@@ -32,6 +33,7 @@ before_script:
   - python db.py db upgrade
   - sudo webdriver-manager update
   - sudo webdriver-manager start --standalone &
+  #give time for server to start
   - sleep 4
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
 
