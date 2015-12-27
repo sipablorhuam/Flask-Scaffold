@@ -31,6 +31,6 @@ before_script:
   - python db.py db migrate
   - python db.py db upgrade
   - sudo webdriver-manager update
-  - sudo webdriver-manager start &
+  - sudo webdriver-manager start --standalone &
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
 
