@@ -17,7 +17,8 @@ before_script:
   - sudo apt-get update -q
   - sudo apt-get install -y nginx
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
-  - sudo service nginx start
+  - sudo ls /etc/nginx/sites-enabled/ 
+  - sudo service nginx restart
   - sleep 3
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
   - sudo apt-get install -y nodejs
