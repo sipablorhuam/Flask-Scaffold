@@ -6,10 +6,10 @@ python:
    - "3.4"
 
 # command to run tests
-script: 
- - protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
+script:
+ #- protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
  - bash tests.bash
- 
+
 addons:
   postgresql: "9.3"
 
@@ -19,7 +19,7 @@ before_script:
   - sudo cp /home/travis/build/Leo-G/Flask-Scaffold/nginx/localhost.conf /etc/nginx/sites-enabled/
   - sudo cp -f nginx/nginx.conf /etc/nginx/nginx.conf
   - sudo rm -rf /etc/nginx/sites-enabled/default
-  - sudo ls -l /etc/nginx/sites-enabled/ 
+  - sudo ls -l /etc/nginx/sites-enabled/
   - sudo cp -R /home/travis/build/Leo-G/Flask-Scaffold /tmp
   - sudo chown -R www-data:www-data /tmp/Flask-Scaffold/
   - sudo ls -l /tmp/Flask-Scaffold/
@@ -45,4 +45,3 @@ before_script:
   #give time for server to start
   - sleep 4
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
-

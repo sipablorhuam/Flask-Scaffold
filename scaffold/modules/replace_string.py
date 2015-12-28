@@ -9,20 +9,20 @@ new_route_string = """
     url: '/{resources}',
     templateUrl: '{resources}/index.html',
     controller: '{Resource}ListController',
-    
-  
+
+
   }}).state('new{Resource}', {{
     url: '/{resources}/new',
     templateUrl: '/{resources}/add.html',
     controller: '{Resource}CreateController',
-    
-    }}).state('edit{Resource}', {{ 
+
+    }}).state('edit{Resource}', {{
     url: '/{resources}/:id/edit',
     templateUrl: '{resources}/update.html',
     controller: '{Resource}EditController',
-    
+
         }})
-        
+
         // End Routes for {resources}"""
 
 # Strings to add to to main index.html
@@ -31,11 +31,13 @@ js_src_string =""" <!-- Controllers -->
 
 menu_string ="""  <!-- menu -->
       <li><a ui-sref="{resources}" id="{resources}_menu" ui-sref-active="current">{Resources}</a></li> """
-        
+
 #Strings to test.bash
 test_script_string = """
-#TESTS
-python app/{resources}/test_{resources}.py"""
+#Tests for {resources}
+protractor angularjs-frontend/{resources}/conf.js
+python app/{resources}/test_{resources}.py
+#End Tests for {resources}"""
 
 def replace_string(resource, resources, file, string_to_insert_after, new_string):
 

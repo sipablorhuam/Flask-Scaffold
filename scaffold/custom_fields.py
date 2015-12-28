@@ -113,13 +113,6 @@ update_decimal_test = "48.6789899"
 update_text_test = "How to build CRUD app with Python, Flask, SQLAlchemy and MySQL. Som reand456989@#$%^%> <html/>"
 
 
-# ADD Tests to bash script
-test_script_string = """
-#Tests for {resources}
-protractor angularjs-frontend/{resources}/conf.js
-python app/{resources}/test_{resources}.py
-#End Tests for {resources}"""
-######### END Unit  TEST FIELDS #####################
 ########### Controller Fields ##########
 controller_field = """{{headerName: "{field}", field: "{field}", width: 300 }},"""
 ########## Form Fields #####################
