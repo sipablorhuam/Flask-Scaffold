@@ -1,19 +1,15 @@
-Flask-Scaffold let's you prototype Database Driven RESTFUL API's and Web Dashboard in python 3, Flask and Angularjs 1 by simply mentioning the Resource and it's fields in a YAML file.
+Flask-Scaffold let's you prototype a web app for example a Blog or a CRUD app by simply specifying it's modules and fields
+It also creates a RESTFUL API for you, so you can exchange data with your app via a mobile client as well.
 
-Features
-RESTFUL API prototyping
-CRUD Dashboard
-E2E testing with Protractor and Selenium
-Unit testing with Python UnitTests
-Continuous Integration with Travis-CI
-
-Installation
-
-You can use either MySQL database or a PostgreSQL database but please ensure that they are installed with their development libraries for steps see [PostgreSQL](http://techarena51.com/index.php/flask-sqlalchemy-postgresql-tutorial/)
-
+Flask-Scaffold will prototype applications in  Python 3, Angularjs 1.5 and can use either a PostgreSQL or MySQL database
+It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continous Integration.
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
-###Installation Steps
+
+###Installation
+
+Please ensure that development libraries for [PostgreSQL](http://techarena51.com/index.php/flask-sqlalchemy-postgresql-tutorial/) are installed.
+
 ####Step 1:Clone the project to your application folder.
 
     git clone git@github.com:Leo-g/Flask-Scaffold.git YourAppFolderName && cd YourAppFolderName
@@ -26,7 +22,7 @@ You can use either MySQL database or a PostgreSQL database but please ensure tha
         #Fill in your username, password and database name/host etc
     
     
-#### Step 3 : Declare your Resource and it's fields in a YAML file as follows
+#### Step 3 : Declare your Module and it's fields in a YAML file as follows
 
 For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffold/wiki/Fields
 
@@ -58,30 +54,28 @@ Note: These instructions are for Ubuntu 14.04
     sudo service nginx restart
     uwsgi --socket 127.0.0.1:8001 --wsgi-file run.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9195
     
-**You should be able to see the webdasboard http://localhost
+**You should be able to see the web dashboard  at http://localhost
 
 ![](http://i.imgur.com/brGR8gB.png)
-
-** If you only need the API you can use postman and make calls to http://localhost:8001/api/v1/<resource>
-   GET 
-   POST
-   PATCH
-   DELETE
    
 
 ####Tests
+   
+For e2e testing with protractor
+
+    protractor angularjs/conf.js
+    
+####API
+
+API calls can be made to 
+
+
 
 API's can be tested with Python Unit Tests
 
      python app/customers/test_customers.py
      
      bash tests.bash
-     
-For e2e testing with protractor
-
-For installation of protractor with selenium on Ubuntu see 
-
-    protractor 
      
 ####Directory Structure
         Project-Folder   
