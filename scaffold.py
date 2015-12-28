@@ -9,7 +9,7 @@ import json
 from scaffold.custom_fields import *
 from scaffold.modules.replace_string import replace_string, new_route_string, menu_string, js_src_string,test_script_string
 from scaffold.modules.errors import BlueprintError, TestScriptError
-   
+
 
 blueprint_file = 'app/__init__.py'
 test_script = 'tests.bash'
@@ -44,7 +44,7 @@ def generate_files(module_path, angular_dir):
             with open(os.path.join(module_path, 'views.py'), "w") as new_file:
                 with open("scaffold/app/views.py", "r") as old_file:
                     for line in old_file:
-                        new_file.write(line.format(resource=resource, 
+                        new_file.write(line.format(resource=resource,
                                                    resources=resources,
                                                    Resources=resources.title(),                                                Resource=resource.title(),
                                                    add_fields=add_fields))
@@ -73,7 +73,8 @@ def generate_files(module_path, angular_dir):
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resources=resources.title(),
-                                                   test_add_fields=json.dumps(test_add_fields)))
+                                                   test_add_fields=json.dumps(test_add_fields),
+                                                   test_update_fields=json.dumps(test_update_fields)))
 
         # Generate Template Files
         # Need to add template resourc path
@@ -111,13 +112,13 @@ def generate_files(module_path, angular_dir):
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resource=resource.title(), controller_fields=controller_fields))
-        #Protractor                
+        #Protractor
         elif file == "conf.js":
             with open(os.path.join(angular_dir, 'conf.js'), "w") as new_file:
                 with open("scaffold/app/protractor-conf.js", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource))
-                                       
+
         elif file == "spec.js":
             with open(os.path.join(angular_dir, 'spec.js'), "w") as new_file:
                 with open("scaffold/app/protractor-spec.js", "r") as old_file:
@@ -125,7 +126,7 @@ def generate_files(module_path, angular_dir):
                         new_file.write(line.format(resource=resource, resources=resources,
                                                    Resource=resource.title(), Resources=resources.title(),
                                                     protractor_edit_elments=protractor_edit_elments,
-                                                  
+
                                                    protractor_add_elments=protractor_add_elments,
                                                    protractor_edit_expect_elments=protractor_edit_expect_elments ))
 
@@ -151,9 +152,9 @@ def register_blueprints():
 
 
 
-        
-        
-         
+
+
+
 
 
 def clean_up(module_path):
@@ -182,7 +183,7 @@ with open(yaml_file, "r") as file:
     for module, fields in yaml_data.items():
             # make module name plural
         resource, resources = make_plural(module)
-        
+
         # Start strings to insert into models
         db_rows = ""
         schema = ""
@@ -207,14 +208,15 @@ with open(yaml_file, "r") as file:
 
         # strings to insert into tests.py
         test_add_fields = {}
-        
+        test_update_fields = {}
+
         #Fields to insert into controller.js
         controller_fields =""
 
                 #Fields to add to protractor spec.js
         protractor_edit_elments=""
         protractor_add_elments=""
-        protractor_edit_expect_elments=""                                  
+        protractor_edit_expect_elments=""
 
         for f in fields:
             field, field_type = f.split(':')
@@ -224,12 +226,13 @@ with open(yaml_file, "r") as file:
                 schema += """
     {} = fields.String()""".format(field)
                 test_add_fields[field] = string_test
+                test_update_fields[field] = update_string_test
                 protractor_edit_elments += update_pro_string.format(field=field)
                 protractor_add_elments += pro_string.format(field=field)
                 protractor_edit_expect_elments += expect_pro_string.format(field=field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="text", resource=resource, Resource=resource.title())
-                
+
             elif field_type == "boolean":
                 db_rows += """
     {} = db.Column(db.Boolean, nullable=False)""".format(field)
@@ -238,9 +241,10 @@ with open(yaml_file, "r") as file:
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource, field_type=field_type)
                 test_add_fields[field]= boolean_test
+                test_update_fields[field] = update_boolean_test
                 protractor_edit_elments += update_pro_boolean.format(field=field)
                 protractor_add_elments += pro_boolean.format(field=field)
-               
+
             elif field_type == "integer":
                 db_rows += """
     {} = db.Column(db.Integer, nullable=False)""".format(field)
@@ -249,10 +253,11 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field] = integer_test
+                test_update_fields[field] = update_integer_test
                 protractor_edit_elments += update_pro_int.format(field=field)
                 protractor_add_elments += pro_int.format(field=field)
                 protractor_edit_expect_elments += expect_pro_int.format(field=field)
-                
+
             elif field_type == "biginteger":
                 db_rows += """
     {} = db.Column(db.BigInteger, nullable=False)""".format(field)
@@ -261,6 +266,7 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field]= big_integer_test
+                test_update_fields[field] = update_big_integer_test
                 protractor_edit_elments += update_pro_big_int.format(field=field)
                 protractor_add_elments += pro_big_int.format(field=field)
                 protractor_edit_expect_elments += expect_pro_big_int.format(field=field)
@@ -273,6 +279,7 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field]= email_test
+                test_update_fields[field] = update_email_test
                 protractor_edit_elments += update_pro_email.format(field=field)
                 protractor_add_elments += pro_email.format(field=field)
                 protractor_edit_expect_elments += expect_pro_email.format(field=field)
@@ -284,10 +291,11 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field]= url_test
+                test_update_fields[field] = update_url_test
                 protractor_edit_elments += update_pro_url.format(field=field)
                 protractor_add_elments += pro_url.format(field=field)
                 protractor_edit_expect_elments += expect_pro_url.format(field=field)
-                
+
             elif field_type == "datetime":
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
@@ -296,11 +304,12 @@ with open(yaml_file, "r") as file:
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field]= date_time_test
+                test_update_fields[field] = update_date_time_test
                 protractor_edit_elments += update_pro_timestamp.format(field=field)
                 protractor_add_elments += pro_timestamp.format(field=field)
                 protractor_edit_expect_elments += expect_pro_timestamp.format(field=field)
-                
-                
+
+
             elif field_type == "date":
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
@@ -309,6 +318,7 @@ with open(yaml_file, "r") as file:
                 form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field]= date_test
+                test_update_fields[field] = update_date_test
                 protractor_edit_elments += update_pro_date.format(field=field)
                 protractor_add_elments += pro_date.format(field=field)
                 protractor_edit_expect_elments += expect_pro_date.format(field=field)
@@ -321,6 +331,7 @@ with open(yaml_file, "r") as file:
                 form_fields += decimal_form_string.format(Field=field.title(),
                                                           field=field, resource=resource)
                 test_add_fields[field]= decimal_test
+                test_update_fields[field] = update_decimal_test
                 protractor_edit_elments += update_pro_decimal.format(field=field)
                 protractor_add_elments += pro_decimal.format(field=field)
                 protractor_edit_expect_elments += expect_pro_decimal.format(field=field)
@@ -333,6 +344,7 @@ with open(yaml_file, "r") as file:
                 form_fields += text_form_string.format(Field=field.title(),
                                                        field=field, resource=resource)
                 test_add_fields[field]= text_test
+                test_update_fields[field] = update_text_test
                 protractor_edit_elments += update_pro_text.format(field=field)
                 protractor_add_elments += pro_text.format(field=field)
                 protractor_edit_expect_elments += expect_pro_text.format(field=field)
@@ -353,7 +365,7 @@ with open(yaml_file, "r") as file:
                 field=field)
             update_form_args += """{resource}_{field} = {resource}.{field}, """.format(resource=resource,
                                                                                        field=field)
-            controller_fields +=   controller_field.format(field=field)                                                                                     
+            controller_fields +=   controller_field.format(field=field)
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)
@@ -368,19 +380,19 @@ with open(yaml_file, "r") as file:
                 register_blueprints()
                 #Update routes in app.js
                 replace_string(resource, resources, app_js_file, "// States", new_route_string)
-                
+
                 #Add js files to index.html
                 replace_string(resource, resources, main_index_file, "<!-- Controllers -->", js_src_string)
-                
+
                 #Add menus to the main index.html
                 replace_string(resource, resources, main_index_file, "<!-- menu -->", menu_string)
-                
+
                 #Add tests to test.bash
                 replace_string(resource, resources, test_script, "#TESTS", test_script_string)
-                
-                
-                
-                
+
+
+
+
                 run_autopep8()
             except:
                 clean_up(module_dir)

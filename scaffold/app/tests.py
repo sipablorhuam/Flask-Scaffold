@@ -13,40 +13,52 @@ from app import create_app
 
 
 app = create_app('config')
+add_data = """{{
+  "data": {{
+    "attributes":
 
-data = """{{{{
-  "data": {{{{
-    "attributes": {{{test_add_fields}}},
-   
+    {test_add_fields}
+         ,
+
     "type": "{resources}"
-  }}}}
- 
-}}}}"""
+  }}
+
+}}"""
+
+update_data = """{{
+  "data": {{
+    "attributes":
+
+        {test_update_fields},
+    "type": "{resources}"
+  }}
+
+}}"""
 
 
 class Test{Resources}(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
-        
-        
+
+
     def test_01_add(self):
-        
-        rv = self.app.post('/api/v1/{resources}.json', data=data.format(True), content_type = "application/json")     
+
+        rv = self.app.post('/api/v1/{resources}.json', data=add_data, content_type = "application/json")
         assert rv.status_code == 201
-    
+
     def test_02_read_update(self):
         request = self.app.get('/api/v1/{resources}.json')
         dict =  json.loads(request.data.decode('utf-8'))
         id = dict['data'][0]['id']
-        rv = self.app.patch('/api/v1/{resources}/{{}}.json'.format(id), data=data.format(False), content_type = "application/json")      
+        rv = self.app.patch('/api/v1/{resources}/{{}}.json'.format(id), data=update_data, content_type = "application/json")
         assert rv.status_code == 200
-        
+
     def test_03_delete(self):
         request = self.app.get('/api/v1/{resources}.json')
         dict =  json.loads(request.data.decode('utf-8'))
         id = dict['data'][0]['id']
-        rv = self.app.delete('/api/v1/{resources}/{{}}.json'.format(id))      
+        rv = self.app.delete('/api/v1/{resources}/{{}}.json'.format(id))
         assert rv.status_code == 204
 
 if __name__ == '__main__':
