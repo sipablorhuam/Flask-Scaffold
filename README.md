@@ -1,71 +1,87 @@
-Flask-Scaffold allows you to quickly prototype a CRUD application in python 3.x with Flask, FLask-SQLAlchemy,  and PostgreSQL.
+Flask-Scaffold let's you prototype Database Driven RESTFUL API's and Web Dashboard in python 3, Flask and Angularjs 1 by simply mentioning the Resource and it's fields in a YAML file.
 
-Please ensure PostgreSQL is installed with the development libraries. Steps are available [here](http://techarena51.com/index.php/flask-sqlalchemy-postgresql-tutorial/)
+Features
+RESTFUL API prototyping
+CRUD Dashboard
+E2E testing with Protractor and Selenium
+Unit testing with Python UnitTests
+Continuous Integration with Travis-CI
 
-###Supported Databases
-- PostgreSQL
-- MYSQL
+Installation
+
+You can use either MySQL database or a PostgreSQL database but please ensure that they are installed with their development libraries for steps see [PostgreSQL](http://techarena51.com/index.php/flask-sqlalchemy-postgresql-tutorial/)
+
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 ###Installation Steps
 ####Step 1:Clone the project to your application folder.
 
-    git clone git@github.com:Leo-g/Flask-Scaffold.git YourAppFolderName
+    git clone git@github.com:Leo-g/Flask-Scaffold.git YourAppFolderName && cd YourAppFolderName
 
-####Step 2: Activate the virtual environment and install the requirements.
+####Step 2: Install the requirements and add your Database configuration details.
  
-    cd YourAppFolderName
-    virtualenv -p /usr/bin/python3.4 venv-3.4
-    source venv-3.4/bin/activate
-    pip install -r requirements.txt 
+       pip install -r requirements.txt 
+       
+        vim config.py
+        #Fill in your username, password and database name/host etc
     
     
-#### Step 3 : Create a Scaffold with the fields you require.
+#### Step 3 : Declare your Resource and it's fields in a YAML file as follows
 
 For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffold/wiki/Fields
 
     vim scaffold/module.yaml
     customers:
-     - name:String
-     - address:Text
-     - is_active:Boolean
-     - mobile:Integer
-     - email:Email
-     - url:URL
-     - timestamp:DateTime
-     - date:Date
-     - pricing:Decimal
+     - name:string
+     - address:text
+     - is_active:boolean
+     - mobile:integer
+     - email:email
+     - url:url
+     - timestamp:datetime
+     - date:date
+     - pricing:decimal
     
-    python scaffold.py scaffold/module.yaml
-    
+#### Step 4 : Run the Scaffolding  and database migrations script
 
-#### Step 4 : Update the config file with your Database Username, Database Password, Database Name and Database Hostname. Uncomment/Comment the SQLALCHEMY_DATABASE_URI for the database you need to use
-
-    vim config.py
-
-#### Step 5 : Run migrations 
-   
+    python scaffold.py scaffold/module.yaml   
     python db.py db init
     python db.py db migrate
     python db.py db upgrade
    
-####  Step 5 : Start the server.
-    python run.py
+####  Step 5 : Configure your web server(nginx) to serve your web app
 
+Note: These instructions are for Ubuntu 14.04
 
-**You should be able to see the App at  http://localhost:5000/customers**
+    sudo cp nginx/localhost.conf /etc/nginx/sites-enabled/
+    sudo cp -f nginx/nginx.conf /etc/nginx/nginx.conf
+    sudo service nginx restart
+    uwsgi --socket 127.0.0.1:8001 --wsgi-file run.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9195
+    
+**You should be able to see the webdasboard http://localhost
 
-It should be similar to the following screenshot which was for a post module
 ![](http://i.imgur.com/brGR8gB.png)
 
+** If you only need the API you can use postman and make calls to http://localhost:8001/api/v1/<resource>
+   GET 
+   POST
+   PATCH
+   DELETE
+   
 
 ####Tests
-To run tests for all modules
 
-      bash tests.bash
-To run tests for a specific module
+API's can be tested with Python Unit Tests
 
-     python app/customers/test.py
+     python app/customers/test_customers.py
+     
+     bash tests.bash
+     
+For e2e testing with protractor
+
+For installation of protractor with selenium on Ubuntu see 
+
+    protractor 
      
 ####Directory Structure
         Project-Folder   
@@ -76,32 +92,34 @@ To run tests for a specific module
             |-- db.py
             |__ /scaffold
             |-- scaffold.py
-            |-- tests.bash    #Tests for all modules   
-            |__ app/
-                |-- __init__.py
-                +-- static
-                +-- templates
-                +-- module-1
-                    |-- __init__.py
-                    |-- models.py           
-                    |-- test_module-1.py  #Tests for module 1
-                    |-- views.py
-                    +-- templates
-                         +-- module-1
+            |-- tests.bash    #Tests for all modules
+            |__ angular-frontend
+               |--index.html
+               +-- module-1
                                |-- _form.html
                                |-- index.html
                                |-- add.html
-                               |-- update.html        
-                +-- module-2
-                    |-- __init__.py
-                    |-- models.py           
-                    |-- test_module-2.py  #Tests for module 2
-                    |-- views.py
-                    +-- templates
-                         +-- module-2
+                               |-- update.html 
+                               |-- controller.js
+               +-- module-2
                                |-- _form.html
                                |-- index.html
                                |-- add.html
                                |-- update.html
+                               |-- controller.js
+            |__ app/
+                |-- __init__.py               
+                +-- module-1
+                    |-- __init__.py
+                    |-- models.py           
+                    |-- test_module-1.py  # Unit Tests for module 1
+                    |-- views.py                  
+                                
+                +-- module-2
+                    |-- __init__.py
+                    |-- models.py           
+                    |-- test_module-2.py  # Unit Tests for module 2
+                    |-- views.py
+                  
               
 
