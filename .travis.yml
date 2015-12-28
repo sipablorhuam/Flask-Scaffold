@@ -43,5 +43,5 @@ before_script:
   - sudo webdriver-manager start --standalone &
   #give time for server to start
   - sleep 4
- # - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
+  - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
 
