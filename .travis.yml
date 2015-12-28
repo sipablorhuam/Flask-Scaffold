@@ -25,8 +25,9 @@ before_script:
   - sudo ls -l /tmp/Flask-Scaffold/
   - sudo service nginx restart
   - sleep 3
-  - sudo apt-get install curl
-  - curl localhost:8080
+  #For testing purposes only
+  #- sudo apt-get install curl
+  #- curl localhost:8080
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
   - sudo apt-get install -y nodejs
   - nodejs -v
