@@ -78,9 +78,9 @@ text_form_string  = """
 boolean_form_string = """
     <div class=" required form-radio">
        <label>{Field}</label>
-       <input type="radio" ng-model="{resource}.data.attributes.is_active" name= "{field}" ng-value="true"  required  />
+       <input type="radio" ng-model="{resource}.data.attributes.{field}" name="{field}" ng-value="true"  required>
        <label>True</label>
-       <input type="radio" ng-model="{resource}.data.attributes.is_active"  name= "{field_type}"ng-value="false"/>
+       <input type="radio" ng-model="{resource}.data.attributes.{field}"  name="{field}"ng-value="false">
        <label>False</label>
     </div>
 """

@@ -78,7 +78,7 @@ display: -webkit-flex;
     display: -webkit-flex;
      display: flex;  
    
-    width: 440px;
+    width: 275px;
     
     flex-flow: row;   
     justify-content: flex-end;
