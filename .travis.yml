@@ -8,7 +8,7 @@ python:
 # command to run tests
 script: 
  - protractor /home/travis/build/Leo-G/Flask-Scaffold/pro-tests/conf.js
-# - bash tests.bash
+ - bash tests.bash
  
 addons:
   postgresql: "9.3"
