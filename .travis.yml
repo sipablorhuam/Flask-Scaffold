@@ -21,7 +21,7 @@ before_script:
   - sudo ls /etc/nginx/sites-enabled/ 
   - sudo rm -rf /etc/nginx/sites-enabled/default
   - sudo chmod -R 755 angularjs-frontend
-  - ll angularjs-frontend
+  - sudo ls -l /home/travis/build/Leo-G/Flask-Scaffold/angularjs-frontend
   - sudo service nginx restart
   - sleep 3
   - sudo apt-get install curl
