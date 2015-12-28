@@ -30,7 +30,7 @@ js_src_string =""" <!-- Controllers -->
     <script type="text/javascript" src="{resources}/controllers.js"></script>"""
 
 menu_string ="""  <!-- menu -->
-      <li><a ui-sref="{resources}"  ui-sref-active="current">{Resources}</a></li> """
+      <li><a ui-sref="{resources}" id="{resources}_menu" ui-sref-active="current">{Resources}</a></li> """
         
 #Strings to test.bash
 test_script_string = """
