@@ -1,8 +1,7 @@
-Flask-Scaffold let's you prototype a web app for example a Blog or a CRUD app by simply specifying it's modules and fields
-It also creates a RESTFUL API for you, so you can exchange data with your app via a mobile client as well.
+Flask-Scaffold let's you prototype a Web Application for example a Blog or a CRUD Web application in Python 3 and Angularjs by simply specifying it's modules and their fields. A RESTFUL API  is also created which allows you to exchange data with other applications like a native mobile application.
 
-Flask-Scaffold will prototype applications in  Python 3, Angularjs 1.5 and can use either a PostgreSQL or MySQL database
-It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continous Integration.
+Flask-Scaffold will prototype applications in  Python 3, Angularjs and can use either a PostgreSQL or a MySQL database
+It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continuous Integration as well.
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 
@@ -16,31 +15,36 @@ Please ensure that development libraries for [PostgreSQL](http://techarena51.com
 
 ####Step 2: Install the requirements and add your Database configuration details.
  
-       pip install -r requirements.txt 
+    pip install -r requirements.txt 
        
-        vim config.py
-        #Fill in your username, password and database name/host etc
-    
-    
+    vim config.py
+    #Fill in your database username, password, name, host etc
+      
 #### Step 3 : Declare your Module and it's fields in a YAML file as follows
 
 For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffold/wiki/Fields
 
-    vim scaffold/module.yaml
-    customers:
+    vim scaffold/blog.yaml
+    posts:
+     - tittle:string
+     - body:text
+     - author:string
+     - creation_date:date
+     - published:boolean
+    comments:
+     - author:string
+     - body:text
+     - author_url:url
+     - created_on:date
+     - approved:boolean
+    authors:
      - name:string
-     - address:text
-     - is_active:boolean
-     - mobile:integer
-     - email:email
+     - profile:text
      - url:url
-     - timestamp:datetime
-     - date:date
-     - pricing:decimal
     
 #### Step 4 : Run the Scaffolding  and database migrations script
 
-    python scaffold.py scaffold/module.yaml   
+    python scaffold.py scaffold/blog.yaml   
     python db.py db init
     python db.py db migrate
     python db.py db upgrade
@@ -49,8 +53,11 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 Note: These instructions are for Ubuntu 14.04
 
+    #You need to configure the root path to the index.html file in the angularjs-frontend folder in localhost.conf
+    sudo apt-get install nginx
     sudo cp nginx/localhost.conf /etc/nginx/sites-enabled/
     sudo cp -f nginx/nginx.conf /etc/nginx/nginx.conf
+    sudo rm -rf /etc/nginx/default
     sudo service nginx restart
     uwsgi --socket 127.0.0.1:8001 --wsgi-file run.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9195
     
@@ -61,22 +68,35 @@ Note: These instructions are for Ubuntu 14.04
 
 ####Tests
    
-For e2e testing with protractor
+For E2E testing with protractor
+#Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
 
-    protractor angularjs/conf.js
+    protractor angularjs/<module_name>/conf.js
     
+For unit testing with python Unit tests
+
+    python app/<module_name>/test_<module_name>.py
+
+For testing multiple modules
+    bash tests.bash
+
 ####API
 
-API calls can be made to 
+API calls can be made to the following URL
+
+Note: This example is for a Post module
+
+| HTTP Method  | URL  | Results |
+| :------------ |:---------------:| -----:|
+| GET      | http://localhost:8001/api/v1/posts.json | Returns a list of all Posts |
+| POST     | http://localhost:8001/api/v1/posts.json      |   Creates a New Post |
+| GET | http://localhost:8001/api/v1/posts/<post_id>.json      | Returns details for the a single Post |
+| PATCH | http://localhost:8001/api/v1/posts/<post_id>.json      | Update a Post |
+| DELETE | http://localhost:8001/api/v1/posts/<post_id>.json      | Delete a Post |
 
 
-
-API's can be tested with Python Unit Tests
-
-     python app/customers/test_customers.py
-     
-     bash tests.bash
-     
+The JSON format is per jsonapi.org, for more details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/	
+	     
 ####Directory Structure
         Project-Folder   
             |-- config.py
