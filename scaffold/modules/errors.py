@@ -13,15 +13,8 @@ class BlueprintError(Error):
         return repr(self.msg)
 
 
-class TestScriptError(Error):
-
-    def __init__(self):
-        self.msg = "Cannot add tests to bash script"
-
-    def __str__(self):
-        return repr(self.msg)
         
-#Error for incase strings are not replaced in files        
+#Error for incase strings are not replaced in files
 class ReplaceError(Error):
 
     def __init__(self, error_msg):
