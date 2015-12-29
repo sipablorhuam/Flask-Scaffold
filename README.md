@@ -68,21 +68,21 @@ Note: These instructions are for Nginx and Uwsgi on Ubuntu 14.04.
 ![](http://i.imgur.com/gsOwlH5.png)
    
 
-####Tests
+###Tests
    
-For E2E testing with protractor
-#Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
+####For E2E testing with protractor
+Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
 
     protractor angularjs/<module_name>/conf.js
     
-For unit testing with python Unit tests
+####For unit testing with python Unit tests
 
     python app/<module_name>/test_<module_name>.py
 
-For testing multiple modules
+####For testing multiple modules
     bash tests.bash
 
-####API
+###API
 
 API calls can be made to the following URL
 
@@ -99,7 +99,7 @@ Note: This example is for a Post module
 
 The JSON format is per jsonapi.org, for more details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/	
 	     
-####Directory Structure
+###Directory Structure
         Project-Folder   
             |-- config.py
             |--run.py
