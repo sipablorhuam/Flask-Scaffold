@@ -12,6 +12,9 @@ script:
 
 addons:
   postgresql: "9.3"
+  
+#Start services
+services: nginx
 
 before_script:
   - sudo apt-get update -q
@@ -40,8 +43,14 @@ before_script:
   - python db.py db init
   - python db.py db migrate
   - python db.py db upgrade
+<<<<<<< HEAD
   - sudo webdriver-manager update
   - sudo webdriver-manager start --standalone &
   #give time for server to start
   - sleep 4
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
+=======
+  - sudo apt-get update -q
+  - sudo apt-get install nginx
+  - pwd
+>>>>>>> a846a09ee7a4d0691a117969c509ff8052141ed5
