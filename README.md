@@ -6,6 +6,7 @@ Flask-Scaffold will prototype applications in  Python 3, Angularjs and can use e
 It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continuous Integration as well.
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
+[![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ###Installation
 
