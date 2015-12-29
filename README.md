@@ -1,5 +1,7 @@
 Flask-Scaffold let's you prototype a Web Application for example a Blog or a CRUD Web application in Python 3 and Angularjs by simply specifying it's modules and their fields. A RESTFUL API  is also created which allows you to exchange data with other applications like a native mobile application.
 
+![](http://i.imgur.com/gsOwlH5.png)
+
 Flask-Scaffold will prototype applications in  Python 3, Angularjs and can use either a PostgreSQL or a MySQL database
 It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continuous Integration as well.
 
@@ -49,11 +51,11 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
     python db.py db migrate
     python db.py db upgrade
    
-####  Step 5 : Configure your web server(nginx) to serve your web app
+####  Step 5 : Configure your web server to serve your web app
 
-Note: These instructions are for Ubuntu 14.04
+Note: These instructions are for Nginx and Uwsgi on Ubuntu 14.04.
 
-    #You need to configure the root path to the index.html file in the angularjs-frontend folder in localhost.conf
+    #You need to configure the root path in localhost.conf to map to YourAppFolderName/angularjs-frontend/index.html 
     sudo apt-get install nginx
     sudo cp nginx/localhost.conf /etc/nginx/sites-enabled/
     sudo cp -f nginx/nginx.conf /etc/nginx/nginx.conf
@@ -63,7 +65,7 @@ Note: These instructions are for Ubuntu 14.04
     
 **You should be able to see the web dashboard  at http://localhost
 
-![](http://i.imgur.com/brGR8gB.png)
+![](http://i.imgur.com/gsOwlH5.png)
    
 
 ####Tests
