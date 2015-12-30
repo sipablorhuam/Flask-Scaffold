@@ -93,9 +93,9 @@ Note: This example is for a Post module
 | :------------ |:---------------:| -----:|
 | GET      | http://localhost:8001/api/v1/posts.json | Returns a list of all Posts |
 | POST     | http://localhost:8001/api/v1/posts.json      |   Creates a New Post |
-| GET | http://localhost:8001/api/v1/posts/<post_id>.json      | Returns details for the a single Post |
-| PATCH | http://localhost:8001/api/v1/posts/<post_id>.json      | Update a Post |
-| DELETE | http://localhost:8001/api/v1/posts/<post_id>.json      | Delete a Post |
+| GET | http://localhost:8001/api/v1/posts/1.json      | Returns details for the a single Post |
+| PATCH | http://localhost:8001/api/v1/posts/1.json      | Update a Post |
+| DELETE | http://localhost:8001/api/v1/posts/1.json      | Delete a Post |
 
 
 The JSON format is per jsonapi.org, for more details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/	
