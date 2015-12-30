@@ -29,7 +29,7 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
     vim scaffold/blog.yaml
     posts:
-     - tittle:string
+     - title:string
      - body:text
      - author:string
      - creation_date:date
