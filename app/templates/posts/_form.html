@@ -1,0 +1,45 @@
+
+
+
+      
+				 
+      <div class="required" >
+        <input class="form-field" placeholder="tittle" type="text" id="tittle" name="tittle"  ng-model="post.data.attributes.tittle"  required>
+      </div>
+          <div class="required">
+          <textarea class="form-field" type="text" placeholder="body" name="body" ng-model="post.data.attributes.body"  required> </textarea> </div>
+          
+      <div class="required" >
+        <input class="form-field" placeholder="author" type="text" id="author" name="author"  ng-model="post.data.attributes.author"  required>
+      </div>
+        <div class="required"  >
+            <input class="form-field" placeholder="creation_date" type="date" id="creation_date" name="creation_date"  formatdate ng-model="post.data.attributes.creation_date"   required>
+      </div>
+    <div class=" required form-radio">
+       <label>Published</label>
+       <input type="radio" ng-model="post.data.attributes.published" name="published" ng-value="true"  required>
+       <label>True</label>
+       <input type="radio" ng-model="post.data.attributes.published"  name="published"ng-value="false">
+       <label>False</label>
+    </div>
+
+                     
+       
+
+    <div class="form-button" > 
+            <button  ng-disabled="loading" class="button-primary" type="submit" >                                        
+                              
+                              <span ng-hide="loading">Save</span>
+                              <span ng-show="loading">Loading....</span></button> 
+              
+       </div> 
+              
+
+         
+              
+              
+              
+
+  
+
+				

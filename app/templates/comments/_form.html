@@ -1,0 +1,45 @@
+
+
+
+      
+				 
+      <div class="required" >
+        <input class="form-field" placeholder="author" type="text" id="author" name="author"  ng-model="comment.data.attributes.author"  required>
+      </div>
+          <div class="required">
+          <textarea class="form-field" type="text" placeholder="body" name="body" ng-model="comment.data.attributes.body"  required> </textarea> </div>
+          
+      <div class="required" >
+        <input class="form-field" placeholder="author_url" type="url" id="author_url" name="author_url"  ng-model="comment.data.attributes.author_url"  required>
+      </div>
+        <div class="required"  >
+            <input class="form-field" placeholder="created_on" type="date" id="created_on" name="created_on"  formatdate ng-model="comment.data.attributes.created_on"   required>
+      </div>
+    <div class=" required form-radio">
+       <label>Approved</label>
+       <input type="radio" ng-model="comment.data.attributes.approved" name="approved" ng-value="true"  required>
+       <label>True</label>
+       <input type="radio" ng-model="comment.data.attributes.approved"  name="approved"ng-value="false">
+       <label>False</label>
+    </div>
+
+                     
+       
+
+    <div class="form-button" > 
+            <button  ng-disabled="loading" class="button-primary" type="submit" >                                        
+                              
+                              <span ng-hide="loading">Save</span>
+                              <span ng-show="loading">Loading....</span></button> 
+              
+       </div> 
+              
+
+         
+              
+              
+              
+
+  
+
+				

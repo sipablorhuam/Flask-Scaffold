@@ -1,0 +1,27 @@
+      
+      
+      
+      
+       <div class="index-button">
+        
+        <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
+    
+      <div>
+        <a ui-sref="newAuthor"><button class="button-primary">New</button></a>
+       
+        <span ng-repeat="selectedRow in gridOptions.selectedRows">
+          <a ui-sref="editAuthor({id:selectedRow.id })" ><button class="button-primary" id="editButton" >Edit</button></a> 
+     
+          <button ng-click="deleteAuthor(selectedRow.id)" class="button-primary" id="deleteButton"> Delete </button>
+        </span>       
+       </div> 
+    </div>
+   
+                 
+   
+      {{ error}}
+
+    <div ag-grid="gridOptions" class="ag-fresh"  style = "height: 500px"  ></div>
+
+
+

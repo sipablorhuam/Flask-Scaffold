@@ -15,8 +15,8 @@ from scaffold.modules.errors import BlueprintError
 blueprint_file = 'app/__init__.py'
 test_script = 'tests.bash'
 yaml_file = sys.argv[1]
-app_js_file = "angularjs-frontend/js/app.js"
-main_index_file = "angularjs-frontend/index.html"
+app_js_file = "app/static/js/app.js"
+main_index_file = "app/templates/index.html"
 
 # Error classes
 
