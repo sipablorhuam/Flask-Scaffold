@@ -14,8 +14,7 @@ def create_app(config_filename):
 
     @app.route('/<path:filename>')
     def file(filename):
-        print(filename)
-        print(app.root_path)
+
         return send_from_directory(os.path.join(app.root_path, 'templates'), filename)
 
     #End
@@ -24,6 +23,6 @@ def create_app(config_filename):
     db.init_app(app)
 
     # Blueprints
-    
+
 
     return app
