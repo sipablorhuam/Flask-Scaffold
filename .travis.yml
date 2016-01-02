@@ -26,9 +26,6 @@ before_script:
   - sudo ls -l /tmp/Flask-Scaffold/
   - sudo service nginx restart
   - sleep 3
-  #For testing purposes only
-  - sudo apt-get install curl
-  - curl localhost:80
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
   - sudo apt-get install -y nodejs
   - nodejs -v
@@ -41,6 +38,9 @@ before_script:
   - python db.py db init
   - python db.py db migrate
   - python db.py db upgrade
+  #For testing purposes only
+  - sudo apt-get install curl
+  - curl localhost:80
   - sudo webdriver-manager update
   - sudo webdriver-manager start --standalone &
   #give time for server to start
