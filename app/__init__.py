@@ -25,11 +25,6 @@ def create_app(config_filename):
     db.init_app(app)
 
     # Blueprints
-    from app.comments.views import comments
-    app.register_blueprint(comments, url_prefix='/api/v1/comments')
-    from app.authors.views import authors
-    app.register_blueprint(authors, url_prefix='/api/v1/authors')
-    from app.posts.views import posts
-    app.register_blueprint(posts, url_prefix='/api/v1/posts')
+
 
     return app
