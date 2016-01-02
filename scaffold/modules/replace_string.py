@@ -36,7 +36,7 @@ menu_string ="""  <!-- menu -->
 test_script_string = """
 #TESTS
 #Tests for {resources}
-protractor angularjs-frontend/{resources}/conf.js
+protractor app/templates/{resources}/conf.js
 python app/{resources}/test_{resources}.py
 #End Tests for {resources}"""
 

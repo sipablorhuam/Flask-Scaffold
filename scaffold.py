@@ -382,7 +382,7 @@ with open(yaml_file, "r") as file:
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)
-        angular_dir = os.path.join('angularjs-frontend', resources)
+        angular_dir = os.path.join('app/templates/', resources)
 
         try:
             os.mkdir(module_dir)
