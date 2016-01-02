@@ -94,7 +94,6 @@ Note: This example is for a Post module
 | PATCH | http://localhost:5000/api/v1/posts/1.json      | Update a Post |
 | DELETE | http://localhost:8001/api/v1/posts/1.json      | Delete a Post |
 
-
 The JSON format follows the spec at jsonapi.org and a sample is available in the sample.json   file
 
 For details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
