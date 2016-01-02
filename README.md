@@ -1,9 +1,14 @@
-Flask-Scaffold let's you prototype a Web Application for example a Blog or a CRUD Web application in Python 3 and Angularjs by simply specifying it's modules and their fields. A RESTFUL API  is also created which allows you to exchange data with other applications like a native mobile application.
+Flask-Scaffold let's you scaffold a MySQL or PostgreSQL driven Web Application with Flask and Angularjs. It will create views,models and templates for a given Resource along with API endpoints and Unit tests.
 
 ![](http://i.imgur.com/gsOwlH5.png)
 
-Flask-Scaffold will prototype applications in  Python 3, Angularjs and can use either a PostgreSQL or a MySQL database
-It uses the Flask framework and offers inbuilt Unit testing, E2E testing and Continuous Integration as well.
+Features include
+
+ - Python 3 Support
+ - RESTFUL JSON API
+ - Unit Testing with python Unit tests
+ - End 2 End testing with Protractor
+ - Continous Integration with Travis-CI
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -17,13 +22,13 @@ Please ensure that development libraries for [PostgreSQL](http://techarena51.com
     git clone git@github.com:Leo-g/Flask-Scaffold.git YourAppFolderName && cd YourAppFolderName
 
 ####Step 2: Install the requirements and add your Database configuration details.
- 
-    pip install -r requirements.txt 
-       
+
+    pip install -r requirements.txt
+
     vim config.py
     #Fill in your database username, password, name, host etc
-      
-#### Step 3 : Declare your Module and it's fields in a YAML file as follows
+
+#### Step 3 : Declare your Resource and it's fields in a YAML file as follows
 
 For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffold/wiki/Fields
 
@@ -44,38 +49,30 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
      - name:string
      - profile:text
      - url:url
-    
+
 #### Step 4 : Run the Scaffolding  and database migrations script
 
-    python scaffold.py scaffold/blog.yaml   
+    python scaffold.py scaffold/blog.yaml
     python db.py db init
     python db.py db migrate
     python db.py db upgrade
-   
-####  Step 5 : Configure your web server to serve your web app
 
-Note: These instructions are for Nginx and Uwsgi on Ubuntu 14.04.
+####  Step 5 : Run the Server
 
-    #You need to configure the root path in localhost.conf to map to YourAppFolderName/angularjs-frontend/index.html 
-    sudo apt-get install nginx
-    sudo cp nginx/localhost.conf /etc/nginx/sites-enabled/
-    sudo cp -f nginx/nginx.conf /etc/nginx/nginx.conf
-    sudo rm -rf /etc/nginx/default
-    sudo service nginx restart
-    uwsgi --socket 127.0.0.1:8001 --wsgi-file run.py --callable app --processes 4 --threads 2 --stats 127.0.0.1:9195
-    
-**You should be able to see the web dashboard  at http://localhost
+    python run.py
+
+**You should be able to see the web dashboard  at http://localhost:5000
 
 ![](http://i.imgur.com/gsOwlH5.png)
-   
 
+To configure your application with nginx and uwsgi configuration see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Install-and-Configure-Nginx-and-Uwsgi-on-Ubuntu-to-Serve-Flask-and-Angularjs-Applications)
 ###Tests
-   
+
 ####For E2E testing with protractor
 Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
 
     protractor angularjs/<module_name>/conf.js
-    
+
 ####For unit testing with python Unit tests
 
     python app/<module_name>/test_<module_name>.py
@@ -91,52 +88,63 @@ Note: This example is for a Post module
 
 | HTTP Method  | URL  | Results |
 | :------------ |:---------------:| -----:|
+<<<<<<< HEAD
 | GET      | http://localhost/api/v1/posts.json | Returns a list of all Posts |
 | POST     | http://localhost/api/v1/posts.json      |   Creates a New Post |
 | GET | http://localhost/api/v1/posts/1.json      | Returns details for the a single Post |
 | PATCH | http://localhost/api/v1/posts/1.json      | Update a Post |
 | DELETE | http://localhost/api/v1/posts/1.json      | Delete a Post |
+=======
+| GET      | http://localhost:5000/api/v1/posts.json | Returns a list of all Posts |
+| POST     | http://localhost:5000/api/v1/posts.json      |   Creates a New Post |
+| GET | http://localhost:5000/api/v1/posts/1.json      | Returns details for the a single Post |
+| PATCH | http://localhost:5000/api/v1/posts/1.json      | Update a Post |
+| DELETE | http://localhost:8001/api/v1/posts/1.json      | Delete a Post |
+>>>>>>> develop
 
 
-The JSON format is per jsonapi.org, for more details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/	
-	     
+The JSON format follows the spec at jsonapi.org and a sample is available in the sample.json   file
+
+For details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+
 ###Directory Structure
-        Project-Folder   
+        Project-Folder
             |-- config.py
             |--run.py
-            |--requirements.txt    
-            |__ /venv 
+            |--requirements.txt
+            |__ /venv
             |-- db.py
             |__ /scaffold
             |-- scaffold.py
             |-- tests.bash    #Tests for all modules
-            |__ angular-frontend
-               |--index.html
-               +-- module-1
-                               |-- _form.html
-                               |-- index.html
-                               |-- add.html
-                               |-- update.html 
-                               |-- controller.js
-               +-- module-2
-                               |-- _form.html
-                               |-- index.html
-                               |-- add.html
-                               |-- update.html
-                               |-- controller.js
             |__ app/
-                |-- __init__.py               
+                |-- __init__.py
                 +-- module-1
                     |-- __init__.py
-                    |-- models.py           
+                    |-- models.py
                     |-- test_module-1.py  # Unit Tests for module 1
-                    |-- views.py                  
-                                
+                    |-- views.py
+                        
                 +-- module-2
                     |-- __init__.py
-                    |-- models.py           
+                    |-- models.py
                     |-- test_module-2.py  # Unit Tests for module 2
                     |-- views.py
-                  
-              
-
+                |__ templates
+                   |-- index.html
+                   +-- static
+                          |-- js
+                          |-- css
+                          |-- images
+                   +-- module-1
+                                   |-- _form.html
+                                   |-- index.html
+                                   |-- add.html
+                                   |-- update.html
+                                   |-- controller.js
+                   +-- module-2
+                                   |-- _form.html
+                                   |-- index.html
+                                   |-- add.html
+                                   |-- update.html
+                                   |-- controller.js
