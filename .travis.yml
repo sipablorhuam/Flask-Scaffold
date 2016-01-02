@@ -39,9 +39,10 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
   #For testing purposes only
-  - sudo apt-get install curl
-  - curl localhost:80
+  #- sudo apt-get install curl
+  #- curl localhost:80
   - sudo webdriver-manager update
   - sudo webdriver-manager start --standalone &
   - sleep 4
   - uwsgi --socket 127.0.0.1:8001  --wsgi-file /home/travis/build/Leo-G/Flask-Scaffold/run.py --callable app --processes 4 --threads 2 &
+  - sleep 3
