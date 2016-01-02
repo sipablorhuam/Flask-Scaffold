@@ -88,20 +88,11 @@ Note: This example is for a Post module
 
 | HTTP Method  | URL  | Results |
 | :------------ |:---------------:| -----:|
-<<<<<<< HEAD
-| GET      | http://localhost/api/v1/posts.json | Returns a list of all Posts |
-| POST     | http://localhost/api/v1/posts.json      |   Creates a New Post |
-| GET | http://localhost/api/v1/posts/1.json      | Returns details for the a single Post |
-| PATCH | http://localhost/api/v1/posts/1.json      | Update a Post |
-| DELETE | http://localhost/api/v1/posts/1.json      | Delete a Post |
-=======
 | GET      | http://localhost:5000/api/v1/posts.json | Returns a list of all Posts |
 | POST     | http://localhost:5000/api/v1/posts.json      |   Creates a New Post |
 | GET | http://localhost:5000/api/v1/posts/1.json      | Returns details for the a single Post |
 | PATCH | http://localhost:5000/api/v1/posts/1.json      | Update a Post |
 | DELETE | http://localhost:8001/api/v1/posts/1.json      | Delete a Post |
->>>>>>> develop
-
 
 The JSON format follows the spec at jsonapi.org and a sample is available in the sample.json   file
 
