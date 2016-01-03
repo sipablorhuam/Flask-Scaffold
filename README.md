@@ -71,7 +71,7 @@ To configure your application with nginx and uwsgi configuration see the [wiki](
 ####For E2E testing with protractor
 Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
 
-    protractor angularjs/<module_name>/conf.js
+    protractor app/templates/<module_name>/conf.js
 
 ####For unit testing with python Unit tests
 
