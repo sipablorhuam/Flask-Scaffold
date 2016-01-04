@@ -10,8 +10,11 @@ Features include
  - End 2 End testing with Protractor
  - Continous Integration with Travis-CI
 
+###[Demo](http://flask-scaffold.herokuapp.com/)
+
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ###Installation
 
