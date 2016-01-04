@@ -40,7 +40,7 @@ it('Should  edit a {Resource}', function() {{
  
 element(by.css(".button-primary")).click()    
 .then(function(){{    
-
+   browser.sleep(3000);
   {protractor_edit_expect_elments}
 
   }});
