@@ -308,7 +308,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
                 schema += """
-    {} = fields.DateTime(validate=not_blank)""".format(field)
+    {} = fields.DateTime()""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_time_test
@@ -323,7 +323,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Date(validate=not_blank)""".format(field)
+    {} = fields.Date()""".format(field)
                 form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_test
