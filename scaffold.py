@@ -224,7 +224,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
-    {} = fields.String()""".format(field)
+    {} = fields.String(validate=not_blank)""".format(field)
                 test_add_fields[field] = string_test
                 test_update_fields[field] = update_string_test
                 protractor_edit_elments += update_pro_string.format(
@@ -239,7 +239,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Boolean, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Boolean()""".format(field)
+    {} = fields.Boolean(validate=not_blank)""".format(field)
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource, field_type=field_type)
                 test_add_fields[field] = boolean_test
@@ -252,7 +252,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Integer, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Integer()""".format(field)
+    {} = fields.Integer(validate=not_blank)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field] = integer_test
@@ -266,7 +266,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.BigInteger, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Integer()""".format(field)
+    {} = fields.Integer(validate=not_blank)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field] = big_integer_test
@@ -281,7 +281,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
-    {} = fields.Email()""".format(field)
+    {} = fields.Email(validate=not_blank)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = email_test
@@ -294,7 +294,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
                 schema += """
-    {} = fields.URL()""".format(field)
+    {} = fields.URL(validate=not_blank)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = url_test
@@ -308,7 +308,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
                 schema += """
-    {} = fields.DateTime()""".format(field)
+    {} = fields.DateTime(validate=not_blank)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_time_test
@@ -323,7 +323,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Date()""".format(field)
+    {} = fields.Date(validate=not_blank)""".format(field)
                 form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_test
@@ -352,7 +352,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Text, nullable=False)""".format(field)
                 schema += """
-    {} = fields.String()""".format(field)
+    {} = fields.String(validate=not_blank)""".format(field)
                 form_fields += text_form_string.format(Field=field.title(),
                                                        field=field, resource=resource)
                 test_add_fields[field] = text_test
