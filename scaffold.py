@@ -239,7 +239,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Boolean, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Boolean(validate=not_blank)""".format(field)
+    {} = fields.Boolean()""".format(field)
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource, field_type=field_type)
                 test_add_fields[field] = boolean_test
