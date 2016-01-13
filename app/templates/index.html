@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="static/css/normalize.css">
   <link rel="stylesheet" href="static/css/skeleton.css">
   <link rel="stylesheet" href="static/css/my.css">
+  <link rel="stylesheet" href="static/css/new.css">
   <link rel="stylesheet" type="text/css" href="static/node_modules/angular-grid/dist/angular-grid.css">
     <link rel="stylesheet" type="text/css" href="static/node_modules/angular-grid/dist/theme-fresh.css">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
@@ -27,11 +28,11 @@
   末末末末末末末末末末末末末末末末末末末末末末末末末 -->
     <script src="static/node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
-                <!-- Controllers -->
-
-
-
-    <script type="text/javascript" src="static/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="static/js/login.js"></script>
+                  <!-- Controllers -->
+    <script type="text/javascript" src="roles/controllers.js"></script>
+    <script type="text/javascript" src="users/controllers.js"></script>
+   <script type="text/javascript" src="static/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script type="text/javascript" src="static/node_modules/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="static/node_modules/angularjs-toaster/toaster.min.js"></script>
     <script type="text/javascript" src="static/node_modules/satellizer/satellizer.js"></script>
@@ -40,33 +41,30 @@
 
     <script src="static/node_modules/angular-grid/dist/angular-grid.js"></script>
   </head>
-<body >
+<body  ng-controller="LogoutCtrl">
 
- <div class="main">
+  <header  ng-if="isAuthenticated()"> <button style="float:right"class="button-primary" ng-click="logout()"> Logout</button> </header>
+<div id='main' >
 
+  <nav ng-if="isAuthenticated()">  <div>
 
-    <aside>
-        <div  style="position: relative;  top: 50px;">
-
-      <ul>
-       <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
-                        <!-- menu -->
-      
-
-      </ul>
-        </div>
-    </aside>
-
-   <article >
-     <toaster-container></toaster-container>
-
-     <div class="container" style="height:100%; position: relative;  top: 40px " ui-view ></div>
-   </article>
+    <ul>
+     <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
+                          <!-- menu -->
+    <li><a ui-sref="roles" id="roles_menu" ui-sref-active="current">Roles</a></li>
+    <li><a ui-sref="users" id="users_menu" ui-sref-active="current">Users</a></li>
 
 
+    </ul>
+      </div></nav>
 
-</div>
+      <article><toaster-container></toaster-container>
 
+       <div class="container" style="height:100%; position: relative;  top: 40px " ui-view ></div></article>
+
+
+   </div>
+      <footer> copyright <a href="http://techarena51.com"> Techarena51.com </a></footer>
 
 
   </body>

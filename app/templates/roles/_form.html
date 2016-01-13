@@ -1,0 +1,28 @@
+
+
+<div ng-if="isAuthenticated()">
+      
+				 
+      <div class="required" >
+        <input class="form-field" placeholder="name" type="text" id="name" name="name"  ng-model="role.data.attributes.name"  required>
+      </div>
+                     
+       
+
+    <div class="form-button" > 
+            <button  ng-disabled="loading" class="button-primary" type="submit" >                                        
+                              
+                              <span ng-hide="loading">Save</span>
+                              <span ng-show="loading">Loading....</span></button> 
+              
+       </div> 
+              
+
+     </div>    
+              
+              
+              
+
+  
+
+				

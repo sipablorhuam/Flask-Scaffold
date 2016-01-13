@@ -1,0 +1,84 @@
+<div class="flex-container">
+
+<!-- Create customer Form -->
+  <div class="flex-item"  ng-show="signUp">
+          <form ng-submit="addUser()" style="padding:25px 50px;">
+
+            <label>Name</label>
+            <input type="text"  ng-model="name" required>
+
+                <label>Email</label>
+                <input type="email"  ng-model="email" required>
+
+                 <label>Password </label>
+                  <input type="password"  ng-model="password" required>
+
+              <button  ng-disabled="loading" type="submit" class="button-primary" style="margin-left: 75px;" >
+
+
+                <span ng-hide="loading">Create</span>
+                <span ng-show="loading">Loading....</span></button>
+
+          </form>
+
+        </div>
+
+
+    <div class="flex-item"   ng-show="login">
+        <form ng-submit="signIn()" >
+
+              <label>Email</label>
+              <input type="email"  ng-model="email" required>
+
+               <label>Password </label>
+                <input type="password"  ng-model="password" required>
+
+            <button  ng-disabled="loading" type="submit" class="button-primary" style="margin-left: 75px;" >
+
+
+              <span ng-hide="loading">Login</span>
+              <span ng-show="loading">Loading....</span></button>
+
+        </form>
+
+      </div>
+
+
+    <!-- Forgot password  -->
+
+     <div class="flex-item" ng-show="fp" id="fpass">
+
+       <form ng-submit="forgotPassword()" >
+
+               <label>Email</label>
+               <input type="email"  ng-model="email" required>
+
+
+             <button  ng-disabled="loading" type="submit" class="button-primary" style="padding:10px 10px">
+
+
+               <span ng-hide="loading">Forgot Password</span>
+               <span ng-show="loading">Loading....</span></button>
+
+         </form>
+
+       </div>
+
+
+       <div >
+
+         <a href="" ng-click="loginClick()" style="margin-right:5px" ng-hide="login"  >Login </a>
+         <a href=""   ng-click="signUpClick()" ng-hide="signUp" style="margin-right:5px">Sign Up </a>
+
+         <a href=""  ng-click="fpClick()" style="margin-right:5px" ng-hide="fp">Forgot Password </a>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
