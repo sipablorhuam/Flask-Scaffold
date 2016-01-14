@@ -1,5 +1,13 @@
 angular.module('myApp', ['ui.router', 'ngResource',  "angularGrid" , 'myApp.controllers', 'myApp.services', 'satellizer','toaster', 'ngAnimate']);
 
+angular.module('myApp')
+  .run( function($rootScope, $state){
+                //$rootScope.$on('$stateChangeStart'
+                $rootScope.$state = $state;
+                $rootScope.$state.title = "Flask-Scaffold";
+                }
+    );
+
 angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $authProvider) {
 
    // Satellizer configuration that specifies which API
@@ -7,10 +15,11 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
     $authProvider.loginUrl = '/api/v1/login.json';
     $urlRouterProvider.otherwise('/login')
 
- $stateProvider.state('login', {
+$stateProvider.state('login', {
 	url: '/login',
 	templateUrl: 'login.html',
 	controller: 'LoginController',
+    title: 'Log In',   
     resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }
@@ -33,8 +42,19 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
   })
 
   // Routes for roles
+  
+  
   .state('roles', {
-    url: '/roles',
+        // Note: abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
+        // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
+        abstract: true,
+        url: '/roles',
+        data: {title: 'Roles'},      
+        template: '<ui-view/>'
+    })
+    
+  .state('roles.list', {
+    url: '/list',
     templateUrl: 'roles/index.html',
     controller: 'RoleListController',
     resolve: {
@@ -42,16 +62,16 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
         }
 
 
-  }).state('newRole', {
-    url: '/roles/new',
+  }).state('roles.new', {
+    url: '/new',
     templateUrl: '/roles/add.html',
     controller: 'RoleCreateController',
     resolve: {
           loginRequired: loginRequired
         }
 
-    }).state('editRole', {
-    url: '/roles/:id/edit',
+    }).state('roles.edit', {
+    url: '/:id/edit',
     templateUrl: 'roles/update.html',
     controller: 'RoleEditController',
     resolve: {
@@ -62,25 +82,36 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
 
         // End Routes for roles
   // Routes for users
-  .state('users', {
-    url: '/users',
+  
+   .state('users', {
+        // Note: abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
+        // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
+        abstract: true,
+        url: '/users',
+        data: {title: 'Users'},      
+        template: '<ui-view/>'
+    })
+  .state('users.list', {
+    url: '/list',    
     templateUrl: 'users/index.html',
     controller: 'UserListController',
+    title: 'Users',
     resolve: {
           loginRequired: loginRequired
         }
 
 
-  }).state('newUser', {
-    url: '/users/new',
+  }).state('users.new', {
+    url: '/new',
     templateUrl: '/users/add.html',
     controller: 'UserCreateController',
+    
     resolve: {
           loginRequired: loginRequired
         }
 
-    }).state('editUser', {
-    url: '/users/:id/edit',
+    }).state('users.edit', {
+    url: '/:id/edit',
     templateUrl: 'users/update.html',
     controller: 'UserEditController',
     resolve: {
@@ -91,11 +122,12 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
 
     // End Routes for users
     //If a user is already logged in, the Login window if requested need not be displayed.
-   function skipIfLoggedIn($q, $auth) {
+   function skipIfLoggedIn($q, $auth, $state) {
       var deferred = $q.defer();
       if ($auth.isAuthenticated()) {
 
-        deferred.reject();
+        //deferred.reject();
+        $state.go('home');
 
       } else {
         deferred.resolve();

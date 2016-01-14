@@ -4,7 +4,7 @@ body {
 
   }
 
-  #main {
+#main{
    min-height: 800px;
    width: 100%;
    margin: 0px;
@@ -61,7 +61,7 @@ body {
 
 
 
-  header, footer {
+header {
    display: block;
 
    padding: 5px;
@@ -70,6 +70,15 @@ body {
 
 
    }
+   
+footer {
+
+display: block;
+
+   padding: 5px;
+   min-height: 10px;
+   background: #171616;
+}
 
   /* Too narrow to support three columns */
   @media all and (max-width: 640px) {
@@ -80,7 +89,7 @@ body {
             height: 90%
    }
 
-   #main > article, #main > nav, #main > aside {
+   #main > article, #main > nav {
     /* Return them to document order */
     -webkit-order: 0;
             order: 0;
