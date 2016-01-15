@@ -29,8 +29,7 @@ body {
   #main > nav {
 
 
-    background: #171616;
-    border: 1px solid #8888bb;
+    background: #171616;    
     padding: 25px 0 0 0;
    -webkit-flex: 0 3 15%;
            flex: 0 3 15%;
@@ -109,7 +108,7 @@ display: block;
 
 .form-field{
 	width: 275px;
-    margin: 8px;
+    margin: 2px;
 
 }
 

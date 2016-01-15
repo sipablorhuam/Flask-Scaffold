@@ -82,12 +82,7 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
             // Use Satellizer's $auth.login method to verify the username and password
             $auth.login($scope.credentials).then(function(data) {
 
-                // If login is successful, redirect to users list
-                // $scope.url = "http://" + $window.location.host + "/admin";
-				//$location.url('/admin/');
-               // $window.location.href = $scope.url;
-               var url = "http://" + $window.location.host + "/#/";
-               $window.location.href = url;
+                $state.go('home');
             })
             .catch(function(response){ // If login is unsuccessful, display relevant error message.
 

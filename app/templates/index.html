@@ -54,8 +54,20 @@
             <div>
                 <ul>
                     <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
-                    <li><a ui-sref="roles" id="roles_menu" ui-sref-active="current" ng-click="$state.go('roles.list')">Roles</a></li>
-                    <li><a ui-sref="users" id="users_menu" ui-sref-active="current"  ng-click="$state.go('users.list')" >Users</a></li>
+                    <li>
+                       <a ui-sref="roles" ng-click="role_click=true">Roles</a>
+                       <ul ng-hide="role_click">
+                            <li><a ui-sref="roles.list" id="roles_list" ui-sref-active="current">List</a>
+                            <li><a ui-sref="roles.new" id="roles_new" ui-sref-active="current">New</a></li>
+                       </ul>
+                    </li>
+                    <li>
+                        <a ui-sref="users">Users</a>
+                        <ul>
+                            <li><a ui-sref="users.list" id="users_list" ui-sref-active="current">List</a>
+                            <li><a ui-sref="users.new" id="users_new" ui-sref-active="current">New</a></li>
+                       </ul>    
+                    </li>
                                     <!-- menu -->
 
                 </ul>

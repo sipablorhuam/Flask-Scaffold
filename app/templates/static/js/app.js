@@ -4,7 +4,7 @@ angular.module('myApp')
   .run( function($rootScope, $state){
                 //$rootScope.$on('$stateChangeStart'
                 $rootScope.$state = $state;
-                $rootScope.$state.title = "Flask-Scaffold";
+                $rootScope.$state.current.title = "Flask-Scaffold";
                 }
     );
 
@@ -35,6 +35,7 @@ $stateProvider.state('login', {
   }).state('home', {
     url: '/',
     templateUrl: 'home.html',
+    data: {title: 'Home'},
     resolve: {
           loginRequired: loginRequired
         }
