@@ -80,6 +80,87 @@ display: block;
    background: #171616;
 }
 
+
+/* CRUD Forms  */
+
+.form{
+	width: 600px;
+    border: 1px solid #bbb;
+
+}
+
+.form-field-container{
+
+
+    display: -webkit-flex;
+    display: flex;
+
+    width : 100%;
+    padding-top : 10px;
+
+
+
+    flex-flow: column;
+    align-items: center;
+
+
+
+}
+
+.form-field{
+	width: 275px;
+    margin: 8px;
+
+}
+
+.form-radio{
+    width: 275px;
+    display: flex;
+    display: -webkit-flex;
+	flex-flow: row;
+    justify-content: space-between;
+
+
+
+
+
+}
+
+.form-button{
+
+    display: -webkit-flex;
+     display: flex;
+
+    width: 275px;
+
+    flex-flow: row;
+    justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+
+
+}
+
+.index-button{
+
+    display: -webkit-flex;
+     display: flex;
+
+    width: 100%;
+
+    flex-flow: row;
+    justify-content: space-between ;
+	-webkit-justify-content: space-between;
+
+
+}
+
+.required:after {
+ content:"*";
+ font-family: "Open Sans";
+
+}
+
+
   /* Too narrow to support three columns */
   @media all and (max-width: 640px) {
 

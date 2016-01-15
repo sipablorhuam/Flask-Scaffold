@@ -4,7 +4,7 @@
 
 <!-- Create customer Form -->
   <div class="login-form"  ng-show="signUp">
-          <form ng-submit="addUser()" style="padding:25px 50px;">
+          <form ng-submit="addUser()">
 
             <label>Name</label>
             <input type="text"  ng-model="name" required>
@@ -56,10 +56,10 @@
                <input type="email"  ng-model="email" required>
 
 
-             <button  ng-disabled="loading" type="submit" class="button-primary" style="padding:10px 10px">
+             <button  ng-disabled="loading" type="submit" class="button-primary">
 
 
-               <span ng-hide="loading">Forgot Password</span>
+               <span ng-hide="loading">Resend</span>
                <span ng-show="loading">Loading....</span></button>
 
          </form>
