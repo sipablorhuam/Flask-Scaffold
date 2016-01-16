@@ -6,14 +6,14 @@
   <div class="login-form"  ng-show="signUp">
           <form ng-submit="addUser()">
 
-            <label>Name</label>
-            <input type="text"  ng-model="name" required>
+          
+            <input type="text" placeholder="Name" ng-model="name" required>
 
-                <label>Email</label>
-                <input type="email"  ng-model="email" required>
 
-                 <label>Password </label>
-                  <input type="password"  ng-model="password" required>
+                <input type="email"  placeholder="Email" ng-model="email" required>
+
+
+                  <input type="password" placeholder="Password" ng-model="password" required>
 
               <button  ng-disabled="loading" type="submit" class="button-primary">
 
@@ -29,16 +29,15 @@
     <div class="login-form"   ng-show="login">
         <form ng-submit="signIn()" >
 
-              <label>Email</label>
-              <input type="email"  ng-model="email" required>
 
-               <label>Password </label>
-                <input type="password"  ng-model="password" required>
+              <input type="email" placeholder="Email"  ng-model="email" required>
+
+              <input type="password"  placeholder="Password"  ng-model="password" required>
 
             <button  ng-disabled="loading" type="submit" class="button-primary">
 
 
-              <span ng-hide="loading">Login</span>
+              <span ng-hide="loading">Sign In</span>
               <span ng-show="loading">Loading....</span></button>
 
         </form>
@@ -52,8 +51,8 @@
 
        <form ng-submit="forgotPassword()" >
 
-               <label>Email</label>
-               <input type="email"  ng-model="email" required>
+
+               <input type="email"  placeholder="Email" ng-model="email" required>
 
 
              <button  ng-disabled="loading" type="submit" class="button-primary">
@@ -67,20 +66,16 @@
        </div>
 
 
-      
+
 
          <a href="" id="logIn" ng-click="loginClick()" style="margin-right:5px" ng-hide="login"  >Login </a>
          <a href="" id="signUp"   ng-click="signUpClick()" ng-hide="signUp" style="margin-right:5px">Sign Up </a>
 
          <a href="" id="forgotPassword"  ng-click="fpClick()" style="margin-right:5px" ng-hide="fp">Forgot Password </a>
-    
+
 
 
 
 
 
     </div>
-
-
-
-

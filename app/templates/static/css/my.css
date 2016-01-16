@@ -1,11 +1,12 @@
 body {
 
   width: 100%;
+  height: 100%;
 
   }
 
 #main{
-   min-height: 800px;
+   height: 100%;
    width: 100%;
    margin: 0px;
    padding: 0px;
@@ -18,7 +19,8 @@ body {
   #main > article {
    margin: 4px;
    padding: 5px;
-
+   width: 100%;
+   height: 100%;
 
    -webkit-flex: 3 1 60%;
            flex: 3 1 60%;
@@ -29,7 +31,7 @@ body {
   #main > nav {
 
 
-    background: #171616;    
+    background: #171616;
     padding: 25px 0 0 0;
    -webkit-flex: 0 3 15%;
            flex: 0 3 15%;
@@ -69,7 +71,7 @@ header {
 
 
    }
-   
+
 footer {
 
 display: block;
@@ -80,58 +82,35 @@ display: block;
 }
 
 
-/* CRUD Forms  */
+/*  ui-view  */
+.ui-view-container {
+ height:100%;
+ width: 100%;
+ margin-top: 5%;
+ }
 
-.form{
-	width: 600px;
-    border: 1px solid #bbb;
-
-}
 
 .form-field-container{
-
-
     display: -webkit-flex;
     display: flex;
-
     width : 100%;
-    padding-top : 10px;
-
-
-
     flex-flow: column;
     align-items: center;
-
-
-
 }
 
-.form-field{
-	width: 275px;
-    margin: 2px;
-
-}
 
 .form-radio{
-    width: 275px;
+
     display: flex;
     display: -webkit-flex;
-	flex-flow: row;
+	  flex-flow: row;
     justify-content: space-between;
-
-
-
-
 
 }
 
 .form-button{
-
     display: -webkit-flex;
-     display: flex;
-
-    width: 275px;
-
+    display: flex;
     flex-flow: row;
     justify-content: flex-end;
 	-webkit-justify-content: flex-end;
@@ -156,6 +135,7 @@ display: block;
 .required:after {
  content:"*";
  font-family: "Open Sans";
+
 
 }
 
