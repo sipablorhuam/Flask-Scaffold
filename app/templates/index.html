@@ -55,16 +55,16 @@
             <div>
                 <ul>
                     <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
-                    <li>
-                       <a ui-sref="roles" ng-click="role_click=true">Roles</a>
-                       <ul ng-hide="role_click">
+                    <li ng-init="roles_click='false'">
+                       <a ui-sref="roles" ng-click="roles_click=!roles_click">Roles</a>
+                       <ul ng-hide="roles_click">
                             <li><a ui-sref="roles.list" id="roles_list" ui-sref-active="current">List</a>
                             <li><a ui-sref="roles.new" id="roles_new" ui-sref-active="current">New</a></li>
                        </ul>
                     </li>
-                    <li>
-                        <a ui-sref="users">Users</a>
-                        <ul>
+                    <li ng-init="users_click='false'">
+                        <a ui-sref="users" ng-click="users_click=!users_click">Users</a>
+                        <ul  ng-hide="users_click">
                             <li><a ui-sref="users.list" id="users_list" ui-sref-active="current">List</a>
                             <li><a ui-sref="users.new" id="users_new" ui-sref-active="current">New</a></li>
                        </ul>
@@ -86,7 +86,7 @@
         <!-- Main content End -->
 
     </div>
-    <footer ng-if="isAuthenticated()"> copyright <a href="http://techarena51.com"> Techarena51.com </a></footer>
+    <footer ng-if="isAuthenticated()">copyright  <a href="http://techarena51.com">  Techarena51.com </a></footer>
 
 
   </body>
