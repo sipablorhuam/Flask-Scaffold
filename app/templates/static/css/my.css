@@ -7,8 +7,8 @@ html, body {
   }
 
 #main{
-  height:88%;
-  min-height: 88%;
+  height:90%;
+  min-height: 90%;
    width: 100%;
    display: -webkit-flex;
    display:         flex;
@@ -69,15 +69,15 @@ html, body {
 
 header {
    display: block;
-   padding: 5px;
-   height: 8%;
-   min-height: 8%;
+   padding: 0.7%;
+   height: 7%;
+   min-height: 7%;
    background: #171616;
 
 
    }
 
-footer {
+ /* footer {
 
    display: block;
    padding-left: 40%;
@@ -86,7 +86,7 @@ footer {
    min-height: 3%;
    background: #171616;
 }
-
+*/
 
 
 
