@@ -1,15 +1,15 @@
-body {
+html, body {
 
   width: 100%;
   height: 100%;
+  min-height: 100%;
 
   }
 
 #main{
-   height: 100%;
+  height:88%;
+  min-height: 88%;
    width: 100%;
-   margin: 0px;
-   padding: 0px;
    display: -webkit-flex;
    display:         flex;
    -webkit-flex-flow: row;
@@ -17,20 +17,24 @@ body {
 
    }
 
-  #main > article {
-   margin: 4px;
-   padding: 5px;
+#main > article {
    width: 100%;
-   height: 100%;
-
+   height: 89%;
+   padding: 2%;
    -webkit-flex: 3 1 60%;
            flex: 3 1 60%;
    -webkit-order: 2;
            order: 2;
    }
 
-  #main > nav {
+#main > article > .ui-view-container {
 
+    width: 100%;
+    height: 100%;
+
+    }
+
+#main > nav {
 
     background: #171616;
     padding: 25px 0 0 0;
@@ -66,7 +70,8 @@ body {
 header {
    display: block;
    padding: 5px;
-   min-height: 50px;
+   height: 8%;
+   min-height: 8%;
    background: #171616;
 
 
@@ -77,17 +82,13 @@ footer {
    display: block;
    padding-left: 40%;
    color: #FFF;
-   min-height: 10px;
+   height:3%;
+   min-height: 3%;
    background: #171616;
 }
 
 
-/*  ui-view  */
-.ui-view-container {
- height:100%;
- width: 100%;
- margin-top: 5%;
- }
+
 
 
 .form-field-container{
@@ -101,23 +102,19 @@ footer {
 
 
 
- /* .form-radio{
-    width: 70%;
-    display: inline-flex;
-    border: 1px solid #D1D1D1;
-    border-radius: 4px;
-    height: 42px;
-    padding: 0x 5px 0px 0px;
-
-
-} */
-
-.form-button{
+  .form-radio{
+    width: 60%;
+    margin-left: 2%;
     display: -webkit-flex;
     display: flex;
-    flex-flow: row;
-    justify-content: flex-end;
-	-webkit-justify-content: flex-end;
+    flex-direction:row;
+    justify-content: space-between;
+
+
+}
+
+.form-button{
+      margin-left: 52%;
 
 
 }
@@ -142,6 +139,12 @@ footer {
 
 
 }
+
+/* Angular grid */
+
+.ag-fresh {
+    height: 90%;
+  }
 
 
   /* Too narrow to support three columns */

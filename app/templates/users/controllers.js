@@ -14,8 +14,13 @@ angular.module('myApp.services').factory('User', function($resource) {
 
 angular.module('myApp.controllers').controller('UserListController', function($scope, $state,  User, $auth, toaster) {
  //Table header definitions
-        var columnDefs = [ {headerName: "Sr No", cellRenderer: function(params) {return params.node.id + 1;} },
-                             {headerName: "email", field: "email", width: 300 },{headerName: "name", field: "name", width: 300 },{headerName: "active", field: "active", width: 300 },{headerName: "creation_time", field: "creation_time", width: 300 },{headerName: "modification_time", field: "modification_time", width: 300 },{headerName: "role", field: "role", width: 300 },
+        var columnDefs = [ {headerName: "Sr No", cellRenderer: function(params) {return params.node.id + 1;}},
+                             {headerName: "email", field: "email", width: 300 },
+                             {headerName: "name", field: "name", width: 300 },
+                             {headerName: "active", field: "active", width: 300 },
+                             {headerName: "creation_time", field: "creation_time", width: 300 },
+                             {headerName: "modification_time", field: "modification_time", width: 300 },
+                             {headerName: "role", field: "role", width: 300 },
 
 
                             ];
@@ -37,7 +42,14 @@ angular.module('myApp.controllers').controller('UserListController', function($s
                     $scope.gridOptions.api.sizeColumnsToFit();
                                },
                 function(error){
-                      $scope.error = error.data;
+
+                     toaster.pop({
+                            type: 'error',
+                            title: 'Error',
+                            body: error,
+                            showCloseButton: true,
+                            timeout: 0
+                            });
                                               });
 
 
@@ -60,7 +72,7 @@ angular.module('myApp.controllers').controller('UserListController', function($s
                 body: error,
                 showCloseButton: true,
                 timeout: 0
-                });;
+                });
     });
     };
 
