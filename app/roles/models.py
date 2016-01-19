@@ -6,7 +6,7 @@ from app.basemodels import db, CRUD_MixIn
 class Roles(db.Model, CRUD_MixIn):
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(250), nullable=False, unique=True)
+    name = db.Column(db.String(250), nullable=True, unique=True)
     description = db.Column(db.String(250))
 
     def __init__(self,  name, ):

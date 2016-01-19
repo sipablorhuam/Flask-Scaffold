@@ -31,7 +31,7 @@ def create_token(user):
     return token.decode('unicode_escape')
 
 def parse_token(req):
-   
+
     token = req.headers.get('Authorization').split()[1]
     return jwt.decode(token, SECRET_KEY, algorithms='HS256')
 
@@ -128,7 +128,7 @@ class SignUp(Resource):
         try:
             schema.validate(raw_dict)
             request_dict = raw_dict['data']['attributes']
-            role = "author"
+            role = None
             active = "false"
             user = Users(request_dict['email'], generate_password_hash(request_dict['password']), request_dict['name'], active,
                           role)
@@ -153,8 +153,8 @@ class SignUp(Resource):
 api.add_resource(SignUp, 'signup.json')
 
 class ForgotPassword(Resource):
-     
-    def patch(self): 
+
+    def patch(self):
         if not request.headers.get('Authorization'):
             response = jsonify(message='Missing authorization header')
             response.status_code = 401
@@ -162,23 +162,23 @@ class ForgotPassword(Resource):
 
         try:
             print(request.headers.get('Authorization'))
-            payload = parse_token(request)           
+            payload = parse_token(request)
             user_id = payload['sub']
             user=Users.query.get_or_404(user_id)
             print(request.data)
             raw_dict = request.get_json(force=True)
             request_dict = raw_dict['data']['attributes']
-           
+
             user.password = generate_password_hash(request_dict['password'])
             try:
                 user.update()
                 return 201
-        
+
             except SQLAlchemyError as e:
                 db.session.rollback()
                 resp = jsonify({"error": str(e)})
                 resp.status_code = 401
-                return resp             
+                return resp
         except DecodeError:
             response = jsonify(message='Token is invalid')
             response.status_code = 401
@@ -186,26 +186,24 @@ class ForgotPassword(Resource):
         except ExpiredSignature:
             response = jsonify(message='Token has expired')
             response.status_code = 401
-            return response            
-        
-    def post(self):           
+            return response
+
+    def post(self):
         request_dict = request.get_json(force=True)['data']['attributes']
         email = request_dict['email']
         user=Users.query.filter_by(email=email).first()
         if user is not None:
-            token = create_token(user)     
+            token = create_token(user)
             msg = Message("Here's your Password Reset Link :)",
                            recipients=[email])
             msg.html = PASSWORD_RESET_EMAIL.format(token=token)
-            mail.send(msg)          
+            mail.send(msg)
             return {"message":"Password reset mail sent successfully"}, 201
         else:
-            return {"error": "We could not find this email address :("}, 404       
+            return {"error": "We could not find this email address :("}, 404
 
 api.add_resource(ForgotPassword, 'forgotpassword')
 
 # Adding the login decorator to the Resource class
 class Resource(flask_restful.Resource):
     method_decorators = [admin_login_required]
-
-
