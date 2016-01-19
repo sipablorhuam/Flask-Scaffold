@@ -5,18 +5,25 @@ from scaffold.modules.errors import ReplaceError
 new_route_string = """
    // States
   // Routes for {resources}
-  .state('{resources}', {{
-    url: '/{resources}',
+   .state('{resources}', {{ 
+        abstract: true, //An abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
+                         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
+        url: '/{resources}',
+        data: {{title: '{Resources}'}},      
+        template: '<ui-view/>'
+   }})
+  .state('{resources}.list', {{
+    url: '/{resources}/list',
     templateUrl: '{resources}/index.html',
     controller: '{Resource}ListController',
 
 
-  }}).state('new{Resource}', {{
+  }}).state('{resources}.new', {{
     url: '/{resources}/new',
     templateUrl: '/{resources}/add.html',
     controller: '{Resource}CreateController',
 
-    }}).state('edit{Resource}', {{
+    }}).state('{resources}.edit', {{
     url: '/{resources}/:id/edit',
     templateUrl: '{resources}/update.html',
     controller: '{Resource}EditController',
@@ -30,7 +37,16 @@ js_src_string =""" <!-- Controllers -->
     <script type="text/javascript" src="{resources}/controllers.js"></script>"""
 
 menu_string ="""  <!-- menu -->
-      <li><a ui-sref="{resources}" id="{resources}_menu" ui-sref-active="current">{Resources}</a></li> """
+ 
+ <li ng-init="{resources}_click='false'">
+     <a ui-sref="{resources}" ng-click="{resources}_click=!{resources}_click">
+     {Resources}</a>
+                        <ul  ng-hide="{resources}_click">
+                            <li><a ui-sref="{resources}.list" id="{resources}_list" ui-sref-active="current">List</a></li>
+                            <li><a ui-sref="{resources}.new" id="{resources}_new" ui-sref-active="current">New</a></li>
+                       </ul>
+                    </li>
+"""
 
 #Strings to test.bash
 test_script_string = """

@@ -14,11 +14,11 @@ class Users(db.Model, CRUD_MixIn):
         db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     modification_time = db.Column(
         db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-    role =  db.Column(db.String(), db.ForeignKey('roles.name'))
-    #many users to one  role    
-    role_relation =  db.relationship('Roles', backref="users")
+    role = db.Column(db.String(), db.ForeignKey('roles.name'))
+    # many users to one  role
+    role_relation = db.relationship('Roles', backref="users")
 
-    def __init__(self,  email,  password,  name,  active,  role ):
+    def __init__(self,  email,  password,  name,  active,  role):
 
         self.email = email
         self.password = password
@@ -32,7 +32,6 @@ class UsersSchema(Schema):
     not_blank = validate.Length(min=1, error='Field cannot be blank')
     # add validate=not_blank in required fields
     id = fields.Integer(dump_only=True)
-   
 
     email = fields.Email(validate=not_blank)
     password = fields.String(validate=not_blank)

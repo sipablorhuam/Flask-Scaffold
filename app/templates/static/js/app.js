@@ -14,6 +14,31 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
   // route the JWT should be retrieved from
     $authProvider.loginUrl = '/api/v1/login.json';
     $urlRouterProvider.otherwise('/login')
+ 
+ //If a user is already logged in, the Login window if requested need not be displayed.
+   function skipIfLoggedIn($q, $auth, $state) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+
+        //deferred.reject();
+        $state.go('home');
+
+      } else {
+        deferred.resolve();
+      }
+      return deferred.promise;
+    }
+
+   //Redirect unauthenticated users to the login state
+   function loginRequired($q, $location, $auth, $state) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.href='/login';
+      }
+      return deferred.promise;
+    }
 
 $stateProvider.state('login', {
 	url: '/login',
@@ -122,33 +147,10 @@ $stateProvider.state('login', {
         })
 
     // End Routes for users
-    //If a user is already logged in, the Login window if requested need not be displayed.
-   function skipIfLoggedIn($q, $auth, $state) {
-      var deferred = $q.defer();
-      if ($auth.isAuthenticated()) {
-
-        //deferred.reject();
-        $state.go('home');
-
-      } else {
-        deferred.resolve();
-      }
-      return deferred.promise;
-    }
-
-   //Redirect unauthenticated users to the login state
-   function loginRequired($q, $location, $auth, $state) {
-      var deferred = $q.defer();
-      if ($auth.isAuthenticated()) {
-        deferred.resolve();
-      } else {
-        $location.href='/login';
-      }
-      return deferred.promise;
-    }
-
-     // States
-
+   
+   
+   // States
+  
   ;
 
   })

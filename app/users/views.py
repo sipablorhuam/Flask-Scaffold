@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response
 from app.users.models import Users, UsersSchema
-from flask_restful import Api, Resource
+from flask_restful import Api
+from app.baseviews import Resource
 from app.basemodels import db
 from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError

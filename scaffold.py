@@ -19,8 +19,6 @@ app_js_file = "app/templates/static/js/app.js"
 main_index_file = "app/templates/index.html"
 
 # Error classes
-
-
 def make_plural(resource):
     # https://pypi.python.org/pypi/inflect
     p = inflect.engine()
@@ -81,7 +79,7 @@ def generate_files(module_path, angular_dir):
                                                        test_update_fields)))
 
         # Generate Template Files
-        # Need to add template resourc path
+        # Need to add template resource path
         elif file == "_form.html":
             with open(os.path.join(angular_dir, '_form.html'), "w") as new_file:
                 with open("scaffold/app/_form.html", "r") as old_file:
@@ -117,8 +115,8 @@ def generate_files(module_path, angular_dir):
                 with open("scaffold/app/controller.js", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resource=resource.title(),
-                                                   controller_fields=controller_fields))
+                                                   Resource=resource.title(),  controller_fields=controller_fields
+                                                   ) )
         # Protractor
         elif file == "conf.js":
             with open(os.path.join(angular_dir, 'conf.js'), "w") as new_file:
@@ -212,6 +210,7 @@ with open(yaml_file, "r") as file:
 
         # Fields to insert into controller.js
         controller_fields = ""
+        radio_button_default =""
 
         # Fields to add to protractor spec.js
         protractor_edit_elments = ""
@@ -239,7 +238,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Boolean, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Boolean()""".format(field)
+    {} = fields.Boolean(required=True)""".format(field)
                 form_fields += boolean_form_string.format(Field=field.title(),
                                                           field=field, resource=resource, field_type=field_type)
                 test_add_fields[field] = boolean_test
@@ -247,12 +246,13 @@ with open(yaml_file, "r") as file:
                 protractor_edit_elments += update_pro_boolean.format(
                     field=field)
                 protractor_add_elments += pro_boolean.format(field=field)
+                radio_button_default += radio_button_string.format(resource=resource, field=field)
 
             elif field_type == "integer":
                 db_rows += """
     {} = db.Column(db.Integer, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Integer(validate=not_blank)""".format(field)
+    {} = fields.Integer(required=True)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field] = integer_test
@@ -266,7 +266,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.BigInteger, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Integer(validate=not_blank)""".format(field)
+    {} = fields.Integer(required=True)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type="number", resource=resource, Resource=resource.title())
                 test_add_fields[field] = big_integer_test
@@ -308,7 +308,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp(),nullable=False)""".format(field)
                 schema += """
-    {} = fields.DateTime()""".format(field)
+    {} = fields.DateTime(required=True)""".format(field)
                 form_fields += form_field.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_time_test
@@ -323,7 +323,7 @@ with open(yaml_file, "r") as file:
                 db_rows += """
     {} = db.Column(db.Date, nullable=False)""".format(field)
                 schema += """
-    {} = fields.Date()""".format(field)
+    {} = fields.Date(required=True)""".format(field)
                 form_fields += date_field_string.format(field=field, Field=field.title(
                 ), field_type=field_type, resource=resource, Resource=resource.title())
                 test_add_fields[field] = date_test
@@ -376,9 +376,11 @@ with open(yaml_file, "r") as file:
             field_table_headers += """ <th>{field}</th> """.format(field=field)
             index_fields += """<td>{{{{ result['{field}'] }}}}</td>""".format(
                 field=field)
-            update_form_args += """{resource}_{field} = {resource}.{field}, """.format(resource=resource,
-                                                                                       field=field)
+            update_form_args += """{resource}_{field} = {resource}.{field}, """.format(resource=resource, field=field)
+            
+            # controller.js
             controller_fields += controller_field.format(field=field)
+            
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)

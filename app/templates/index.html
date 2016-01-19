@@ -30,8 +30,8 @@
     <script src="static/node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
     <script type="text/javascript" src="static/js/login.js"></script>
-                  <!-- Controllers -->
-    <script type="text/javascript" src="roles/controllers.js"></script>
+                     <!-- Controllers -->
+        <script type="text/javascript" src="roles/controllers.js"></script>
     <script type="text/javascript" src="users/controllers.js"></script>
    <script type="text/javascript" src="static/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script type="text/javascript" src="static/node_modules/angular-resource/angular-resource.min.js"></script>
@@ -58,22 +58,22 @@
                     <li ng-init="roles_click='false'">
                        <a ui-sref="roles" ng-click="roles_click=!roles_click">Roles</a>
                        <ul ng-hide="roles_click">
-                            <li><a ui-sref="roles.list" id="roles_list" ui-sref-active="current">List</a>
+                            <li><a ui-sref="roles.list" id="roles_list" ui-sref-active="current">List</a></li>
                             <li><a ui-sref="roles.new" id="roles_new" ui-sref-active="current">New</a></li>
                        </ul>
                     </li>
                     <li ng-init="users_click='false'">
                         <a ui-sref="users" ng-click="users_click=!users_click">Users</a>
                         <ul  ng-hide="users_click">
-                            <li><a ui-sref="users.list" id="users_list" ui-sref-active="current">List</a>
+                            <li><a ui-sref="users.list" id="users_list" ui-sref-active="current">List</a></li>
                             <li><a ui-sref="users.new" id="users_new" ui-sref-active="current">New</a></li>
                        </ul>
                     </li>
-                                    <!-- menu -->
-
-                </ul>
-            </div>
-        </nav>
+                   
+                                          <!-- menu -->
+                 </div>
+            </nav>
+             
         <!-- Nav End-->
 
         <!-- Main content Start -->

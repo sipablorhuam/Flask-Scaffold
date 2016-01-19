@@ -84,7 +84,7 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                 timeout: 0
                 });
 
-       $window.location.reload();
+       $state.go('roles.list');
        $scope.loading = false;
       //$state.go('sites'); // on success go back to home i.e. sites state.
     }, function(error) {
@@ -129,8 +129,9 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                                             showCloseButton: true,
                                             timeout: 0
                                             });
-                                   $scope.loading = false;
-                                  $state.go('roles'); // on success go back to home i.e. sites state.
+                                    $state.go('roles.list');
+                                    $scope.loading = false;
+                                 
                                 }, function(error) {
                                 toaster.pop({
                                             type: 'error',

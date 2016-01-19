@@ -113,27 +113,25 @@ update_decimal_test = "48.6789899"
 update_text_test = "How to build CRUD app with Python, Flask, SQLAlchemy and MySQL. Som reand456989@#$%^%> <html/>"
 
 
-########### Controller Fields ##########
+########### Controller.js Fields ##########
 controller_field = """{{headerName: "{field}", field: "{field}", width: 300 }},"""
-########## Form Fields #####################
+
+# Radio button default checked
+radio_button_string = """ $scope.{resource}.data = {{ "attributes ": {{ "{field}" : "true" }} }} """
+########## _form.html Form Fields #####################
 form_field = """
-      <div class="required" >
-        <input class="form-field" placeholder="{field}" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>
-      </div>"""
+    <input placeholder="{field}*" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>
+       """
 date_field_string = """
-        <div class="required"  >
-            <input class="form-field" placeholder="{field}" type="{field_type}" id="{field}" name="{field}"  formatdate ng-model="{resource}.data.attributes.{field}"   required>
-      </div>"""
+    <input placeholder="{field}*" type="{field_type}" id="{field}" name="{field}"  formatdate ng-model="{resource}.data.attributes.{field}"   required>"""
+      
 decimal_form_string = """
-        <div class="required">
-            <input class="form-field" placeholder="{field}" type="number" step="any" id="{field}" name="{field}"  string-to-number ng-model="{resource}.data.attributes.{field}"   required>
-        </div> """
+    <input placeholder="{field}*" type="number" step="any" id="{field}" name="{field}"  string-to-number ng-model="{resource}.data.attributes.{field}"   required>"""
 text_form_string  = """
-          <div class="required">
-          <textarea class="form-field" type="text" placeholder="{field}" name="{field}" ng-model="{resource}.data.attributes.{field}"  required> </textarea> </div>
+    <textarea type="text" placeholder="{field}*" name="{field}" ng-model="{resource}.data.attributes.{field}"  required> </textarea> 
           """
 boolean_form_string = """
-    <div class=" required form-radio">
+    <div class="form-radio">
        <label>{Field}</label>
        <input type="radio" ng-model="{resource}.data.attributes.{field}" name="{field}" ng-value="true"  required>
        <label>True</label>

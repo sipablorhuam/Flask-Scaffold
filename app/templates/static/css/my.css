@@ -35,7 +35,7 @@ html, body {
     }
 
 #main > nav {
-
+    height: 100%;
     background: #171616;
     padding: 25px 0 0 0;
    -webkit-flex: 0 3 15%;
@@ -113,8 +113,8 @@ header {
 
 }
 
-.form-button{
-      margin-left: 52%;
+.form-button button{
+      width: 70%;
 
 
 }
@@ -150,7 +150,7 @@ header {
   /* Too narrow to support three columns */
   @media all and (max-width: 640px) {
 
-   #main, #page {
+   #main{
     -webkit-flex-flow: column;
             flex-direction: column;
             height: 100%;
@@ -168,11 +168,11 @@ header {
 
    }
 
-   footer {
+/*   footer {
    display: flex;
    display: -webkit-flex;
    max-height: 1%;
-  }
+  } */
 
    #main > nav  a {
 

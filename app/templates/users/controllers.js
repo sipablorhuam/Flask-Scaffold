@@ -98,7 +98,7 @@ angular.module('myApp.controllers').controller('UserListController', function($s
                                             });
                                               });
       $scope.loading = false;
-     $scope.updateUser = function() { //Update the edited site. Issues a PUT to /api/sites/:id
+     $scope.updateUser = function() { //Update the user. Issues a PUT to /v1/api/users/:id
 
      $scope.loading = true;
     $scope.user.$update({ id: $stateParams.id },function() {

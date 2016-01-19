@@ -20,6 +20,8 @@ schema = UsersSchema(strict=True)
 mail = Mail()
 
 # JWT AUTh process start
+
+
 def create_token(user):
     payload = {
         'sub': user.id,
@@ -30,12 +32,15 @@ def create_token(user):
     token = jwt.encode(payload, SECRET_KEY)
     return token.decode('unicode_escape')
 
+
 def parse_token(req):
 
     token = req.headers.get('Authorization').split()[1]
     return jwt.decode(token, SECRET_KEY, algorithms='HS256')
 
 # Login decorator function
+
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -95,8 +100,9 @@ def admin_login_required(f):
 # JWT AUTh process end
 
 # Login Authentication Class
-class Auth(Resource):
 
+
+class Auth(Resource):
 
     def post(self):
         raw_dict = request.get_json(force=True)
@@ -123,7 +129,8 @@ api.add_resource(Auth, 'login.json')
 
 
 class SignUp(Resource):
-     def post(self):
+
+    def post(self):
         raw_dict = request.get_json(force=True)
         try:
             schema.validate(raw_dict)
@@ -131,7 +138,7 @@ class SignUp(Resource):
             role = None
             active = "false"
             user = Users(request_dict['email'], generate_password_hash(request_dict['password']), request_dict['name'], active,
-                          role)
+                         role)
             user.add(user)
             # Should not return password hash
             query = Users.query.get(user.id)
@@ -152,6 +159,7 @@ class SignUp(Resource):
 
 api.add_resource(SignUp, 'signup.json')
 
+
 class ForgotPassword(Resource):
 
     def patch(self):
@@ -164,7 +172,7 @@ class ForgotPassword(Resource):
             print(request.headers.get('Authorization'))
             payload = parse_token(request)
             user_id = payload['sub']
-            user=Users.query.get_or_404(user_id)
+            user = Users.query.get_or_404(user_id)
             print(request.data)
             raw_dict = request.get_json(force=True)
             request_dict = raw_dict['data']['attributes']
@@ -191,19 +199,21 @@ class ForgotPassword(Resource):
     def post(self):
         request_dict = request.get_json(force=True)['data']['attributes']
         email = request_dict['email']
-        user=Users.query.filter_by(email=email).first()
+        user = Users.query.filter_by(email=email).first()
         if user is not None:
             token = create_token(user)
             msg = Message("Here's your Password Reset Link :)",
-                           recipients=[email])
+                          recipients=[email])
             msg.html = PASSWORD_RESET_EMAIL.format(token=token)
             mail.send(msg)
-            return {"message":"Password reset mail sent successfully"}, 201
+            return {"message": "Password reset mail sent successfully"}, 201
         else:
             return {"error": "We could not find this email address :("}, 404
 
 api.add_resource(ForgotPassword, 'forgotpassword')
 
 # Adding the login decorator to the Resource class
+
+
 class Resource(flask_restful.Resource):
-    method_decorators = [admin_login_required]
+    method_decorators = [login_required]
