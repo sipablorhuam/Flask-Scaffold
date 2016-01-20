@@ -44,7 +44,7 @@ $stateProvider.state('login', {
 	url: '/login',
 	templateUrl: 'login.html',
 	controller: 'LoginController',
-    title: 'Log In',   
+    title: 'Sign In',   
     resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }
@@ -60,7 +60,7 @@ $stateProvider.state('login', {
   }).state('home', {
     url: '/',
     templateUrl: 'home.html',
-    data: {title: 'Home'},
+    title: 'Home',
     resolve: {
           loginRequired: loginRequired
         }
@@ -75,7 +75,7 @@ $stateProvider.state('login', {
         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         abstract: true,
         url: '/roles',
-        data: {title: 'Roles'},      
+        title: 'Roles',      
         template: '<ui-view/>'
     })
     
@@ -114,7 +114,7 @@ $stateProvider.state('login', {
         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         abstract: true,
         url: '/users',
-        data: {title: 'Users'},      
+        title: 'Users',      
         template: '<ui-view/>'
     })
   .state('users.list', {
@@ -208,11 +208,6 @@ $stateProvider.state('login', {
 
       });
       }
-
-
-
-
-
 
 
 });

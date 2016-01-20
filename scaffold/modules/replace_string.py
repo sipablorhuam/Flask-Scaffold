@@ -9,7 +9,7 @@ new_route_string = """
         abstract: true, //An abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
                          // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         url: '/{resources}',
-        data: {{title: '{Resources}'}},      
+        title: '{Resources}',      
         template: '<ui-view/>'
    }})
   .state('{resources}.list', {{

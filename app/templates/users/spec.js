@@ -6,8 +6,8 @@ it('Sign Up', function() {
     //Click on the SignUp Link
     element(by.id('signUp')).click();
     // Fill in the fields
-    element(by.model('name')).sendKeys("Leo G")    
-    element(by.model("email")).sendKeys("leo@techarena51.com");
+    element(by.model('name')).sendKeys("Leo G");    
+    element(by.model("email")).sendKeys("leo@localhost");
     element(by.model('password')).sendKeys("Str0ng P@$$w)*&^+=");
     
       
@@ -30,11 +30,9 @@ it(' Test Forgot password and Login', function() {
     element(by.id('forgotPassword')).click();
     // Fill in the fields
       
-    element(by.name("model")).sendKeys("leo@techarena51.com");
+    element(by.id("fpass-email")).sendKeys("leo@localhost");
  
-    
-      
-    element(by.css(".button-primary")).click()    
+    element(by.id("fpass-button")).click()       
         .then(function(){
             var EC = protractor.ExpectedConditions;
             var toastMessage = $('.toast-message');
@@ -44,28 +42,27 @@ it(' Test Forgot password and Login', function() {
 
                                 });
                      });
-                     
-    //Test LogIn                 
-    element(by.id('logIn')).click();
-    // Fill in the fields      
-   element(by.model("email")).sendKeys("leo@techarena51.com");
-    element(by.model('password')).sendKeys("Str0ng P@$$w)*&^+=");
-      
-    element(by.css(".button-primary")).click()    
-        .then(function(){
-            var EC = protractor.ExpectedConditions;
-            browser.wait(EC.visibilityOf(toastMessage), 60) //wait until toast is displayed
-                .then(function(){
-                    expect(browser.getTitle()).toEqual('Home');
-
-                              });
-                        });
-              });
-  
-  
-  
-});
-
 
     
+     //Test LogIn                 
+    element(by.id('logIn')).click();
+    // Fill in the fields  
+   element(by.id("login-email")).clear();
+   element(by.id("login-email")).sendKeys("leo@localhost");
+    element(by.id("login-password")).clear();
+    element(by.id('login-password')).sendKeys("Str0ng P@$$w)*&^+=");
+    
+  
+    element(by.id("login-button")).click()
+       .then(function() { 
+       
+          
+            
+                    expect(browser.getTitle()).toEqual('Home | Flask-Scaffold');
 
+            });                 
+                        
+      });
+  
+});
+    
