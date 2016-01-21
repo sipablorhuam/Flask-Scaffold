@@ -105,7 +105,7 @@ describe('Testing Roles CRUD Module', function() {
         element(by.id('roles_new')).click();
         
         // Fill in the fields
-        role.nameInput("admin");
+        role.setName("admin");
         
         // Expectations
         role.toast("Role saved successfully");
@@ -122,7 +122,7 @@ describe('Testing Roles CRUD Module', function() {
         element(by.id('editButton')).click();
         
         // Fill in the fields
-        role.nameInput("author");
+        role.setName("author");
         
         // Expectations
         role.toast("Update was a success");
@@ -154,7 +154,7 @@ describe('Testing Roles CRUD Module', function() {
 describe('Testing Users CRUD Module', function() {
     
     it('Should add a new User', function() {
-        browser.get('http://localhost/');
+        browser.get('http://localhost:5000/');
         element(by.id('users_menu')).click();
         element(by.id('users_new')).click();
           
