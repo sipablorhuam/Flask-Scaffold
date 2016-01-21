@@ -180,8 +180,7 @@ describe('Testing Users CRUD Module', function() {
             });
           
       });
-     
-        
+  
         
     it('Should  edit a User', function() {
         browser.get('http://localhost:5000/');
@@ -214,7 +213,7 @@ describe('Testing Users CRUD Module', function() {
 
 
       });
-    });
+  
     
     it('Should  delete a User', function() {
         browser.get('http://localhost:5000/');
