@@ -197,8 +197,7 @@ describe('Testing Users CRUD Module', function() {
         element(by.id('password')).sendKeys("Your Updated Title text here");
         element(by.css("input[type='radio'][value='true']")).click(); 
         element(by.cssContainingText('option', 'role')).click();     
-        element(by.css(".button-primary")).click()    
-        .then(function(){    
+        element(by.css(".button-primary")).click()     
            .then(function(){
                       var EC = protractor.ExpectedConditions;
                       var toastMessage = $('.toast-message');
