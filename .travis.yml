@@ -34,5 +34,5 @@ before_script:
   - sudo webdriver-manager update
   - sudo webdriver-manager start --standalone &
   - sleep 4
-  - python run.py
+  - python run.py &
   - sleep 3
