@@ -39,7 +39,7 @@ js_src_string =""" <!-- Controllers -->
 menu_string ="""  <!-- menu -->
  
  <li ng-init="{resources}_click='false'">
-     <a ui-sref="{resources}" ng-click="{resources}_click=!{resources}_click">
+     <a ui-sref="{resources}" id="{resources}_menu" ng-click="{resources}_click=!{resources}_click">
      {Resources}</a>
                         <ul  ng-hide="{resources}_click">
                             <li><a ui-sref="{resources}.list" id="{resources}_list" ui-sref-active="current">List</a></li>
