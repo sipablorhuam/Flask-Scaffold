@@ -22,7 +22,7 @@ before_script:
   - python db.py db upgrade
   - sudo apt-get update -q
   - sudo wget -qO- https://deb.nodesource.com/setup_4.x | sudo bash -
-  - sudo apt-get install -y nodejs
+  - sudo apt-get install -y nodejs postfix
   - nodejs -v
   - sudo npm install -g protractor
   - export DISPLAY=:99.0
