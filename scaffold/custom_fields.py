@@ -111,7 +111,7 @@ date_field_string = """
 decimal_form_string = """
     <input placeholder="{field}*" type="number" step="any" id="{field}" name="{field}"  string-to-number ng-model="{resource}.data.attributes.{field}"   required>"""
 text_form_string  = """
-    <textarea type="text" placeholder="{field}*" name="{field}" ng-model="{resource}.data.attributes.{field}"  required> </textarea> 
+    <textarea type="text" placeholder="{field}*" name="{field}" id="{field} ng-model="{resource}.data.attributes.{field}"  required> </textarea> 
           """
 boolean_form_string = """
     <div class="form-radio">
