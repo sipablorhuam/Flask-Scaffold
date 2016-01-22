@@ -9,6 +9,7 @@ python:
 # command to run tests
 script:
  - protractor /home/travis/build/Leo-G/Flask-Scaffold/app/templates/users/conf.js
+ - protractor /home/travis/build/Leo-G/Flask-Scaffold/app/templates/devs/conf.js
 # - bash tests.bash
 
 addons:

@@ -1,54 +1,71 @@
 // spec.js
 describe('Testing {Resources} CRUD Module', function() {{
+
+var {Resources} = function() {{
+        {protractor_page_objects}
+         
+        this.get = function() {{
+                                   browser.get('http://localhost:5000/');
+                                       }};    
+        
+        this.toast = function(message){{
+                                        $('.form-button .button-primary').click()  // css selectors http://angular.github.io/protractor/#/api?view=build$  
+                                            .then(function() {{     
+                                                  var EC = protractor.ExpectedConditions;
+                                                  var toastMessage = $('.toast-message');                                      
+                                                  browser.wait(EC.visibilityOf(toastMessage), 6000) //wait until toast is displayed
+                                                             .then(function(){{
+                                                                    expect(toastMessage.getText()).toBe(message);
+
+                                                                        }});
+                                                                  }});                                                    
+                                    }}                    
+                    }};
     
 it('Should add a new {Resource}', function() {{
-    browser.get('http://localhost/');
+    
+    var {resource} = new {Resource}();
+    
+    // Get {resources} URL
+    {resource}.get();
+    
+    // Goto the new menu    
     element(by.id('{resources}_menu')).click();
-    element(by.buttonText('New')).click();
-      
-      
-      {protractor_add_elments}
-      
-element(by.css(".button-primary")).click()    
-.then(function(){{
-      var EC = protractor.ExpectedConditions;
-    var toastMessage = $('.toast-message');
-      
- browser.wait(EC.visibilityOf(toastMessage), 60) //wait until toast is displayed
-        .then(function(){{
+    element(by.buttonText('{resources}_new')).click();
+    
+    // Fill in the Fields
+    
 
-
-  expect(toastMessage.getText()).toBe("{Resource} saved successfully")
-
-  }});
-}});
-      
+    //Expectations
+    {resource}.toast("{Resource} saved successfully");
+                 
   }});
  
     
     
 it('Should  edit a {Resource}', function() {{
-    browser.get('http://localhost/');
-    element(by.id('{resources}_menu')).click();
+
+    var {resource} = new {Resource}();
+    
+    //Goto the edit menu
+    element(by.id('{resources}_list')).click(); 
     element(by.css('.ag-row-level-0')).click();
     element(by.id('editButton')).click();
-      
-      
-   
- {protractor_edit_elments}
+     
+    // Fill in the fields
+    {protractor_edit_elments}
+    
+    //Expectations
+    {resource}.toast("Update was a success");
       
  
-element(by.css(".button-primary")).click()    
-.then(function(){{    
-   browser.sleep(3000);
-  {protractor_edit_expect_elments}
 
-  }});
 }});
     
 it('Should  delete a {Resource}', function() {{
     browser.get('http://localhost/');
     element(by.id('{resources}_menu')).click();
+    element(by.id('{resources}_list')).click();
     element(by.css('.ag-row-level-0')).click();
     element(by.id('deleteButton')).click()
             

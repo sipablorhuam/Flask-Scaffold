@@ -1,88 +1,71 @@
 ######### Protractor Tests ##########
-# Add
-pro_string="""element(by.name('{field}')).sendKeys("Your Title text here");"""
+## Page Objects
+pro_po_string = """
+        var {field} = element(by.id('{field}'));
+        this.set{Field} = function({field}Text) {{ {field}.clear(); name.sendKeys({field}Text); }};
+        """
+# Strings to test Additions
+pro_string="""
+        {resource}.set{Field}("Your Title text here");"""
 
-pro_text= """element(by.name("{field}")).sendKeys("Your Body text here 77569yuii3wui&%$$^"); """
+pro_text= """
+        {resource}.set{Field}("Your Body text here 77569yuii3wui&%$$^"); """
 
-#need to change to name of element
-pro_boolean= """element(by.css("input[type='radio'][value='false']")).click(); """
 
-pro_big_int= """ element(by.name("{field}")).sendKeys(9870654321); """
+pro_boolean=""" 
+        element(by.css("input[type='radio'][value='false']")).click(); """
 
-pro_int = """ element(by.name("{field}")).sendKeys(56); """
+pro_big_int= """ 
+        {resource}.set{Field}(9870654321); """
 
-pro_email = """ element(by.name("{field}")).sendKeys("youremail@flask-scaffold.git");"""
+pro_int = """ 
+        {resource}.set{Field}(56); """
 
-pro_url = """ element(by.name("{field}")).sendKeys("http://techarena51.com");   """
+pro_email = """
+        {resource}.set{Field}("youremail@flask-scaffold.git");"""
 
-pro_timestamp = """ element(by.name("{field}")).sendKeys("2014-12-22T03:12:58.019077+00:00"); """
+pro_url = """ 
+        {resource}.set{Field}("http://techarena51.com");   """
 
-pro_date = """ element(by.name("{field}")).sendKeys("12/11/2015"); """
+pro_timestamp = """ 
+        {resource}.set{Field}("2014-12-22T03:12:58.019077+00:00"); """
 
-pro_decimal = """ element(by.name("{field}")).sendKeys("67.89"); """
+pro_date = """ 
+        element(by.name("{field}")).sendKeys("12/11/2015"); """
 
-#Edit
+pro_decimal = """ 
+        {resource}.set{Field}("67.89"); """
 
+# Strings to tests Edits
 update_pro_string="""
-element(by.name("{field}")).clear();
-element(by.name('{field}')).sendKeys("Your Updated Title text here");"""
+        {resource}.set{Field}("Your Updated Title text here");"""
 
 update_pro_text= """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys("Your Updated Body text here 77569yuii3wui&%$$^"); """
+        {resource}.set{Field}("Your Updated Body text here 77569yuii3wui&%$$^"); """
 
-#need to change to name of element
 update_pro_boolean= """
-element(by.css("input[type='radio'][value='true']")).click(); """
+        element(by.css("input[type='radio'][value='true']")).click(); """
 
 update_pro_big_int= """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys(9870646321); """
+        {resource}.set{Field}(9870646321); """
 
 update_pro_int = """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys(67); """
+        {resource}.set{Field}(67); """
 
 update_pro_email = """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys("yourupdatedemail@flask-scaffold.git");"""
+        {resource}.set{Field}("yourupdatedemail@flask-scaffold.git");"""
 
 update_pro_url = """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys("https://github.com/Leo-G/DevopsWiki");   """
+        {resource}.set{Field}("https://github.com/Leo-G/DevopsWiki");   """
 
 update_pro_timestamp = """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys("2015-12-22T03:12:58.019077+00:00"); """
+        {resource}.set{Field}("2015-12-22T03:12:58.019077+00:00"); """
 
 update_pro_date = """
-element(by.name("{field}")).sendKeys("12/23/2015"); """
+        element(by.name("{field}")).sendKeys("12/23/2015"); """
 
 update_pro_decimal = """
-element(by.name("{field}")).clear();
-element(by.name("{field}")).sendKeys("67.79"); """
-
-#expect
-expect_pro_string = """
-expect(element(by.name("{field}")).getAttribute('value')).toBe("Your Updated Title text here");"""
-
-expect_pro_text = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("Your Updated Body text here 77569yuii3wui&%$$^");"""
-
-#need to add check for boolean
-expect_pro_big_int = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("9870646321");"""
-
-expect_pro_int = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("67");"""
-
-expect_pro_email = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("yourupdatedemail@flask-scaffold.git");"""
-
-expect_pro_url = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("https://github.com/Leo-G/DevopsWiki");"""
-
-expect_pro_timestamp = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("2015-12-22T03:12:58.019077+00:00");"""
-
-expect_pro_date = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("2015-12-23");"""
-
-expect_pro_decimal = """ expect(element(by.name("{field}")).getAttribute('value')).toBe("67.79");"""
-
+        {resource}.set{Field}("67.79"); """
 
 ######### Protractor Tests End ##########
 
