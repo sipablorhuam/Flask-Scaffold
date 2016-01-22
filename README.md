@@ -1,8 +1,6 @@
 Flask-Scaffold let's you scaffold a MySQL or PostgreSQL driven Web Application with Flask and Angularjs. It will create views,models and templates for a given Resource along with API endpoints and Unit tests.
 
-![](http://i.imgur.com/a5iFubs.png)
 ![](http://i.imgur.com/o7RTkyB.png)
-
 
 Features include
 
@@ -11,14 +9,12 @@ Features include
  - Unit Testing with python Unit tests
  - End 2 End testing with Protractor
  - Continous Integration with Travis-CI
- - Inbuilt User Management and Admin Dashboard
- 
+ - Inbuilt User Management and Admin Dashboard 
 
 ###[Demo](http://flask-scaffold.herokuapp.com/) Sign Up and Login
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 ###Installation
 
