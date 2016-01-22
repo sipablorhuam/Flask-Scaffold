@@ -1,3 +1,5 @@
+<div ng-if="isAuthenticated()" style="height:100%">
+
        <div class="index-button">
 
         <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
@@ -14,3 +16,5 @@
     </div>
 
     <div ag-grid="gridOptions" class="ag-fresh"  ></div>
+
+</div>
