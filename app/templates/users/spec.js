@@ -7,7 +7,7 @@ describe('Testing User Sign Up, Login and Logout, Forgot password', function() {
         element(by.id('signUp')).click();
         // Fill in the fields
         element(by.model('name')).sendKeys("Leo G");    
-        element(by.model("email")).sendKeys("leo@localhost");
+        element(by.model("email")).sendKeys("root@localhost");
         element(by.model('password')).sendKeys("Str0ng P@$$w)*&^+=");
         
           
@@ -30,7 +30,7 @@ describe('Testing User Sign Up, Login and Logout, Forgot password', function() {
         element(by.id('forgotPassword')).click();
         // Fill in the fields
           
-        element(by.id("fpass-email")).sendKeys("leo@localhost");
+        element(by.id("fpass-email")).sendKeys("root@localhost");
      
         element(by.id("fpass-button")).click()       
             .then(function(){
@@ -48,7 +48,7 @@ describe('Testing User Sign Up, Login and Logout, Forgot password', function() {
         element(by.id('logIn')).click();
         // Fill in the fields  
        element(by.id("login-email")).clear();
-       element(by.id("login-email")).sendKeys("leo@localhost");
+       element(by.id("login-email")).sendKeys("root@localhost");
         element(by.id("login-password")).clear();
         element(by.id('login-password')).sendKeys("Str0ng P@$$w)*&^+=");
         
@@ -180,7 +180,7 @@ describe('Roles/Users CRUD tests ', function() {
         // Fill in the fields
         
         user.setName("Leo G");
-        user.setEmail("al@localhost");
+        user.setEmail("leo@localhost");
         user.setPassword("Styur757*&^5");
         element(by.css("input[type='radio'][value='false'")).click();
         user.setRole();
