@@ -34,7 +34,7 @@ it('Should add a new {Resource}', function() {{
     element(by.id('{resources}_new')).click();
     
     // Fill in the Fields
-    
+    {protractor_add_elments}
 
     //Expectations
     {resource}.toast("{Resource} saved successfully");
