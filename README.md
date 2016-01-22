@@ -1,6 +1,8 @@
 Flask-Scaffold let's you scaffold a MySQL or PostgreSQL driven Web Application with Flask and Angularjs. It will create views,models and templates for a given Resource along with API endpoints and Unit tests.
 
-![](http://i.imgur.com/gsOwlH5.png)
+![](http://i.imgur.com/a5iFubs.png)
+![](http://i.imgur.com/o7RTkyB.png)
+
 
 Features include
 
@@ -9,8 +11,10 @@ Features include
  - Unit Testing with python Unit tests
  - End 2 End testing with Protractor
  - Continous Integration with Travis-CI
+ - Inbuilt User Management and Admin Dashboard
+ 
 
-###[Demo](http://flask-scaffold.herokuapp.com/)
+###[Demo](http://flask-scaffold.herokuapp.com/) Sign Up and Login
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -64,9 +68,9 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
     python run.py
 
-**You should be able to see the web dashboard  at http://localhost:5000
+**You should be able to see the Login Page at http://localhost:5000, Sign Up and Login
 
-![](http://i.imgur.com/gsOwlH5.png)
+(![](http://i.imgur.com/a5iFubs.png))
 
 To configure your application with nginx and uwsgi configuration see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Install-and-Configure-Nginx-and-Uwsgi-on-Ubuntu-to-Serve-Flask-and-Angularjs-Applications)
 ###Tests
@@ -74,13 +78,21 @@ To configure your application with nginx and uwsgi configuration see the [wiki](
 ####For E2E testing with protractor
 Installation instructions for protractor are in the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Headless-Testing-Angularjs-apps-with-Protractor-and-Selenium-on-Ubuntu-14.04)
 
+    # To run tests for all modules
+    protractor conf.js
+    
+    # To run a a test for a specific module 
+    
     protractor app/templates/<module_name>/conf.js
 
 ####For unit testing with python Unit tests
 
-    python app/<module_name>/test_<module_name>.py
+    For a Single module
 
-####For testing multiple modules
+    python app/<module_name>/test_<module_name>.py
+    
+    For all modules
+    
     bash tests.bash
 
 ###API
@@ -106,6 +118,7 @@ For details on how the API is built read 	http://techarena51.com/index.php/buidl
             |-- config.py
             |--run.py
             |--requirements.txt
+            |--conf.js
             |__ /venv
             |-- db.py
             |__ /scaffold
@@ -126,6 +139,8 @@ For details on how the API is built read 	http://techarena51.com/index.php/buidl
                     |-- views.py
                 |__ templates
                    |-- index.html
+                   |-- login.html
+                   |-- home.html
                    +-- static
                           |-- js
                           |-- css
@@ -136,9 +151,13 @@ For details on how the API is built read 	http://techarena51.com/index.php/buidl
                                    |-- add.html
                                    |-- update.html
                                    |-- controller.js
+                                   |--conf.js
+                                   |--spec.js
                    +-- module-2
                                    |-- _form.html
                                    |-- index.html
                                    |-- add.html
                                    |-- update.html
                                    |-- controller.js
+                                   |-- conf.js
+                                   |--spec.js
