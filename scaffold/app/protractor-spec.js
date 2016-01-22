@@ -45,7 +45,10 @@ it('Should  edit a {Resource}', function() {{
 
     var {resource} = new {Resource}();
     
+    {resource}.get();
+    
     //Goto the edit menu
+    element(by.id('{resources}_menu')).click();
     element(by.id('{resources}_list')).click(); 
     element(by.css('.ag-row-level-0')).click();
     element(by.id('editButton')).click();
