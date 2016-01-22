@@ -8,7 +8,7 @@ import yaml
 import inflect
 from scaffold.custom_fields import *
 from scaffold.modules.replace_string import replace_string, \
-new_route_string, menu_string, js_src_string, test_script_string
+new_route_string, menu_string, js_src_string, test_script_string, conf_js_string
 from scaffold.modules.errors import BlueprintError
 
 blueprint_file = 'app/__init__.py'
@@ -16,6 +16,7 @@ test_script = 'tests.bash'
 yaml_file = sys.argv[1]
 app_js_file = "app/templates/static/js/app.js"
 main_index_file = "app/templates/index.html"
+conf_js_file = "conf.js"
 
 # Error classes
 def make_plural(resource):
@@ -397,6 +398,11 @@ with open(yaml_file, "r") as file:
                 # Add tests to test.bash
                 replace_string(
                     resource, resources, test_script, "#TESTS", test_script_string)
+                
+                
+                # Add tests to conf.js
+                replace_string(
+                    resource, resources, conf_js_file, "//Specs", conf_js_string) 
 
                 run_autopep8()
             except:
