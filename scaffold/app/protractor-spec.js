@@ -1,7 +1,7 @@
 // spec.js
 describe('Testing {Resources} CRUD Module', function() {{
 
-var {Resources} = function() {{
+var {Resource} = function() {{
         {protractor_page_objects}
          
         this.get = function() {{
@@ -40,9 +40,7 @@ it('Should add a new {Resource}', function() {{
     {resource}.toast("{Resource} saved successfully");
                  
   }});
- 
-    
-    
+      
 it('Should  edit a {Resource}', function() {{
 
     var {resource} = new {Resource}();
@@ -63,7 +61,7 @@ it('Should  edit a {Resource}', function() {{
 }});
     
 it('Should  delete a {Resource}', function() {{
-    browser.get('http://localhost/');
+    browser.get('http://localhost:5000/');
     element(by.id('{resources}_menu')).click();
     element(by.id('{resources}_list')).click();
     element(by.css('.ag-row-level-0')).click();
