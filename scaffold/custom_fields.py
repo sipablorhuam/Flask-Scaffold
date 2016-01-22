@@ -2,7 +2,7 @@
 ## Page Objects
 pro_po_string = """
         var {field} = element(by.id('{field}'));
-        this.set{Field} = function({field}Text) {{ {field}.clear(); name.sendKeys({field}Text); }};
+        this.set{Field} = function({field}Text) {{ {field}.clear(); {field}.sendKeys({field}Text); }};
         """
 # Strings to test Additions
 pro_string="""
