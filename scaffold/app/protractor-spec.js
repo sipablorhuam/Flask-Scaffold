@@ -31,7 +31,7 @@ it('Should add a new {Resource}', function() {{
     
     // Goto the new menu    
     element(by.id('{resources}_menu')).click();
-    element(by.buttonText('{resources}_new')).click();
+    element(by.id('{resources}_new')).click();
     
     // Fill in the Fields
     
