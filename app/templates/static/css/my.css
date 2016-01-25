@@ -18,7 +18,7 @@ html, body {
    }
 
 #main > article {
-   width: 100%;
+   width: 80%;
    height: 89%;
    padding: 2%;
    -webkit-flex: 3 1 60%;
