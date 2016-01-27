@@ -12,12 +12,13 @@ Features include
  - End 2 End testing with Protractor
  - Continous Integration with Travis-CI
  - Inbuilt User Management and Admin Dashboard
- 
+ - [Google Analytics](#google-analytics)
 
 ###[Demo](http://flask-scaffold.herokuapp.com/) Sign Up and Login
 
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=althealobo%40gmail%2ecom&lc=AU&item_name=Leo%2dG&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest)
 
 
 ###Installation
@@ -80,9 +81,9 @@ Installation instructions for protractor are in the [wiki](https://github.com/Le
 
     # To run tests for all modules
     protractor conf.js
-    
-    # To run a a test for a specific module 
-    
+
+    # To run a a test for a specific module
+
     protractor app/templates/<module_name>/conf.js
 
 ####For unit testing with python Unit tests
@@ -90,9 +91,9 @@ Installation instructions for protractor are in the [wiki](https://github.com/Le
     For a Single module
 
     python app/<module_name>/test_<module_name>.py
-    
+
     For all modules
-    
+
     bash tests.bash
 
 ###API
@@ -142,7 +143,9 @@ For details on how the API is built read 	http://techarena51.com/index.php/buidl
                    |-- login.html
                    |-- home.html
                    +-- static
-                          |-- js
+                          + -- js
+                                 |-- app.js
+                                 |-- login.js
                           |-- css
                           |-- images
                    +-- module-1
@@ -160,4 +163,18 @@ For details on how the API is built read 	http://techarena51.com/index.php/buidl
                                    |-- update.html
                                    |-- controller.js
                                    |-- conf.js
-                                   |--spec.js
+                                   |-- spec.js
+
+
+## Google Analytics
+
+Add your tracking ID and Domain name in app.js in the app.config  section
+
+      app.config(function (AnalyticsProvider) {
+                  // Set a single account
+                  AnalyticsProvider.setAccount('UA-XXXXX-xx');
+                  AnalyticsProvider.setDomainName('XXX');
+
+       });
+
+For complete Documentation see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Add-Google-Analytics-to-Angularjs-UI-Routes)
