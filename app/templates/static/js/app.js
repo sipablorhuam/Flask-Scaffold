@@ -18,7 +18,7 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
   // route the JWT should be retrieved from
     $authProvider.loginUrl = '/api/v1/login.json';
     $urlRouterProvider.otherwise('/login')
- 
+
  //If a user is already logged in, the Login window if requested need not be displayed.
    function skipIfLoggedIn($q, $auth, $state) {
       var deferred = $q.defer();
@@ -48,7 +48,7 @@ $stateProvider.state('login', {
 	url: '/login',
 	templateUrl: 'login.html',
 	controller: 'LoginController',
-    title: 'Sign In',   
+    title: 'Sign In',
     resolve: {
           skipIfLoggedIn: skipIfLoggedIn
         }
@@ -72,17 +72,17 @@ $stateProvider.state('login', {
   })
 
   // Routes for roles
-  
-  
+
+
   .state('roles', {
         // Note: abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         abstract: true,
         url: '/roles',
-        title: 'Roles',      
+        title: 'Roles',
         template: '<ui-view/>'
     })
-    
+
   .state('roles.list', {
     url: '/list',
     templateUrl: 'roles/index.html',
@@ -112,17 +112,17 @@ $stateProvider.state('login', {
 
         // End Routes for roles
   // Routes for users
-  
+
    .state('users', {
         // Note: abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         abstract: true,
         url: '/users',
-        title: 'Users',      
+        title: 'Users',
         template: '<ui-view/>'
     })
   .state('users.list', {
-    url: '/list',    
+    url: '/list',
     templateUrl: 'users/index.html',
     controller: 'UserListController',
     title: 'Users',
@@ -135,7 +135,7 @@ $stateProvider.state('login', {
     url: '/new',
     templateUrl: '/users/add.html',
     controller: 'UserCreateController',
-    
+
     resolve: {
           loginRequired: loginRequired
         }
@@ -151,10 +151,10 @@ $stateProvider.state('login', {
         })
 
     // End Routes for users
-   
-   
+
+
    // States
-  
+
   ;
 
   })
@@ -223,3 +223,4 @@ angular.module('myApp.controllers', []);
 angular.module('myApp').run(function(Analytics) {
             Analytics.pageView();
  });
+
