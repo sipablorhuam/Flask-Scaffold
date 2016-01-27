@@ -1,4 +1,4 @@
-angular.module('myApp', ['ui.router', 'ngResource',  "angularGrid" , 'myApp.controllers', 'myApp.services', 'satellizer','toaster', 'ngAnimate']);
+angular.module('myApp', ['ui.router', 'ngResource',  "angularGrid" , 'myApp.controllers', 'myApp.services', 'satellizer','toaster', 'ngAnimate', 'angular-google-analytics']);
 
 angular.module('myApp')
   .run( function($rootScope, $state){
@@ -8,7 +8,11 @@ angular.module('myApp')
                 }
     );
 
-angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $authProvider) {
+angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $authProvider, AnalyticsProvider) {
+
+   // Google Analytics
+    AnalyticsProvider.setAccount('UA-37519052-11');
+    AnalyticsProvider.setDomainName('seven.leog.in');    
 
    // Satellizer configuration that specifies which API
   // route the JWT should be retrieved from
@@ -216,17 +220,7 @@ $stateProvider.state('login', {
 angular.module('myApp.services', []);
 angular.module('myApp.controllers', []);
 
-// Anlytics -->
+angular.module('myApp').run(function(Analytics) {
+            Analytics.pageView();
+ });
 
-angular.module('myApp')
-  .run(function($rootScope, $location, $window){
-     $rootScope
-        .$on('$stateChangeSuccess',
-            function(event){
-
-                if (!$window.ga)
-                    return;
-
-                $window.ga('send', 'pageview', { page: $location.path() });
-        });
-});
