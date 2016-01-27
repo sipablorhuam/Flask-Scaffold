@@ -66,7 +66,7 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 **You should be able to see the Login Page at http://localhost:5000, Sign Up and Login
 
-(![](http://i.imgur.com/a5iFubs.png))
+![](http://i.imgur.com/a5iFubs.png)
 
 To configure your application with nginx and uwsgi configuration see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Install-and-Configure-Nginx-and-Uwsgi-on-Ubuntu-to-Serve-Flask-and-Angularjs-Applications)
 ###Tests
