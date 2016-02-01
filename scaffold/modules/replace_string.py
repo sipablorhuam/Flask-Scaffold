@@ -5,11 +5,11 @@ from scaffold.modules.errors import ReplaceError
 new_route_string = """
    // States
   // Routes for {resources}
-   .state('{resources}', {{ 
+   .state('{resources}', {{
         abstract: true, //An abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
                          // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
         url: '/{resources}',
-        title: '{Resources}',      
+        title: '{Resources}',
         template: '<ui-view/>'
    }})
   .state('{resources}.list', {{
@@ -37,7 +37,7 @@ js_src_string =""" <!-- Controllers -->
     <script type="text/javascript" src="{resources}/controllers.js"></script>"""
 
 menu_string ="""  <!-- menu -->
- 
+
  <li ng-init="{resources}_click='false'">
      <a ui-sref="{resources}" id="{resources}_menu" ng-click="{resources}_click=!{resources}_click">
      {Resources}</a>
@@ -65,13 +65,13 @@ def replace_string(resource, resources, file, string_to_insert_after, new_string
 
     new_string = new_string.format(resources=resources, resource=resource, Resource=resource.title(), Resources=resources.title())
 
-    with open(file, 'r+') as old_file:
+    with open(file, 'r+', encoding = "utf-8") as old_file:
         filedata = old_file.read()
     if string_to_insert_after in filedata:
         # replace the first occurrence
         new_filedata = filedata.replace(
             string_to_insert_after, new_string, 1)
-        with open(file, 'w') as new_file:
+        with open(file, 'w', encoding = "utf-8") as new_file:
             new_file.write(new_filedata)
             print("Updated", file)
     else:
