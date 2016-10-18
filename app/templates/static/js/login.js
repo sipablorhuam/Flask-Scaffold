@@ -1,17 +1,17 @@
 angular.module('myApp.services').factory('user', function($resource) {
   return{
      SignUp:$resource('api/v1/signup.json', { },{},
-   
+
                  {
                 stripTrailingSlashes: false
                 }),
-     ForgotPassword: $resource('api/v1/forgotpassword', null, null,                                                              
-                                                            
+     ForgotPassword: $resource('api/v1/forgotpassword', null, null,
+
                                                              {
                                                 stripTrailingSlashes: false
                                                 }),
-                                       
-                                       
+
+
      UpdatePassword: function (token) {
                        return $resource('api/v1/forgotpassword', {}, {
                                                                 update: {
@@ -25,9 +25,9 @@ angular.module('myApp.services').factory('user', function($resource) {
                                                 stripTrailingSlashes: false
                                                 })
                                        }
-                                       
-    
-                    
+
+
+
       }
 });
 
@@ -97,21 +97,21 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                 $scope.loading = false;
                });
         }
-        
-        
+
+
         // Sign Up a New User
-        
+
         $scope.addUser = function() {
-               $scope.loading = true;   
+               $scope.loading = true;
                $scope.user = new user.SignUp();
-               $scope.user.data = {                    
+               $scope.user.data = {
                     "type": "users",
                     "attributes": {
                       "name": $scope.name,
                       "email": $scope.email,
                       "password": $scope.password,
                       "role": "a",
-                      "active": "false"
+                      "active": "0"
                       }
                      }
                 $scope.user.$save(function() {
@@ -123,7 +123,7 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             timeout: 0
                                             });
                                    $scope.loading = false;
-                                  
+
                                 }, function(error) {
                                 toaster.pop({
                                             type: 'error',
@@ -134,23 +134,23 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             });
                                  $scope.loading = false;
                                            });
-                                 
 
-           
+
+
         }
-        
-        
-        
+
+
+
         // Forgot password
-        
+
         $scope.forgotPassword = function() {
-               $scope.loading = true;   
+               $scope.loading = true;
                $scope.user = new user.ForgotPassword();
-               $scope.user.data = {                    
+               $scope.user.data = {
                     "type": "users",
-                    "attributes": {                     
-                      "email": $scope.email                     
-                      
+                    "attributes": {
+                      "email": $scope.email
+
                       }
                      }
                 $scope.user.$save(function() {
@@ -162,7 +162,7 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             timeout: 0
                                             });
                                    $scope.loading = false;
-                                  
+
                                 }, function(error) {
                                 toaster.pop({
                                             type: 'error',
@@ -173,25 +173,25 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             });
                                  $scope.loading = false;
                                            });
-                                 
 
-           
+
+
         }
-        
 
-        
+
+
         // Update password
         $scope.token = $stateParams.token;
         $scope.updatePassword = function() {
-               $scope.loading = true;  
-                              
+               $scope.loading = true;
+
                $scope.user = new user.UpdatePassword($scope.token);
               // console.dir($scope.user)
-               $scope.data = { "data":{                   
+               $scope.data = { "data":{
                     "type": "users",
-                    "attributes": {                     
-                      "password": $scope.password                    
-                      
+                    "attributes": {
+                      "password": $scope.password
+
                       }
                      }
                     }
@@ -204,7 +204,7 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             timeout: 0
                                             });
                                    $scope.loading = false;
-                                  
+
                                 }, function(error) {
                                 toaster.pop({
                                             type: 'error',
@@ -215,18 +215,10 @@ angular.module('myApp.controllers').controller('LoginController', function($scop
                                             });
                                  $scope.loading = false;
                                            });
-                                 
 
-           
+
+
         }
-        
-        
- });       
-        
-        
-        
 
 
-
-
-
+ });
