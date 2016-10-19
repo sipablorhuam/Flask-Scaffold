@@ -70,7 +70,10 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 ![](http://i.imgur.com/a5iFubs.png)
 
-To configure your application with nginx and uwsgi configuration see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Install-and-Configure-Nginx-and-Uwsgi-on-Ubuntu-to-Serve-Flask-and-Angularjs-Applications)
+###Examples
+[Freddy a Blogging Engine](https://github.com/Leo-G/Freddy)
+[Running asynchronous commands on Linux with Flask and Celery](https://github.com/Leo-G/Flask-Celery-Linux)
+
 ###Tests
 
 ####For E2E testing with protractor
@@ -109,7 +112,9 @@ Note: This example is for a Post module
 
 The JSON format follows the spec at jsonapi.org and a sample is available in the sample.json   file
 
-For details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+###Tutorials
+http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+https://techarena51.com/index.php/category/flask-framework-tutorials-and-examples/
 
 ###Directory Structure
         Project-Folder
