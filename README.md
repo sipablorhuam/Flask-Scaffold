@@ -72,7 +72,8 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 ###Examples
 [Freddy a Blogging Engine](https://github.com/Leo-G/Freddy)
-[Running asynchronous commands on Linux with Flask and Celery](https://github.com/Leo-G/Flask-Celery-Linux)
+
+[Running Asynchronous commands on Linux with Flask and Celery](https://github.com/Leo-G/Flask-Celery-Linux)
 
 ###Tests
 
@@ -114,6 +115,7 @@ The JSON format follows the spec at jsonapi.org and a sample is available in the
 
 ###Tutorials
 http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+
 https://techarena51.com/index.php/category/flask-framework-tutorials-and-examples/
 
 ###Directory Structure
