@@ -182,7 +182,7 @@ describe('Roles/Users CRUD tests ', function() {
         user.setName("Leo G");
         user.setEmail("leo@localhost");
         user.setPassword("Styur757*&^5");
-        element(by.css("input[type='radio'][value='false'")).click();
+        element(by.css("input[type='radio'][value='0'")).click();
         user.setRole();
         
             
@@ -206,7 +206,7 @@ describe('Roles/Users CRUD tests ', function() {
         user.setName("Al G");
         user.setEmail("al@localhost");
         user.setPassword("Styur757)(**&^5");
-        element(by.css("input[type='radio'][value='true'")).click();
+        element(by.css("input[type='radio'][value='1'")).click();
         user.setRole();
         
         // Expectations
