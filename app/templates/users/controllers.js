@@ -144,7 +144,7 @@ angular.module('myApp.controllers').controller('UserListController', function($s
 
           $scope.user = new User();  //create new site instance. Properties will be set via ng-model on UI
           $scope.loading = false;
-          $scope.user.data = {attributes: {active:true}}
+          $scope.user.data = {attributes: {active:0}}
           Role.get(function(data) {
                      $scope.roles = [];
                      angular.forEach(data.data, function(value, key)
