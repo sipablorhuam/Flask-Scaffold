@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-  <html data-ng-app="myApp">
-  <head lang="en">
-    <meta charset="utf-8">
+  <html data-ng-app="myApp" lang="en">
+  <head>
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="$state.current.title + ' | Flask-Scaffold'"> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title ng-bind="$state.current.title + ' | Flask-Scaffold'"> </title>
+
      <!-- <link rel="shortcut icon" href="static/images/" /> -->
     <base href="/"/>
      <!--  FONT
@@ -13,17 +14,15 @@
 
   <!-- CSS
   末末末末末末末末末末末末末末末末末末末末末末末末末 -->
-  <link rel="stylesheet" href="static/css/normalize.css">
-  <link rel="stylesheet" href="static/css/skeleton.css">
-  <link rel="stylesheet" href="static/css/my.css">
-  <link rel="stylesheet" href="static/css/new.css">
-  <link rel="stylesheet" type="text/css" href="static/node_modules/angular-grid/dist/angular-grid.css">
-    <link rel="stylesheet" type="text/css" href="static/node_modules/angular-grid/dist/theme-fresh.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
-     <link rel="stylesheet" href="//cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css" type="text/css" >
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/css/signin.css" rel="stylesheet">
+  <link href="static/css/dashboard.css" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.15/toaster.min.css" rel="stylesheet" />
+
 
    <!-- JS 末末末末末末末末末末末末末末末末末末末末末末末末末 -->
     <script src="static/node_modules/angular/angular.min.js"></script>
+    <script src="static/node_modules/ag-grid/dist/ag-grid.js"></script>
     <script type="text/javascript" src="static/js/app.js"></script>
     <script type="text/javascript" src="static/js/login.js"></script>
                      <!-- Controllers -->
@@ -32,57 +31,66 @@
    <script type="text/javascript" src="static/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script type="text/javascript" src="static/node_modules/angular-resource/angular-resource.min.js"></script>
     <script type="text/javascript" src="static/node_modules/angularjs-toaster/toaster.min.js"></script>
-    <script type="text/javascript" src="static/node_modules/satellizer/satellizer.js"></script>
-    <script type="text/javascript" src="static/node_modules/angular-animate/angular-animate.min.js"></script>    
+    <script type="text/javascript" src="static/node_modules/satellizer/dist/satellizer.min.js"></script>
+    <script type="text/javascript" src="static/node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="static/node_modules/angular-google-analytics/dist/angular-google-analytics.js"></script>
-    <script src="static/node_modules/angular-grid/dist/angular-grid.js"></script>
+
   </head>
-<body  ng-controller="LogoutCtrl">
-    <header  ng-if="isAuthenticated()">
-        <button style="float:right"class="button-primary" ng-click="logout()">Logout</button>
-    </header>
+<body  ng-controller="LogoutCtrl" style="height:100%;">
+  <toaster-container></toaster-container>
 
-    <!-- Nav and Main Content Start -->
-    <div id='main'>
-
-        <!-- Nav Start -->
-        <nav ng-if="isAuthenticated()">
-            <div>
-                <ul>
-                    <li><a ui-sref="home" ui-sref-active="current">Home</a></li>
-                    <li ng-init="roles_click='false'">
-                       <a ui-sref="roles" id="roles_menu" ng-click="roles_click=!roles_click">Roles</a>
-                       <ul ng-hide="roles_click">
-                            <li><a ui-sref="roles.list" id="roles_list" ui-sref-active="current">List</a></li>
-                            <li><a ui-sref="roles.new" id="roles_new" ui-sref-active="current">New</a></li>
-                       </ul>
-                    </li>
-                    <li ng-init="users_click='false'">
-                        <a ui-sref="users"  id="users_menu" ng-click="users_click=!users_click">Users</a>
-                        <ul  ng-hide="users_click">
-                            <li><a ui-sref="users.list" id="users_list" ui-sref-active="current">List</a></li>
-                            <li><a ui-sref="users.new" id="users_new" ui-sref-active="current">New</a></li>
-                       </ul>
-                    </li>
-
-                                          <!-- menu -->
-                 </div>
-            </nav>
-
-        <!-- Nav End-->
-
-        <!-- Main content Start -->
-        <article>
-
-            <toaster-container></toaster-container>
-            <div class="ui-view-container" ui-view >
-            </div>
-        </article>
-        <!-- Main content End -->
-
+  <nav class="navbar navbar-inverse navbar-fixed-top" ng-if="isAuthenticated()">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Flask Scaffold</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>  <a class="nav-item nav-link" href="#" ng-click="logout()"> Logout</a></li>
+          <li> <a class="nav-item nav-link" href="#" >Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control" placeholder="Search...">
+        </form>
+      </div>
     </div>
-  <!--  <footer ng-if="isAuthenticated()">copyright  <a href="http://techarena51.com">  Techarena51.com </a></footer> -->
+  </nav>
 
+  <div class="container-fluid" style="height:100%;">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar" ng-if="isAuthenticated()">
+        <ul class="nav nav-sidebar">
+          <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+          <li><a ui-sref="roles.list">Roles</a></li>
+          <li><a ui-sref="users.list">Users</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li><a href="">Nav item</a></li>
+          <li><a href="">Nav item again</a></li>
+
+        </ul>
+
+      </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="height:100%;" ui-view>
+
+
+            </div>
+            </div>
+          </div>
+
+
+  <!--  <footer ng-if="isAuthenticated()">copyright  <a href="http://techarena51.com">  Techarena51.com </a></footer> -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="/static/js/bootstrap.min.js"></script>
 
   </body>
 </html>

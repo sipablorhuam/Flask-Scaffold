@@ -1,21 +1,20 @@
 
-<div ng-if="isAuthenticated()" style="height:100%">
-       <div class="index-button">
+<div  ng-if="isAuthenticated()" style="height:100%;">
+
 
         <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
 
-      <div>
-        <a ui-sref="roles.new"><button class="button-primary">New</button></a>
+        <a ui-sref="roles.new"><button class="btn btn-default">New</button></a>
 
         <span ng-repeat="selectedRow in gridOptions.selectedRows">
-          <a ui-sref="roles.edit({id:selectedRow.id })" ><button class="button-primary" id="editButton" >Edit</button></a>
+          <a ui-sref="roles.edit({id:selectedRow.id })" ><button class="btn btn-default" id="editButton" >Edit</button></a>
 
-          <button ng-click="deleteRole(selectedRow.id)" class="button-primary" id="deleteButton"> Delete </button>
+          <button ng-click="deleteRole(selectedRow.id)" class="btn btn-default" id="deleteButton"> Delete </button>
         </span>
-       </div>
-    </div>
 
 
 
-    <div ag-grid="gridOptions" class="ag-fresh" ></div>
+
+
+    <div ag-grid="gridOptions" class="ag-fresh" style="height:100%;"></div>
 </div>

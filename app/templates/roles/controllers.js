@@ -19,11 +19,15 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
 
 
                             ];
+              $scope.roles = [{"id":"1", "name":"test"}, {"id":"6", "name":"testo"}, {"id":"10", "name":"htest"}];
         $scope.gridOptions = { columnDefs: columnDefs,
-                               rowData: null,
-                               enableSorting: true,
-                               enableColResize: true,
-                               rowSelection: 'single',};
+                               rowData:  $scope.roles
+                              // enableSorting: true,
+                               //enableColResize: true,
+                               // rowSelection: 'single',
+                             };
+
+
         Role.get(function(data) {
                      $scope.roles = [];
                      angular.forEach(data.data, function(value, key)
@@ -32,9 +36,9 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                                                        this.role['id'] = value.id;
                                                        this.push(this.role);
                                                         },   $scope.roles);
-                    $scope.gridOptions.rowData = $scope.roles;
-                    $scope.gridOptions.api.onNewRows();
-                    $scope.gridOptions.api.sizeColumnsToFit();
+                  //  $scope.gridOptions.rowData = $scope.roles;
+                  //  $scope.gridOptions.api.onNewRows();
+                  //  $scope.gridOptions.api.sizeColumnsToFit();
                                },
                 function(error){
                   toaster.pop({
@@ -131,7 +135,7 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                                             });
                                     $state.go('roles.list');
                                     $scope.loading = false;
-                                 
+
                                 }, function(error) {
                                 toaster.pop({
                                             type: 'error',

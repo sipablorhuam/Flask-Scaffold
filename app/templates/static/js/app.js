@@ -1,4 +1,7 @@
-angular.module('myApp', ['ui.router', 'ngResource',  "angularGrid" , 'myApp.controllers', 'myApp.services', 'satellizer','toaster', 'ngAnimate', 'angular-google-analytics']);
+agGrid.initialiseAgGridWithAngular1(angular);
+
+angular.module('myApp', ['ui.router', 'ngResource',  'agGrid' , 'myApp.controllers', 'myApp.services',
+                         'satellizer','toaster', 'ngAnimate', 'angular-google-analytics']);
 
 angular.module('myApp')
   .run( function($rootScope, $state){
@@ -12,7 +15,7 @@ angular.module('myApp').config(function( $stateProvider , $urlRouterProvider, $a
 
    // Google Analytics
     AnalyticsProvider.setAccount('UA-37519052-11');
-    AnalyticsProvider.setDomainName('seven.leog.in');    
+    AnalyticsProvider.setDomainName('seven.leog.in');
 
    // Satellizer configuration that specifies which API
   // route the JWT should be retrieved from
@@ -223,4 +226,3 @@ angular.module('myApp.controllers', []);
 angular.module('myApp').run(function(Analytics) {
             Analytics.pageView();
  });
-
