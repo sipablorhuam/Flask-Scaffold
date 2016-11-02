@@ -1,8 +1,6 @@
 Flask-Scaffold let's you scaffold a MySQL or PostgreSQL driven Web Application with Flask and Angularjs. It will create views,models and templates for a given Resource along with API endpoints and Unit tests.
 
-![](http://i.imgur.com/a5iFubs.png)
 ![](http://i.imgur.com/o7RTkyB.png)
-
 
 Features include
 
@@ -19,7 +17,6 @@ Features include
 ![](https://travis-ci.org/Leo-G/Flask-Scaffold.svg?branch=master)
 [![Gitter](https://badges.gitter.im/Leo-G/Flask-Scaffold.svg)](https://gitter.im/Leo-G/Flask-Scaffold?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![PayPal donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=althealobo%40gmail%2ecom&lc=AU&item_name=Leo%2dG&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest)
-
 
 ###Installation
 
@@ -71,9 +68,13 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 **You should be able to see the Login Page at http://localhost:5000, Sign Up and Login
 
-(![](http://i.imgur.com/a5iFubs.png))
+![](http://i.imgur.com/a5iFubs.png)
 
-To configure your application with nginx and uwsgi configuration see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Install-and-Configure-Nginx-and-Uwsgi-on-Ubuntu-to-Serve-Flask-and-Angularjs-Applications)
+###Examples
+[Freddy a Blogging Engine](https://github.com/Leo-G/Freddy)
+
+[Running Asynchronous commands on Linux with Flask and Celery](https://github.com/Leo-G/Flask-Celery-Linux)
+
 ###Tests
 
 ####For E2E testing with protractor
@@ -112,7 +113,10 @@ Note: This example is for a Post module
 
 The JSON format follows the spec at jsonapi.org and a sample is available in the sample.json   file
 
-For details on how the API is built read 	http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+###Tutorials
+http://techarena51.com/index.php/buidling-a-database-driven-restful-json-api-in-python-3-with-flask-flask-restful-and-sqlalchemy/
+
+https://techarena51.com/index.php/category/flask-framework-tutorials-and-examples/
 
 ###Directory Structure
         Project-Folder
