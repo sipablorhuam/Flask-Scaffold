@@ -12,28 +12,28 @@ pro_text= """
         {resource}.set{Field}("Your Body text here 77569yuii3wui&%$$^"); """
 
 
-pro_boolean=""" 
+pro_boolean="""
         element(by.css("input[type='radio'][value='false']")).click(); """
 
-pro_big_int= """ 
+pro_big_int= """
         {resource}.set{Field}(9870654321); """
 
-pro_int = """ 
+pro_int = """
         {resource}.set{Field}(56); """
 
 pro_email = """
         {resource}.set{Field}("youremail@flask-scaffold.git");"""
 
-pro_url = """ 
+pro_url = """
         {resource}.set{Field}("http://techarena51.com");   """
 
-pro_timestamp = """ 
+pro_timestamp = """
         {resource}.set{Field}("2014-12-22T03:12:58.019077+00:00"); """
 
-pro_date = """ 
+pro_date = """
         element(by.name("{field}")).sendKeys("12/11/2015"); """
 
-pro_decimal = """ 
+pro_decimal = """
         {resource}.set{Field}("67.89"); """
 
 # Strings to tests Edits
@@ -96,29 +96,57 @@ update_decimal_test = "48.6789899"
 update_text_test = "How to build CRUD app with Python, Flask, SQLAlchemy and MySQL. Som reand456989@#$%^%> <html/>"
 
 
-########### Controller.js Fields ##########
-controller_field = """{{headerName: "{field}", field: "{field}", width: 300 }},"""
+########### resource index.html Fields ##########
+table_header_field = """
+                         <th>{Field}</th>"""
+table_row_field = """
+                         <td>{{{{ {resource}.{field} }}}}</td>"""
 
 # Radio button default checked
 radio_button_string = """ $scope.{resource}.data = {{ "attributes ": {{ "{field}" : "true" }} }} """
 ########## _form.html Form Fields #####################
 form_field = """
-    <input placeholder="{field}*" type="{field_type}" id="{field}" name="{field}"  ng-model="{resource}.data.attributes.{field}"  required>
-       """
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label"> {Field}</label>
+            <div class="col-sm-4">
+                 <input   type="{field_type}" id="{field}" name="{field}"  class="form-control"
+                  ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" required>
+            </div>
+         </div>"""
 date_field_string = """
-    <input placeholder="{field}*" type="{field_type}" id="{field}" name="{field}"  formatdate ng-model="{resource}.data.attributes.{field}"   required>"""
-      
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label"> {Field}</label>
+            <div class="col-sm-4">
+                 <input   type="{field_type}" id="{field}" name="{field}"  class="form-control"
+                 formatdate ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" required>
+            </div>
+         </div>"""
 decimal_form_string = """
-    <input placeholder="{field}*" type="number" step="any" id="{field}" name="{field}"  string-to-number ng-model="{resource}.data.attributes.{field}"   required>"""
+        <div class="form-group">
+           <label for="name" class="col-sm-2 control-label"> {Field}</label>
+           <div class="col-sm-4">
+                <input   type="number" id="{field}" name="{field}"  class="form-control" step="any"
+                 ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" string-to-number required>
+           </div>
+        </div>"""
 text_form_string  = """
-    <textarea type="text" placeholder="{field}*" name="{field}" id="{field}" ng-model="{resource}.data.attributes.{field}"  required> </textarea> 
-          """
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label"> {Field}</label>
+            <div class="col-sm-4">
+                <textarea type="text" id="{field}" name="{field}"  class="form-control"
+                 ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" required></textarea>
+            </div>
+          </div>"""
 boolean_form_string = """
-    <div class="form-radio">
-       <label>{Field}</label>
-       <input type="radio" ng-model="{resource}.data.attributes.{field}" name="{field}" ng-value="true"  required>
-       <label>True</label>
-       <input type="radio" ng-model="{resource}.data.attributes.{field}"  name="{field}"ng-value="false">
-       <label>False</label>
-    </div>
+        <div class="form-group">
+               <label for="is_active" class="col-sm-2 control-label">{Field}</label>           
+               <div class="col-sm-4">
+                <label class="radio-inline">       
+                <input type="radio" name="{field}" id="{field}" ng-value="true" ng-model="{resource}.data.attributes.{field}">
+                True</label>
+                <label class="radio-inline">       
+                <input type="radio" name="{field}" id="{field}" ng-value="false" ng-model="{resource}.data.attributes.{field}">
+                False</label>
+            </div>
+        </div> 
 """

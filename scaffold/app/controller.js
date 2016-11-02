@@ -12,18 +12,13 @@ angular.module('myApp.services').factory('{Resource}', function($resource) {{
 }});
 
 
-angular.module('myApp.controllers').controller('{Resource}ListController', function($scope, $state,  {Resource}, $auth, toaster) {{
- //Table header definitions  
-        var columnDefs = [ {{headerName: "Sr No", cellRenderer: function(params) {{return params.node.id + 1;}} }},
-                             {controller_fields}
-                            
-                            
-                            ];
-        $scope.gridOptions = {{ columnDefs: columnDefs,
-                               rowData: null,
-                               enableSorting: true,
-                               enableColResize: true,
-                               rowSelection: 'single',}};  
+angular.module('myApp.controllers').controller('{Resource}ListController', function($scope, $state,  {Resource}, $auth, toaster, 
+                                                                                     DTOptionsBuilder) {{
+        
+        
+        $scope.dtOptions = DTOptionsBuilder.newOptions()
+                            .withBootstrap();
+          
         {Resource}.get(function(data) {{
                      $scope.{resources} = [];
                      angular.forEach(data.data, function(value, key)
@@ -32,9 +27,7 @@ angular.module('myApp.controllers').controller('{Resource}ListController', funct
                                                        this.{resource}['id'] = value.id;
                                                        this.push(this.{resource});                    
                                                         }},   $scope.{resources}); 
-                    $scope.gridOptions.rowData = $scope.{resources};
-                    $scope.gridOptions.api.onNewRows();
-                    $scope.gridOptions.api.sizeColumnsToFit();
+                  
                                }}, 
                 function(error){{
                       $scope.error = error.data;

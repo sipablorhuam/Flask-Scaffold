@@ -1,20 +1,31 @@
-<div ng-if="isAuthenticated()" style="height:100%">
+<a class="btn btn-default pull-right btn-primary" ui-sref="users.new" role="button" ng-if="isAuthenticated()">New</a>
 
-       <div class="index-button">
+<table datatable="ng" dt-options="dtOptions" class="table table-bordered" ng-if="isAuthenticated()">
 
-        <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
 
-      <div>
-        <a ui-sref="users.new"><button class="button-primary">New</button></a>
+       <thead>
+                         <th>ID</th> 
+                         <th>Email</th>                       
+                         <th>Name</th>
+                         <th>Active</th>
+                         <th>Creation_Time</th>
+                         <th>Role</th>
+          <th>Actions</th>
 
-        <span ng-repeat="selectedRow in gridOptions.selectedRows">
-          <a ui-sref="users.edit({id:selectedRow.id })" ><button class="button-primary" id="editButton" >Edit</button></a>
 
-          <button ng-click="deleteUser(selectedRow.id)" class="button-primary" id="deleteButton"> Delete </button>
-        </span>
-       </div>
-    </div>
+        </thead>
+        <tbody>
+        <tr ng-repeat=" user in users">
+                         <td>{{ user.id }}</td> 
+                         <td>{{ user.email }}</td>                        
+                         <td>{{ user.name }}</td>
+                         <td>{{ user.active }}</td>
+                         <td>{{ user.creation_time }}</td>
+                         <td>{{ user.role }}</td>
+            <td><a ui-sref="users.edit({id:user.id })" class="btn btn-default btn-warning" role="button"  id="editButton"><i class="fa fa-edit"></i></a>
+            <button class="btn btn-default btn-danger" ng-click="deleteUser(user.id)" id="deleteButton"><i class="fa fa-trash-o"></i></button>
+            </td>
+        </tr>
+        </tbody>
 
-    <div ag-grid="gridOptions" class="ag-fresh"  ></div>
-
-</div>
+</table>

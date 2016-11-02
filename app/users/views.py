@@ -7,6 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from marshmallow import ValidationError
 from werkzeug.security import generate_password_hash
 
+
 users = Blueprint('users', __name__)
 # http://marshmallow.readthedocs.org/en/latest/quickstart.html#declaring-schemas
 # https://github.com/marshmallow-code/marshmallow-jsonapi
@@ -36,8 +37,8 @@ class CreateListUsers(Resource):
         try:
             schema.validate(raw_dict)
             request_dict = raw_dict['data']['attributes']
-            user = Users(request_dict['email'], generate_password_hash(request_dict['password']), request_dict['name'], request_dict[
-                         'active'], request_dict['role'],)
+            user = Users(request_dict['email'], generate_password_hash(request_dict['password']), request_dict[
+                         'name'], request_dict['active'], request_dict['role'],)
             user.add(user)
             # Should not return password hash
             query = Users.query.get(user.id)
@@ -77,8 +78,7 @@ class GetUpdateDeleteUser(Resource):
             schema.validate(raw_dict)
             request_dict = raw_dict['data']['attributes']
             for key, value in request_dict.items():
-                setattr(user, key, value)
-
+                setattr(user, key, value)           
             user.update()
             return self.get(id)
 

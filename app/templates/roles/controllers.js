@@ -12,21 +12,13 @@ angular.module('myApp.services').factory('Role', function($resource) {
 });
 
 
-angular.module('myApp.controllers').controller('RoleListController', function($scope, $state,  Role, $auth, toaster) {
- //Table header definitions
-        var columnDefs = [ {headerName: "Sr No", cellRenderer: function(params) {return params.node.id + 1;} },
-                             {headerName: "name", field: "name", width: 300 },
+angular.module('myApp.controllers').
+controller('RoleListController', function($scope, $state,  Role, $auth, toaster,DTOptionsBuilder
+                                          ) {
 
 
-                            ];
-              $scope.roles = [{"id":"1", "name":"test"}, {"id":"6", "name":"testo"}, {"id":"10", "name":"htest"}];
-        $scope.gridOptions = { columnDefs: columnDefs,
-                               rowData:  $scope.roles
-                              // enableSorting: true,
-                               //enableColResize: true,
-                               // rowSelection: 'single',
-                             };
-
+                                        $scope.dtOptions = DTOptionsBuilder.newOptions()
+                                                         .withBootstrap();
 
         Role.get(function(data) {
                      $scope.roles = [];
@@ -35,11 +27,11 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                                                        this.role = value.attributes;
                                                        this.role['id'] = value.id;
                                                        this.push(this.role);
-                                                        },   $scope.roles);
-                  //  $scope.gridOptions.rowData = $scope.roles;
-                  //  $scope.gridOptions.api.onNewRows();
-                  //  $scope.gridOptions.api.sizeColumnsToFit();
-                               },
+                                                     },   $scope.roles);
+
+
+
+                                     },
                 function(error){
                   toaster.pop({
                          type: 'error',
@@ -52,8 +44,8 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
 
 
    $scope.deleteRole = function(selected_id) { // Delete a Role. Issues a DELETE to /api/roles/:id
-      role = Role.get({ id: selected_id});
-      role.$delete({ id: selected_id},function() {
+      $scope.role = Role.get({ id: selected_id});
+      $scope.role.$delete({ id: selected_id},function() {
         toaster.pop({
                 type: 'success',
                 title: 'Sucess',
@@ -61,7 +53,7 @@ angular.module('myApp.controllers').controller('RoleListController', function($s
                 showCloseButton: true,
                 timeout: 0
                 });
-        $state.go('roles'); //redirect to home
+
         $state.reload();
       }, function(error) {
          toaster.pop({

@@ -1,20 +1,24 @@
 
-<div  ng-if="isAuthenticated()" style="height:100%;">
+<a class="btn btn-default pull-right btn-primary" ui-sref="roles.new" role="button" ng-if="isAuthenticated()">New</a>
+
+<table datatable="ng" dt-options="dtOptions" class="table table-bordered" ng-if="isAuthenticated()">
 
 
-        <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
+ <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="role in roles">
+            <td>{{ role.id }}</td>
+            <td>{{ role.name }}</td>
+            <td><a ui-sref="roles.edit({id:role.id })" class="btn btn-default btn-warning" role="button" ><i class="fa fa-edit"></i></a>
+            <button class="btn btn-default btn-danger" ng-click="deleteRole(role.id)"><i class="fa fa-trash-o"></i></button>
+            </td>
+        </tr>
+        </tbody>
 
-        <a ui-sref="roles.new"><button class="btn btn-default">New</button></a>
-
-        <span ng-repeat="selectedRow in gridOptions.selectedRows">
-          <a ui-sref="roles.edit({id:selectedRow.id })" ><button class="btn btn-default" id="editButton" >Edit</button></a>
-
-          <button ng-click="deleteRole(selectedRow.id)" class="btn btn-default" id="deleteButton"> Delete </button>
-        </span>
-
-
-
-
-
-    <div ag-grid="gridOptions" class="ag-fresh" style="height:100%;"></div>
-</div>
+</table>

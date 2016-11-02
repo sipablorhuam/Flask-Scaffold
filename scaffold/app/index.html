@@ -1,21 +1,23 @@
-<div ng-if="isAuthenticated()" style="height:100%">
-  <div class="index-button">
-        
-        <input placeholder="Search" type="text" ng-model="gridOptions.quickFilterText"/>
-    
-      <div>
-        <a ui-sref="{resources}.new"><button class="button-primary">New</button></a>
-       
-        <span ng-repeat="selectedRow in gridOptions.selectedRows">
-          <a ui-sref="{resources}.edit({{id:selectedRow.id }})" ><button class="button-primary" id="editButton" >Edit</button></a> 
-     
-          <button ng-click="delete{Resource}(selectedRow.id)" class="button-primary" id="deleteButton"> Delete </button>
-        </span>       
-       </div> 
-    </div>
-   
-    <div ag-grid="gridOptions" class="ag-fresh" ></div>
+<a class="btn btn-default pull-right btn-primary" ui-sref="{resources}.new" role="button" ng-if="isAuthenticated()">New</a>
+
+<table datatable="ng" dt-options="dtOptions" class="table table-bordered" ng-if="isAuthenticated()">
 
 
+       <thead>
+         <th>ID</th>
+         {table_headers}
+          <th>Actions</th>
 
-</div>
+
+        </thead>
+        <tbody>
+        <tr ng-repeat=" {resource} in {resources}">
+            <td>{{{{ {resource}.id  }}}}</td> 
+            {table_body}
+            <td><a ui-sref="{resources}.edit({{id:{resource}.id }})" class="btn btn-default btn-warning" role="button"  id="editButton"><i class="fa fa-edit"></i></a>
+            <button class="btn btn-default btn-danger" ng-click="delete{Resource}({resource}.id)" id="deleteButton"><i class="fa fa-trash-o"></i></button>
+            </td>
+        </tr>
+        </tbody>
+
+</table>

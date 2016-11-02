@@ -17,7 +17,7 @@ add_data = """{
   "data": {
     "attributes":
 
-    {"active": "true", "role": "test string", "password": "test string", "creation_time": "2015-12-22T03:12:58.019077+00:00", "modification_time": "2015-12-22T03:12:58.019077+00:00", "email": "testing@flask.pocoo.com", "name": "test string"}
+    {"email": "test string", "role": "test string", "creation_time": "2015-12-22T03:12:58.019077+00:00", "name": "test string", "password": "test string", "active": 35678}
          ,
 
     "type": "users"
@@ -29,7 +29,7 @@ update_data = """{
   "data": {
     "attributes":
 
-        {"active": "false", "role": "test string", "password": "test string", "creation_time": "2015-12-22T03:12:58.019077+00:00", "modification_time": "2015-12-22T03:12:58.019077+00:00", "email": "testing@flask.pocoo.com", "name": "test string"},
+        {"email": "test string", "role": "test string", "creation_time": "2015-12-22T03:12:58.019077+00:00", "name": "test string", "password": "test string", "active": 35678},
     "type": "users"
   }
 

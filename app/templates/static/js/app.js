@@ -1,7 +1,6 @@
-agGrid.initialiseAgGridWithAngular1(angular);
-
-angular.module('myApp', ['ui.router', 'ngResource',  'agGrid' , 'myApp.controllers', 'myApp.services',
-                         'satellizer','toaster', 'ngAnimate', 'angular-google-analytics']);
+angular.module('myApp', ['ui.router', 'ngResource',  'datatables' , 'myApp.controllers', 'myApp.services',
+                         'satellizer','toaster', 'ngAnimate', 'angular-google-analytics',
+                              'datatables.bootstrap']);
 
 angular.module('myApp')
   .run( function($rootScope, $state){
@@ -154,9 +153,11 @@ $stateProvider.state('login', {
         })
 
     // End Routes for users
-
-
+   
+   
    // States
+   
+
 
   ;
 

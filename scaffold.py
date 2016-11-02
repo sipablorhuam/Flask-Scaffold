@@ -108,13 +108,14 @@ def generate_files(module_path, angular_dir):
                 with open("scaffold/app/index.html", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resource=resource.title()))
+                                                   Resource=resource.title(), table_headers=table_headers,
+                                                   table_body=table_body))
         elif file == "controllers.js":
             with open(os.path.join(angular_dir, 'controllers.js'), "w") as new_file:
                 with open("scaffold/app/controller.js", "r") as old_file:
                     for line in old_file:
                         new_file.write(line.format(resource=resource, resources=resources,
-                                                   Resource=resource.title(),  controller_fields=controller_fields
+                                                   Resource=resource.title()
                                                    ) )
         # Protractor
         elif file == "conf.js":
@@ -201,22 +202,22 @@ with open(yaml_file, "r") as file:
         update_form_args = ""
 
         # strings to insert into index.html
-        field_table_headers = ""
-        index_fields = ""
+        table_headers = ""
+        table_body= ""
 
         # strings to insert into tests.py
         test_add_fields = {}
         test_update_fields = {}
 
         # Fields to insert into controller.js
-        controller_fields = ""
+
         radio_button_default =""
 
         # Fields to add to protractor spec.js
         protractor_page_objects = ""
         protractor_edit_elments = ""
         protractor_add_elments = ""
-       
+
         for f in fields:
             field, field_type = f.split(':')
             if field_type == "string":
@@ -257,7 +258,7 @@ with open(yaml_file, "r") as file:
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_int.format(field=field, resource=resource, Field=field.title())
                 protractor_add_elments += pro_int.format(field=field, resource=resource, Field=field.title())
-                
+
 
             elif field_type == "biginteger":
                 db_rows += """
@@ -270,7 +271,7 @@ with open(yaml_file, "r") as file:
                 test_update_fields[field] = update_big_integer_test
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_big_int.format(field=field, resource=resource, Field=field.title())
-                protractor_add_elments += pro_big_int.format(field=field, resource=resource, Field=field.title())               
+                protractor_add_elments += pro_big_int.format(field=field, resource=resource, Field=field.title())
 
             elif field_type == "email":
                 db_rows += """
@@ -284,8 +285,8 @@ with open(yaml_file, "r") as file:
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_email.format(field=field, resource=resource, Field=field.title())
                 protractor_add_elments += pro_email.format(field=field, resource=resource, Field=field.title())
-               
-                    
+
+
             elif field_type == "url":
                 db_rows += """
     {} = db.Column(db.String(250), nullable=False)""".format(field)
@@ -298,7 +299,7 @@ with open(yaml_file, "r") as file:
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_url.format(field=field, resource=resource, Field=field.title())
                 protractor_add_elments += pro_url.format(field=field, resource=resource, Field=field.title())
-                
+
 
             elif field_type == "datetime":
                 db_rows += """
@@ -312,7 +313,7 @@ with open(yaml_file, "r") as file:
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_timestamp.format(field=field, resource=resource, Field=field.title())
                 protractor_add_elments += pro_timestamp.format(field=field, resource=resource, Field=field.title())
-               
+
 
             elif field_type == "date":
                 db_rows += """
@@ -324,7 +325,7 @@ with open(yaml_file, "r") as file:
                 test_add_fields[field] = date_test
                 test_update_fields[field] = update_date_test
                 protractor_edit_elments += update_pro_date.format(field=field)
-                protractor_add_elments += pro_date.format(field=field)              
+                protractor_add_elments += pro_date.format(field=field)
 
             elif field_type == "decimal":
                 db_rows += """
@@ -337,7 +338,7 @@ with open(yaml_file, "r") as file:
                 test_update_fields[field] = update_decimal_test
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_decimal.format(field=field, resource=resource, Field=field.title())
-                protractor_add_elments += pro_decimal.format(field=field, resource=resource, Field=field.title())             
+                protractor_add_elments += pro_decimal.format(field=field, resource=resource, Field=field.title())
 
             elif field_type == "text":
                 db_rows += """
@@ -351,7 +352,7 @@ with open(yaml_file, "r") as file:
                 protractor_page_objects += pro_po_string.format(field=field, Field=field.title())
                 protractor_edit_elments += update_pro_text.format(field=field, resource=resource, Field=field.title())
                 protractor_add_elments += pro_text.format(field=field, resource=resource, Field=field.title())
-            
+
             # models
             meta += """ '{}', """.format(field)
             init_args += """ {}, """.format(field)
@@ -361,16 +362,18 @@ with open(yaml_file, "r") as file:
             add_fields += add_string.format(field)
 
             #_form.html
-            form_args.append(
-                """{resource}_{field} = ''""".format(resource=resource, field=field))
-            field_table_headers += """ <th>{field}</th> """.format(field=field)
-            index_fields += """<td>{{{{ result['{field}'] }}}}</td>""".format(
-                field=field)
+            form_args.append("""{resource}_{field} = ''""".format(resource=resource, field=field))
+
+            #resource index.html
+            table_headers += table_header_field.format(field=field, Field=field.title())
+            table_body += table_row_field.format(field=field, resource=resource)
+
+            #update.html
             update_form_args += """{resource}_{field} = {resource}.{field}, """.format(resource=resource, field=field)
-            
+
             # controller.js
-            controller_fields += controller_field.format(field=field)
-            
+
+
 
         # Generate files with the new fields
         module_dir = os.path.join('app', resources)
@@ -398,11 +401,11 @@ with open(yaml_file, "r") as file:
                 # Add tests to test.bash
                 replace_string(
                     resource, resources, test_script, "#TESTS", test_script_string)
-                
-                
+
+
                 # Add tests to conf.js
                 replace_string(
-                    resource, resources, conf_js_file, "//Specs", conf_js_string) 
+                    resource, resources, conf_js_file, "//Specs", conf_js_string)
 
                 run_autopep8()
             except:

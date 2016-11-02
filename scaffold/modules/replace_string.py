@@ -13,18 +13,18 @@ new_route_string = """
         template: '<ui-view/>'
    }})
   .state('{resources}.list', {{
-    url: '/{resources}/list',
+    url: '/list',
     templateUrl: '{resources}/index.html',
     controller: '{Resource}ListController',
 
 
   }}).state('{resources}.new', {{
-    url: '/{resources}/new',
+    url: '/new',
     templateUrl: '/{resources}/add.html',
     controller: '{Resource}CreateController',
 
     }}).state('{resources}.edit', {{
-    url: '/{resources}/:id/edit',
+    url: '/:id/edit',
     templateUrl: '{resources}/update.html',
     controller: '{Resource}EditController',
 
@@ -37,16 +37,7 @@ js_src_string =""" <!-- Controllers -->
     <script type="text/javascript" src="{resources}/controllers.js"></script>"""
 
 menu_string ="""  <!-- menu -->
-
- <li ng-init="{resources}_click='false'">
-     <a ui-sref="{resources}" id="{resources}_menu" ng-click="{resources}_click=!{resources}_click">
-     {Resources}</a>
-                        <ul  ng-hide="{resources}_click">
-                            <li><a ui-sref="{resources}.list" id="{resources}_list" ui-sref-active="current">List</a></li>
-                            <li><a ui-sref="{resources}.new" id="{resources}_new" ui-sref-active="current">New</a></li>
-                       </ul>
-                    </li>
-"""
+             <li><a ui-sref="{resources}.list" id="{resources}_menu" >{Resources}</a></li>"""
 
 #Strings to test.bash
 test_script_string = """
