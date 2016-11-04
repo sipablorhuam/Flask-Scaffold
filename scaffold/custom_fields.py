@@ -13,7 +13,7 @@ pro_text= """
 
 
 pro_boolean="""
-        element(by.css("input[type='radio'][value='false']")).click(); """
+        element(by.css("input[type='radio'][value='0']")).click(); """
 
 pro_big_int= """
         {resource}.set{Field}(9870654321); """
@@ -44,7 +44,7 @@ update_pro_text= """
         {resource}.set{Field}("Your Updated Body text here 77569yuii3wui&%$$^"); """
 
 update_pro_boolean= """
-        element(by.css("input[type='radio'][value='true']")).click(); """
+        element(by.css("input[type='radio'][value='1']")).click(); """
 
 update_pro_big_int= """
         {resource}.set{Field}(9870646321); """
@@ -62,7 +62,7 @@ update_pro_timestamp = """
         {resource}.set{Field}("2015-12-22T03:12:58.019077+00:00"); """
 
 update_pro_date = """
-        element(by.name("{field}")).sendKeys("12/23/2015"); """
+        element(by.name("{field}")).sendKeys("12/03/2015"); """
 
 update_pro_decimal = """
         {resource}.set{Field}("67.79"); """
@@ -139,14 +139,14 @@ text_form_string  = """
           </div>"""
 boolean_form_string = """
         <div class="form-group">
-               <label for="is_active" class="col-sm-2 control-label">{Field}</label>           
+               <label for="is_active" class="col-sm-2 control-label">{Field}</label>
                <div class="col-sm-4">
-                <label class="radio-inline">       
-                <input type="radio" name="{field}" id="{field}" ng-value="true" ng-model="{resource}.data.attributes.{field}">
+                <label class="radio-inline">
+                <input type="radio" name="{field}" id="{field}" ng-value="1" ng-model="{resource}.data.attributes.{field}">
                 True</label>
-                <label class="radio-inline">       
-                <input type="radio" name="{field}" id="{field}" ng-value="false" ng-model="{resource}.data.attributes.{field}">
+                <label class="radio-inline">
+                <input type="radio" name="{field}" id="{field}" ng-value="0" ng-model="{resource}.data.attributes.{field}">
                 False</label>
             </div>
-        </div> 
+        </div>
 """
