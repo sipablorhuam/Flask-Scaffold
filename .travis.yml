@@ -9,11 +9,6 @@ python:
 # command to run tests
 script:
  - protractor conf.js
- #Test Maridb
- - cp -f config_mysql.py config.py
- - python db.py db migrate
- - python db.py db upgrade
- - protractor conf.js
 
 # - bash tests.bash
 
