@@ -9,6 +9,7 @@ python:
 # command to run tests
 script:
  - protractor conf.js
+ - protractor app/templates/posts/conf.js
 
 # - bash tests.bash
 

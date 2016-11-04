@@ -1,10 +1,16 @@
-posts:
- - name:string
- - address:text
- - is_active:boolean
- - mobile:integer
- - email:email
- - url:url
- - timestamp:datetime
- - date:date
- - pricing:decimal
+ posts:
+  - tittle:string
+  - body:text
+  - author:string
+  - creation_date:date
+  - published:boolean
+ comments:
+  - author:string
+  - body:text
+  - author_url:url
+  - created_on:date
+  - approved:boolean
+ authors:
+  - name:string
+  - profile:text
+  - url:url
