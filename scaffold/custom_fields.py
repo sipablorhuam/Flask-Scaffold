@@ -134,7 +134,7 @@ text_form_string  = """
             <label for="name" class="col-sm-2 control-label"> {Field}</label>
             <div class="col-sm-4">
                 <textarea type="text" id="{field}" name="{field}"  class="form-control"
-                 ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" required></textarea>
+                 ng-model="{resource}.data.attributes.{field}" placeholder="{field}*" rows="5" required></textarea>
             </div>
           </div>"""
 boolean_form_string = """

@@ -1,6 +1,7 @@
-Flask-Scaffold let's you scaffold a MySQL or PostgreSQL driven Web Application with Flask and Angularjs. It will create views,models and templates for a given Resource along with API endpoints and Unit tests.
+Flask-Scaffold let's you Prototype Database Driven Admin Dashboards with Bootstrap 3, Python and a MySQL/Mariadb or PostgreSQL
+Database. It will also scaffold a RESTFUL API which can be used with any REST Frontend Framework.
 
-![](http://i.imgur.com/o7RTkyB.png)
+![](http://i.imgur.com/axck2Ec.png)
 
 Features include
 
@@ -11,6 +12,8 @@ Features include
  - Continous Integration with Travis-CI
  - Inbuilt User Management and Admin Dashboard
  - [Google Analytics](#google-analytics)
+ - Bootstrap 3 Support
+ - Datatables support
 
 ###[Demo](http://flask-scaffold.herokuapp.com/) Sign Up and Login
 
@@ -68,7 +71,7 @@ For a list of supported fields please see https://github.com/Leo-g/Flask-Scaffol
 
 **You should be able to see the Login Page at http://localhost:5000, Sign Up and Login
 
-![](http://i.imgur.com/a5iFubs.png)
+![](http://i.imgur.com/ePILhzh.png)
 
 ###Examples
 [Freddy a Blogging Engine](https://github.com/Leo-G/Freddy)
@@ -180,5 +183,9 @@ Add your tracking ID and Domain name in app.js in the app.config  section
                   AnalyticsProvider.setDomainName('XXX');
 
        });
+
+# Angularjs
+
+The frontend currently uses Angularjs 1.5 and ui-router for routes.
 
 For complete Documentation see the [wiki](https://github.com/Leo-G/Flask-Scaffold/wiki/Add-Google-Analytics-to-Angularjs-UI-Routes)
