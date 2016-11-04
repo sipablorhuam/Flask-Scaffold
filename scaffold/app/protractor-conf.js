@@ -14,15 +14,15 @@ exports.config = {{
 
 
        element(by.css(".btn")).click()
-           .then(function(){
+           .then(function(){{
                var EC = protractor.ExpectedConditions;
                var toastMessage = $('.toast-message');
                browser.wait(EC.visibilityOf(toastMessage), 60) //wait until toast is displayed
-                   .then(function(){
+                   .then(function(){{
                        expect(toastMessage.getText()).toBe("User created successfully");
 
-     });
-   });
+     }});
+   }});
 
   element(by.id('logIn')).click();
   element(by.id("inEmail")).clear();
