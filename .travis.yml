@@ -9,12 +9,17 @@ python:
 # command to run tests
 script:
  - protractor conf.js
- - protractor app/templates/posts/conf.js
+ #Test Maridb
+ - cp -f config_mysql.py config.py
+ - python db.py db migrate
+ - python db.py db upgrade
+ - protractor conf.js
 
 # - bash tests.bash
 
 addons:
   postgresql: "9.3"
+  mariadb: '10.0'
 
 before_script:
   - psql -c 'create database fscafold;' -U postgres
