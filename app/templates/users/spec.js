@@ -99,59 +99,16 @@ describe('Roles/Users CRUD tests ', function() {
                     };
 
 
-    var User = function() {
-
-        var name = element(by.id('name'));
-        var email = element(by.id("email"));
-        var password =  element(by.id('password'));
-
-        this.get = function() {
-                                   browser.get('http://localhost:5000/');
-                                       };
-        this.setName = function(nameText) { name.clear(); name.sendKeys(nameText); };
-        this.setEmail = function(emailText) { email.clear(); email.sendKeys(emailText); };
-        this.setPassword = function(passwordText) { password.clear(); password.sendKeys(passwordText); };
-        // radio button
-        this.setActive = function(activeText) {  element(by.css("input[type='radio'][value={0}".format({activeText}))).click(); };
-
-        // drop down
-        this.setRole = function() {  element(by.cssContainingText('option', 'admin')).click(); };
-
-
-        this.toast = function(message){
-                                          element(by.buttonText('Save')).click()  // css selectors http://angular.github.io/protractor/#/api?view=build$
-                                            .then(function() {
-                                                  var EC = protractor.ExpectedConditions;
-                                                  var toastMessage = $('.toast-message');
-                                                  browser.wait(EC.visibilityOf(toastMessage), 6000) //wait until toast is displayed
-                                                             .then(function(){
-                                                                    expect(toastMessage.getText()).toBe(message);
-
-                                                                        });
-                                                                  });
-                                    }
-                    };
-
-
-
 
     it('Should add a new Role', function() {
         var role = new Role();
         //Get Roles URL
         role.get();
-
-
-
         // Goto the new menu
-
-
         element(by.linkText('Roles')).click();
         element(by.linkText('New')).click();
-
-
         // Fill in the fields
         role.setName("suppport");
-
         // Expectations
         role.toast("Role saved successfully");
 
@@ -160,15 +117,11 @@ describe('Roles/Users CRUD tests ', function() {
     it('Should  edit a Role', function() {
 
         var role = new Role();
-
         // Goto the edit menu
          element(by.linkText('Roles')).click();
           element(by.id('editButton')).click();
-
-
         // Fill in the fields
         role.setName("admin");
-
         // Expectations
         role.toast("Update was a success");
 
@@ -177,7 +130,108 @@ describe('Roles/Users CRUD tests ', function() {
 
 //Users
 
-// Users
+var User = function() {
+
+    var name = element(by.id('name'));
+    var email = element(by.id("email"));
+    var password =  element(by.id('password'));
+
+    this.get = function() {
+                               browser.get('http://localhost:5000/');
+                                   };
+    this.setName = function(nameText) { name.clear(); name.sendKeys(nameText); };
+    this.setEmail = function(emailText) { email.clear(); email.sendKeys(emailText); };
+    this.setPassword = function(passwordText) { password.clear(); password.sendKeys(passwordText); };
+    // radio button
+    this.setActive = function(activeText) {  element(by.css("input[type='radio'][value={0}".format({activeText}))).click(); };
+
+    // drop down
+    this.setRole = function() {  element(by.cssContainingText('option', 'admin')).click(); };
+
+
+    this.toast = function(message){
+                                      $('.btn.btn-primary').click()  // css selectors http://angular.github.io/protractor/#/api?view=build$
+                                        .then(function() {
+                                              var EC = protractor.ExpectedConditions;
+                                              var toastMessage = $('.toast-message');
+                                              browser.wait(EC.visibilityOf(toastMessage), 6000) //wait until toast is displayed
+                                                         .then(function(){
+                                                                expect(toastMessage.getText()).toBe(message);
+
+                                                                    });
+                                                              });
+                                }
+                };
+
+
+                it('Should add a new User', function() {
+
+                    var user = new User();
+
+                    // Get users URL
+                    user.get();
+
+                    // Goto the new menu
+                    element(by.linkText('Users')).click();
+                    element(by.linkText('New')).click();
+
+                    // Fill in the Fields
+
+                        user.setEmail("leo@techarena51.com");
+                        user.setPassword("Your Title text here");
+                        user.setName("Your Title text here");
+                        element(by.css("input[type='radio'][value='0']")).click();
+                        user.setRole();
+
+                    //Expectations
+                    user.toast("User saved successfully");
+
+                  });
+
+                it('Should  edit a User', function() {
+
+                    var user = new User();
+
+                    user.get();
+
+                    //Goto the edit menu
+                    element(by.linkText('Users')).click();
+                     element(by.id('editButton')).click();
+
+                    // Fill in the fields
+
+                        user.setEmail("leo@leog.in");
+                        user.setPassword("Your Updated Title text here");
+                        user.setName("Your Updated Title text here");
+                        element(by.css("input[type='radio'][value='1']")).click();
+                        user.setRole();
+
+                    //Expectations
+                    user.toast("Update was a success");
+
+
+
+                });
+
+                it('Should  delete a User', function() {
+                    browser.get('http://localhost:5000/');
+                    element(by.linkText('Users')).click();
+                    element(by.id('deleteButton')).click()
+                    .then(function(){
+                        var EC = protractor.ExpectedConditions;
+                        var toastMessage = $('.toast-message');
+                         browser.wait(EC.visibilityOf(toastMessage), 60) //wait until toast is displayed
+                            .then(function(){
+
+                                expect(toastMessage.getText()).toBe("User deleted successfully")
+
+                      });
+
+                  });
+                });
+
+
+// Users End
 
      it('Should  delete a Role', function() {
         role = new Role();
