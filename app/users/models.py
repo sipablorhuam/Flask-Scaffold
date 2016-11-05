@@ -6,14 +6,14 @@ from app.basemodels import db, CRUD_MixIn
 class Users(db.Model, CRUD_MixIn):
     id = db.Column(db.Integer, primary_key=True)
 
-    email = db.Column(db.String(250), nullable=False)
+    email = db.Column(db.String(250), nullable=False, unique=True)
     password = db.Column(db.String(250), nullable=False)
     name = db.Column(db.String(250), nullable=False)
     active = db.Column(db.Integer, nullable=False)
     creation_time = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     role = db.Column(db.String(250), db.ForeignKey('roles.name'))
     role_relation = db.relationship('Roles', backref="users")
-    
+
 
     def __init__(self,  email,  password,  name,  active, role, ):
 
