@@ -153,10 +153,10 @@ $stateProvider.state('login', {
         })
 
     // End Routes for users
-   
-   
+
+
    // States
-   
+
 
 
   ;
@@ -224,6 +224,7 @@ $stateProvider.state('login', {
 angular.module('myApp.services', []);
 angular.module('myApp.controllers', []);
 
-angular.module('myApp').run(function(Analytics) {
+angular.module('myApp').run(function(Analytics, DTDefaultOptions) {
             Analytics.pageView();
+            DTDefaultOptions.setLoadingTemplate('<img src="/static/images/loader3.gif">');
  });
