@@ -1,0 +1,35 @@
+<a class="btn btn-default pull-right btn-primary" ui-sref="faces.new" role="button" ng-if="isAuthenticated()">New</a>
+
+<table datatable="ng" dt-options="dtOptions" class="table table-bordered" ng-if="isAuthenticated()">
+
+
+       <thead>
+         <th>ID</th>
+         
+                         <th>Name</th>
+                         <th>Company</th>
+                         <th>Document</th>
+                         <th>Count</th>
+                         <th>Lastseen</th>
+                         <th style="display:none;">Picture</th>
+          <th>Actions</th>
+
+
+        </thead>
+        <tbody>
+        <tr ng-repeat=" face in faces">
+            <td>{{ face.id  }}</td> 
+            
+                         <td>{{ face.name }}</td>
+                         <td>{{ face.company }}</td>
+                         <td>{{ face.document }}</td>
+                         <td>{{ face.count }}</td>
+                         <td>{{ face.lastSeen }}</td>
+                         <td style="display:none;">{{ face.picture }}</td>
+            <td><a ui-sref="faces.edit({id:face.id })" class="btn btn-default btn-warning" role="button"  id="editButton"><i class="fa fa-edit"></i></a>
+            <button class="btn btn-default btn-danger" ng-click="deleteFace(face.id)" id="deleteButton"><i class="fa fa-trash-o"></i></button>
+            </td>
+        </tr>
+        </tbody>
+
+</table>

@@ -155,7 +155,35 @@ $stateProvider.state('login', {
     // End Routes for users
    
    
+   
    // States
+  // Routes for faces
+   .state('faces', {
+        abstract: true, //An abstract state cannot be loaded, but it still needs a ui-view for its children to populate.
+                         // https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views
+        url: '/faces',
+        title: 'Faces',
+        template: '<ui-view/>'
+   })
+  .state('faces.list', {
+    url: '/list',
+    templateUrl: 'faces/index.html',
+    controller: 'FaceListController',
+
+
+  }).state('faces.new', {
+    url: '/new',
+    templateUrl: '/faces/add.html',
+    controller: 'FaceCreateController',
+
+    }).state('faces.edit', {
+    url: '/:id/edit',
+    templateUrl: 'faces/update.html',
+    controller: 'FaceEditController',
+
+        })
+
+        // End Routes for faces
    
 
 

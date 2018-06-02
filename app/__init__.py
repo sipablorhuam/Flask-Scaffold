@@ -9,7 +9,7 @@ def create_app(config_filename):
 
     # Init Flask-SQLAlchemy
     from app.basemodels import db
-    db.init_app(app)   
+    db.init_app(app)
 
     from app.baseviews import login_required, login1, mail
     from flask import render_template, send_from_directory
@@ -35,11 +35,12 @@ def create_app(config_filename):
 
     from app.roles.views import roles
     app.register_blueprint(roles, url_prefix='/api/v1/roles')
-    
+
     from app.users.views import users
     app.register_blueprint(users, url_prefix='/api/v1/users')
 
     # Blueprints
-  
+    from app.faces.views import faces
+    app.register_blueprint(faces, url_prefix='/api/v1/faces')
 
     return app

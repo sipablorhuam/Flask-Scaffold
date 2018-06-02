@@ -1,8 +1,8 @@
 # DATABASE SETTINGS
-pg_db_username = 'postgres'
-pg_db_password = ''
-pg_db_name = 'fscafold'
-pg_db_hostname = 'localhost'
+pg_db_username = 'sa'
+pg_db_password = '<PASSWORD>'
+pg_db_name = 'mydb'
+pg_db_hostname = 'mydbinstance2.cnve8bavh6qc.us-east-1.rds.amazonaws.com'
 
 # MYSQL
 mysql_db_username = 'root'

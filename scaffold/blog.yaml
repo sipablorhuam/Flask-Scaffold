@@ -1,16 +1,7 @@
- posts:
-  - tittle:string
-  - body:text
-  - author:string
-  - creation_date:date
-  - published:boolean
- comments:
-  - author:string
-  - body:text
-  - author_url:url
-  - created_on:date
-  - approved:boolean
- authors:
+ faces:
   - name:string
-  - profile:text
-  - url:url
+  - company:string
+  - document:string
+  - count:integer
+  - lastSeen:datetime
+  - picture:text
